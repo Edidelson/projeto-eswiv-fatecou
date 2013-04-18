@@ -1,0 +1,8 @@
+
+---------14/04/2013 - 11:36:46----------
+org.hibernate.TransactionException: Transaction not successfully started
+	at org.hibernate.transaction.JDBCTransaction.rollback(JDBCTransaction.java:179)
+	at br.com.eswiv.dao.DAOGenerico.consultar(DAOGenerico.java:141)
+	at br.com.eswiv.dao.DAOUsuario.consultar(DAOUsuario.java:50)
+	at br.com.eswiv.tela.principal.FLogin$Conexao.run(FLogin.java:326)
+	at java.lang.Thread.run(Thread.java:722)
