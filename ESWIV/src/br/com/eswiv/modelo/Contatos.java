@@ -10,7 +10,7 @@ import javax.persistence.Embeddable;
 
 /**
  *
- * @author ByllyBoarD
+ * @author 
  */
 @Embeddable
 @org.hibernate.annotations.Entity(dynamicInsert=true,dynamicUpdate=true)

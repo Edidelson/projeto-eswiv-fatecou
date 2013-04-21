@@ -24,7 +24,7 @@ import org.hibernate.exception.ConstraintViolationException;
  * <br><br>
  * HISTÓRICO DE DESENVOLVIMENTO:
  * <br>
- * 01/01/2011 - @author Everton - Primeira versão
+ * 21/04/2013 - @author Edidelson - Primeira versão
  *
  * <br><br>
  * LISTA DE CLASSES INTERNAS:
