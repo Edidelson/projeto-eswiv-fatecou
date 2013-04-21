@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 /**
  *
- * @author Everton
+ * @author Edidelson
  */
 @Embeddable
 @org.hibernate.annotations.Entity(dynamicInsert=true,dynamicUpdate=true)

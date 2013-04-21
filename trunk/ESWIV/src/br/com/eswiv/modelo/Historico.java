@@ -14,7 +14,7 @@ import javax.persistence.*;
  * @author Edidelson
  */
 @Entity
-@Table(name = "endereco")
+@Table(name = "historico")
 public class Historico implements Serializable, IModelo, Cloneable{
     
     @EmbeddedId
