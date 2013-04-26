@@ -39,7 +39,6 @@ public class DSobreSistema extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblogo = new javax.swing.JLabel();
         lbAll = new javax.swing.JLabel();
         lbempresa = new javax.swing.JLabel();
         lbtelefone = new javax.swing.JLabel();
@@ -49,10 +48,6 @@ public class DSobreSistema extends javax.swing.JDialog {
         lbserial = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        lblogo.setBackground(new java.awt.Color(0, 0, 0));
-        lblogo.setForeground(new java.awt.Color(255, 255, 255));
-        lblogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagens/ZapLogo.png"))); // NOI18N
 
         lbAll.setText("Todos Direitos Reservados");
 
@@ -94,9 +89,7 @@ public class DSobreSistema extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lbserial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lbserial, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -116,19 +109,16 @@ public class DSobreSistema extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lbAll)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbempresa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbtelefone)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbDescricaoWebsite)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6))
-                    .addComponent(lblogo))
-                .addGap(18, 18, 18)
+                .addComponent(lbAll)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbempresa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbtelefone)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbDescricaoWebsite)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbserial)
                     .addComponent(btSair))
@@ -221,7 +211,6 @@ public class DSobreSistema extends javax.swing.JDialog {
     private javax.swing.JLabel lbAll;
     private javax.swing.JLabel lbDescricaoWebsite;
     private javax.swing.JLabel lbempresa;
-    private javax.swing.JLabel lblogo;
     private javax.swing.JLabel lbserial;
     private javax.swing.JLabel lbtelefone;
     // End of variables declaration//GEN-END:variables
