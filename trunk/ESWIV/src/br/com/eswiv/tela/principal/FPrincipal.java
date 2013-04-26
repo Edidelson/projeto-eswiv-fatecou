@@ -10,6 +10,7 @@
 package br.com.eswiv.tela.principal;
 
 import br.com.eswiv.modelo.Usuario;
+import br.com.eswiv.tela.cadastro.FUsuarios;
 import br.com.util.Util;
 import com.zap.arca.LoggerEx;
 import com.zap.arca.util.WindowUtils;
@@ -81,6 +82,8 @@ public class FPrincipal extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         miSair = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         mnMovimentos = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
@@ -167,6 +170,23 @@ public class FPrincipal extends javax.swing.JFrame {
         mbPrincipal.add(mnArquivo);
 
         jMenu1.setText("Cadastro");
+
+        jMenuItem1.setText("Cadastro de usuário");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Cadastro de proprietário");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
         mbPrincipal.add(jMenu1);
 
         mnMovimentos.setMnemonic('M');
@@ -228,6 +248,14 @@ public class FPrincipal extends javax.swing.JFrame {
     this.dispose();
     }//GEN-LAST:event_btSairActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+new FUsuarios().setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgButtonPrincipal;
     private javax.swing.JButton btSair;
@@ -236,6 +264,8 @@ public class FPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPopupMenu.Separator jSeparator1;
