@@ -5,6 +5,7 @@
 package br.com.eswiv.modelo;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -32,12 +34,17 @@ public class Proprietario implements Serializable, IModelo{
     private int codigo;
     @Column(name="tx_nome")
     private String nome;
-    @Column(name="tx_observacao")
-    private String observacao;
+    @Column(name="tx_email")
+    private String email;
     @Column(name="tx_telefone")
     private String telefone;
     @Column(name="tx_celular")
     private String celular;
+    @Column (name="cpf")
+    private String cpf;
+    @Column(name="dt_cadastro")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date data_cadastro;
     @Embedded
     private Endereco endereco;
 
@@ -65,16 +72,32 @@ public class Proprietario implements Serializable, IModelo{
         return nome;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public String getObservacao() {
-        return observacao;
+    public String getEmail() {
+        return email;
     }
 
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Date getData_cadastro() {
+        return data_cadastro;
+    }
+
+    public void setData_cadastro(Date data_cadastro) {
+        this.data_cadastro = data_cadastro;
     }
 
     public Endereco getEndereco() {
