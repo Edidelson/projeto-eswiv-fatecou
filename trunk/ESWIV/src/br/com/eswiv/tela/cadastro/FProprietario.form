@@ -186,11 +186,11 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Component id="jToolBar1" max="32767" attributes="1"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
-              <Component id="jSplitPane1" alignment="1" pref="679" max="32767" attributes="0"/>
+              <Component id="jSplitPane1" alignment="1" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -332,6 +332,9 @@
                       </Table>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="tbProprietario.getSelectionModel().addListSelectionListener(new ListSelectionListener() {&#xa;    public void valueChanged(ListSelectionEvent e) {&#xa;        alterar(tbProprietario);&#xa;}&#xa;});"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -406,14 +409,12 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                                                  <Component id="lbCodigo" min="-2" max="-2" attributes="0"/>
-                                              </Group>
                                               <Component id="lbCpf" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="lbEmail" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="lbNome" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lbCodigo" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
+                                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
                                                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
@@ -458,7 +459,7 @@
                                               <Component id="tfNome" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="lbNome" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <EmptySpace pref="9" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="tfEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="lbEmail" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -470,14 +471,13 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace pref="8" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="dtCadastro" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -506,6 +506,7 @@
                             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tfCodigoFocusLost"/>
                           </Events>
                           <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="tfCodigo.getDocument().addDocumentListener(new DocumentListener() {&#xa;    public void insertUpdate(DocumentEvent e) {&#xa;       // verificaAlteracao();&#xa;        if(tfCodigo.getText().equals(&quot;&quot;)) {&#xa;            tbAlterar.setSelected(false);&#xa;            tbIncluir.setSelected(true);&#xa;        } else {&#xa;            tbAlterar.setSelected(true);&#xa;            tbIncluir.setSelected(false);&#xa;        }&#xa;    }&#xa;    public void changedUpdate(DocumentEvent e) { }&#xa;    public void removeUpdate(DocumentEvent e) { &#xa;        //verificaAlteracao();&#xa;        if(tfCodigo.getText().equals(&quot;&quot;)) {&#xa;            tbAlterar.setSelected(false);&#xa;            tbIncluir.setSelected(true);&#xa;        } else {&#xa;            tbAlterar.setSelected(true);&#xa;            tbIncluir.setSelected(false);&#xa;        }&#xa;    }   &#xa;});"/>
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.zap.arca.JATextField(6,0)"/>
                           </AuxValues>
                         </Component>
@@ -582,7 +583,7 @@
                                                               <EmptySpace max="-2" attributes="0"/>
                                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                                   <Component id="tfBairro" pref="107" max="32767" attributes="0"/>
-                                                                  <Component id="tfCelular2" max="32767" attributes="0"/>
+                                                                  <Component id="tfCelular" max="32767" attributes="0"/>
                                                               </Group>
                                                           </Group>
                                                       </Group>
@@ -640,14 +641,14 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                          <Component id="lbCidadeSelecionada" alignment="1" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="jsCidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lbCidadeSelecionada" alignment="1" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                               <Component id="lbTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="tfCelular2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfCelular" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="lbCelular" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="tfTelefone" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -670,7 +671,7 @@
                                 <Property name="text" type="java.lang.String" value="Celular:"/>
                               </Properties>
                             </Component>
-                            <Component class="com.zap.arca.JAFormattedTextField" name="tfCelular2">
+                            <Component class="com.zap.arca.JAFormattedTextField" name="tfCelular">
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
                               </AuxValues>
@@ -721,6 +722,7 @@
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jsCidadeActionPerformed"/>
+                                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jsCidadeFocusLost"/>
                               </Events>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jsCidade.setDocument(new NumberValueDocument(10));"/>
