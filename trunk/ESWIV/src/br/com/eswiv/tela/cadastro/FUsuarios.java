@@ -285,7 +285,7 @@ public class FUsuarios extends FrameGenerico {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Usuários");
+        setTitle("Cadastro de Usuários");
 
         plCampos.setBackground(new java.awt.Color(255, 255, 255));
         plCampos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));

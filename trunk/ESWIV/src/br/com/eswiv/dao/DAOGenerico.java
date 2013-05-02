@@ -39,7 +39,7 @@ import org.hibernate.exception.ConstraintViolationException;
 
 public abstract class DAOGenerico implements IDAOGenerico {
 
-    protected static final Logger logger = Logger.getLogger("br.com.orca.dao");
+    protected static final Logger logger = Logger.getLogger("br.com.eswiv.dao");
     protected static Session session;
     protected static DataController controler;
 
