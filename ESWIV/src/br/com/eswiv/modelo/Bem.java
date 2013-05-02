@@ -29,15 +29,18 @@ import javax.persistence.Temporal;
  */
 @Entity
 @Table(name = "bem")
+//@NamedQuery = responsável por controlar as HQL no banco
 @NamedQueries({
     @NamedQuery(name = "Bem.getAll", query = "SELECT e FROM Bem e")
 })
 public class Bem implements Serializable, IModelo {
 
     @Id
+    //@GeneratedValue = Auto increment 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cp_bem")
     private int codigo;
+    //@ManyTOOne = um para muitos
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ce_proprietario")
     private Proprietario proprietario;
@@ -46,12 +49,18 @@ public class Bem implements Serializable, IModelo {
     @Column(name = "tx_descricao")
     private String descricao;
     @Column(name = "dt_aquisicao")
+    //@Temporal é utilizado quando for usar Data
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date aquisicao;
     @Column(name = "tx_turno")
     private String turno;
     @Column(name = "vl_venal")
     private Double valorVenal;
+    //@OneToMany = muitos para um
+    //Cascade = Se um bem for removido, automaticamente remove todas as despesas
+    //Fetch = Une o bem com a despesa
+    //mappedBy = Ele vai buscar dentro da classe Despesa o nome do chave estrangeira, no caso "bem"
+    //orphanRemoval = permite remover
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "bem", orphanRemoval = true)
     private List<Despesas> despesas = new ArrayList<>();
 
