@@ -827,7 +827,6 @@ public class FProprietario extends FrameGenerico {
                dao.alterar(proprietario);
            }else{
                dao.adicionar(proprietario); 
-               JOptionPane.showMessageDialog(null, DAOCidade.M_ADICIONAR);
            }
        }
        catch (RuntimeException ex) {
