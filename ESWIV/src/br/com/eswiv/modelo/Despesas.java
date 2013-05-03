@@ -6,6 +6,8 @@ package br.com.eswiv.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,7 +30,7 @@ import javax.persistence.Temporal;
 @NamedQueries({
     @NamedQuery(name = "Despesas.getAll", query = "SELECT e FROM Despesas e")
 })
-public class Despesas implements Serializable, IModelo{
+public class Despesas implements Serializable, IModelo,Cloneable{
     
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -89,6 +91,16 @@ public class Despesas implements Serializable, IModelo{
     @Override
     public boolean isInativo() {
         return false;
+    }
+
+    @Override
+    public  Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException ex) {
+            Logger.getLogger(Despesas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
 }
