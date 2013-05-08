@@ -220,17 +220,14 @@ public abstract class FrameGenerico extends javax.swing.JFrame implements IFunci
      */
     public boolean verificarCampos(Component[] components) {
          boolean estahPreenchido = true;
-         
-         
         // Itera sobre os componentes do array
         for (Component c : components) {
             // Verifica se é um JTextField
-            if (c instanceof JTextField) {
-                JTextField tf = (JTextField) c;
+            if (c instanceof JATextField) {
+                JATextField tf = (JATextField) c;
                 if (tf.getText().trim().equals("")) {
                    estahPreenchido = false;
                 }
-
             }
             // Verifica se é um JFormattedTextField
             if (c instanceof JFormattedTextField) {
@@ -268,8 +265,10 @@ public abstract class FrameGenerico extends javax.swing.JFrame implements IFunci
                 }else{
                     JOptionPane.showMessageDialog(null,"Campo obrigatório não preenchido.");
                 }
+                
                 c.requestFocus();
-                break;
+                return false;
+//                break;
             }
         }
         

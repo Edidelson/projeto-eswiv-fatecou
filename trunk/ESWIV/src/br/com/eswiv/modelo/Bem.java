@@ -11,6 +11,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -52,17 +54,39 @@ public class Bem implements Serializable, IModelo {
     //@Temporal é utilizado quando for usar Data
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date aquisicao;
-    @Column(name = "tx_turno")
-    private String turno;
+    @Column(name = "nu_turno")
+    @Enumerated(value = EnumType.ORDINAL)
+    private Turno turno;
     @Column(name = "vl_venal")
     private Double valorVenal;
-    //@OneToMany = muitos para um
+    @Column(name = "nu_tipo")
+    @Enumerated(EnumType.ORDINAL)
+    private Tipo tipo;
+    @Column(name="vl_depreciacao")
+    private Double depreciacao;
+     //@OneToMany = muitos para um
     //Cascade = Se um bem for removido, automaticamente remove todas as despesas
     //Fetch = Une o bem com a despesa
     //mappedBy = Ele vai buscar dentro da classe Despesa o nome do chave estrangeira, no caso "bem"
     //orphanRemoval = permite remover
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "bem", orphanRemoval = true)
     private List<Despesas> despesas = new ArrayList<>();
+
+    public Double getDepreciacao() {
+        return depreciacao;
+    }
+
+    public void setDepreciacao(Double depreciacao) {
+        this.depreciacao = depreciacao;
+    }
+
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
 
     public List<Despesas> getDespesas() {
         return despesas;
@@ -71,7 +95,7 @@ public class Bem implements Serializable, IModelo {
     public void setDespesas(List<Despesas> despesas) {
         this.despesas = despesas;
     }
-    
+
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
@@ -108,11 +132,11 @@ public class Bem implements Serializable, IModelo {
         this.aquisicao = aquisicao;
     }
 
-    public String getTurno() {
+    public Turno getTurno() {
         return turno;
     }
 
-    public void setTurno(String turno) {
+    public void setTurno(Turno turno) {
         this.turno = turno;
     }
 
@@ -132,5 +156,44 @@ public class Bem implements Serializable, IModelo {
     @Override
     public boolean isInativo() {
         return false;
+    }
+
+    public static enum Turno {
+
+        H8(1, "8 Horas"),
+        H16(2, "16 horas"),
+        H24(3, "24 horas");
+        private int codigo;
+        private String descricao;
+
+        private Turno() {
+        }
+
+        private Turno(int codigo, String descricao) {
+            this.codigo = codigo;
+            this.descricao = descricao;
+        }
+
+        public int getCodigo() {
+            return codigo;
+        }
+
+        public void setCodigo(int codigo) {
+            this.codigo = codigo;
+        }
+
+        public String getDescricao() {
+            return descricao;
+        }
+
+        public void setDescricao(String descricao) {
+            this.descricao = descricao;
+        }
+    }
+
+    public static enum Tipo {
+
+        NOVO,
+        USADO
     }
 }
