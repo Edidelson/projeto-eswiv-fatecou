@@ -4,17 +4,17 @@
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/eswiv</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/eswiv?createDatabaseIfNotExist=true</property>
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">root</property>
         <property name="hibernate.show_sql">false</property>
-        <property name="hibernate.format_sql"> false </property>
-    
+        <property name="hibernate.format_sql">false</property>
     <!-- Configuração de validação do Banco de Dados na execução do sistema -->
     <!-- É aqui que se informa se o banco será criado pelo Hibernate (create-drop) -->
         <property name="hibernate.hbm2ddl.auto">update</property>
         <mapping class="br.com.eswiv.modelo.Usuario"/>
         <mapping class="br.com.eswiv.modelo.Cidade"/>
+        <mapping class="br.com.eswiv.modelo.Categoria"/>
         <mapping class="br.com.eswiv.modelo.Proprietario"/>
         <mapping class="br.com.eswiv.modelo.Bem"/>
         <mapping class="br.com.eswiv.modelo.Despesas"/>

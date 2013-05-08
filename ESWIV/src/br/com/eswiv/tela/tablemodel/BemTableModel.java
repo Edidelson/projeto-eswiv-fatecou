@@ -12,10 +12,12 @@ import java.util.List;
  *
  * @author Rodrigo
  */
-public class BemTableModel extends  RowTableModel{
-    
+public class BemTableModel extends RowTableModel {
+
+    private Bem bem;
+
     {
-         columns=new String[]{"Código", "Proprietário", "Grupo de Bens", "Valor Venal", "Data de Aquisição", "Turno"};
+        columns = new String[]{"Código", "Proprietário", "Grupo de Bens", "Valor Venal", "Data de Aquisição", "Turno"};
     }
 
     @Override
@@ -25,17 +27,17 @@ public class BemTableModel extends  RowTableModel{
 
     @Override
     public List<Bem> getData() {
-      return cache;
+        return cache;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Bem bem = (Bem) cache.get(rowIndex);
-        switch (columnIndex){
+        bem = (Bem) cache.get(rowIndex);
+        switch (columnIndex) {
             case 0:
                 return bem.getCodigo();
             case 1:
-                return bem.getProprietario()!=null?bem.getProprietario().getNome():"";
+                return bem.getProprietario() != null ? bem.getProprietario().getNome() : "";
             case 2:
                 return bem.getGrupo();
             case 3:
@@ -43,7 +45,7 @@ public class BemTableModel extends  RowTableModel{
             case 4:
                 return bem.getAquisicao();
             case 5:
-                return bem.getTurno();
+                return setTurno(bem.getTurno() != null ? bem.getTurno().getCodigo() : null);
             default:
                 return "";
         }
@@ -51,16 +53,16 @@ public class BemTableModel extends  RowTableModel{
 
     @Override
     public Class getColumnClass(int col) {
-        switch (col){
+        switch (col) {
             case 0:
                 return Integer.class;
             case 1:
                 return String.class;
             case 2:
                 return String.class;
-            case 3:     
+            case 3:
                 return Float.class;
-            case 4: 
+            case 4:
                 return Date.class;
             case 5:
                 return String.class;
@@ -68,5 +70,18 @@ public class BemTableModel extends  RowTableModel{
                 return null;
         }
     }
-    
+
+    public String setTurno(Integer turno) {
+        if (turno != null) {
+            if (turno == 1) {
+                return bem.getTurno().H8.getDescricao();
+            } else if (turno == 2) {
+                return bem.getTurno().H16.getDescricao();
+            } else {
+                return bem.getTurno().H24.getDescricao();
+            }
+        } else {
+            return "";
+        }
+    }
 }

@@ -107,6 +107,11 @@ public class Proprietario implements Serializable, IModelo{
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
     
     @Override
     public Object getCodigo() {

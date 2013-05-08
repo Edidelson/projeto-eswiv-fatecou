@@ -99,8 +99,6 @@ public class FCidade extends FrameGenerico {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Cidades");
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
         tbCidades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
