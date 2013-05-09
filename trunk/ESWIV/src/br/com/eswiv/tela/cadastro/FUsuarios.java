@@ -187,7 +187,7 @@ public class FUsuarios extends FrameGenerico {
         lbSenha = new javax.swing.JLabel();
         lbConfirmacao = new javax.swing.JLabel();
         tfCodigo = new com.zap.arca.JATextField(6,0);
-        tfNome = new com.zap.arca.JATextField(45);
+        tfNome = new com.zap.arca.JATextField(40);
         tfApelido = new com.zap.arca.JATextField(10);
         pfSenha = new com.zap.arca.JAPasswordField();
         pfConfirmacao = new com.zap.arca.JAPasswordField();

@@ -69,7 +69,7 @@ public class FCidade extends FrameGenerico {
         lbDDD = new javax.swing.JLabel();
         tfDDD = new javax.swing.JTextField();
         tfCodigo = new com.zap.arca.JATextField(6,0);
-        tfNome = new com.zap.arca.JATextField(40);
+        tfNome = new com.zap.arca.JATextField(60);
         btOK = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jToolBar1 = new javax.swing.JToolBar();

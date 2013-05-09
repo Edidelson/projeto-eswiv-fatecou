@@ -344,7 +344,7 @@
                                   <Component id="btOK" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="24" max="32767" attributes="0"/>
+                              <EmptySpace pref="99" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -370,8 +370,8 @@
                           </AccessibilityProperties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                              <JTabbedPaneConstraints tabName="Calculo">
-                                <Property name="tabTitle" type="java.lang.String" value="Calculo"/>
+                              <JTabbedPaneConstraints tabName="C&#xe1;lculo">
+                                <Property name="tabTitle" type="java.lang.String" value="C&#xe1;lculo"/>
                               </JTabbedPaneConstraints>
                             </Constraint>
                           </Constraints>
@@ -450,10 +450,8 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                              <Component id="jsProprietario" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="lbProprietario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="jsProprietario" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="lbProprietario" min="-2" max="-2" attributes="0"/>
                                           <Component id="lbBemSelecionado" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -508,7 +506,7 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="lbDataAquisicao">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="Data de Calculo:"/>
+                                <Property name="text" type="java.lang.String" value="Data de C&#xe1;lculo:"/>
                               </Properties>
                             </Component>
                             <Component class="com.zap.arca.JADatePicker" name="dtAquisicao">
@@ -522,6 +520,9 @@
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfDescricaoBensActionPerformed"/>
                               </Events>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.zap.arca.JATextField(100)"/>
+                              </AuxValues>
                             </Component>
                             <Component class="com.zap.arca.JATextField" name="tfCodigo">
                               <Events>
@@ -570,7 +571,7 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel3">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="Depre. Acumulada:"/>
+                                <Property name="text" type="java.lang.String" value="Depr. Acumulada:"/>
                               </Properties>
                             </Component>
                             <Component class="com.zap.arca.JADecimalFormatField" name="jADecimalFormatField2">
