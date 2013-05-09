@@ -129,7 +129,6 @@ public class FProprietario extends FrameGenerico {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Proprietário");
-        setPreferredSize(new java.awt.Dimension(720, 560));
         setResizable(false);
 
         jToolBar1.setFloatable(false);
@@ -256,7 +255,19 @@ public class FProprietario extends FrameGenerico {
 
         lbTelefone.setText("Telefone:");
 
+        try {
+            tfTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         lbCelular.setText("Celular:");
+
+        try {
+            tfCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         lbLogradouro.setText("Logradouro:");
 
@@ -387,15 +398,18 @@ public class FProprietario extends FrameGenerico {
                             .addComponent(lbEmail)
                             .addComponent(lbNome)
                             .addComponent(lbCodigo))
-                        .addGap(4, 4, 4)
                         .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(plCamposLayout.createSequentialGroup()
-                                .addGap(11, 11, 11)
+                                .addGap(14, 14, 14)
+                                .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(plCamposLayout.createSequentialGroup()
+                                .addGap(15, 15, 15)
                                 .addComponent(tfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(tfNome, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
-                                .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tfEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(plCamposLayout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(plCamposLayout.createSequentialGroup()
                         .addComponent(jLabel1)

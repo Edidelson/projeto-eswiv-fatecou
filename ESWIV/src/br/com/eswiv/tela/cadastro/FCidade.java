@@ -62,14 +62,14 @@ public class FCidade extends FrameGenerico {
         jPanel1 = new javax.swing.JPanel();
         lbCodigo = new javax.swing.JLabel();
         lbNome = new javax.swing.JLabel();
-        tfNome = new javax.swing.JTextField();
         lbCodIBGE = new javax.swing.JLabel();
-        tfCodIBGE = new javax.swing.JTextField();
+        tfCodIBGE = new javax.swing.JTextField(10);
         lnEstado = new javax.swing.JLabel();
         cbEstado = new javax.swing.JComboBox();
         lbDDD = new javax.swing.JLabel();
         tfDDD = new javax.swing.JTextField();
         tfCodigo = new com.zap.arca.JATextField(6,0);
+        tfNome = new com.zap.arca.JATextField(40);
         btOK = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jToolBar1 = new javax.swing.JToolBar();
@@ -158,14 +158,15 @@ public class FCidade extends FrameGenerico {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lbCodigo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(154, 154, 154)
                                 .addComponent(lbCodIBGE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfCodIBGE, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(tfCodIBGE, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(tfNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -177,7 +178,7 @@ public class FCidade extends FrameGenerico {
                                 .addComponent(lnEstado)
                                 .addGap(4, 4, 4)
                                 .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,10 +189,8 @@ public class FCidade extends FrameGenerico {
                     .addComponent(tfCodIBGE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(lbNome))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbNome)
                     .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -622,7 +621,7 @@ public class FCidade extends FrameGenerico {
     private javax.swing.JTextField tfCodIBGE;
     private com.zap.arca.JATextField tfCodigo;
     private javax.swing.JTextField tfDDD;
-    private javax.swing.JTextField tfNome;
+    private com.zap.arca.JATextField tfNome;
     // End of variables declaration//GEN-END:variables
 
     @Override

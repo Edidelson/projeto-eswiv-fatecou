@@ -22,27 +22,27 @@ import javax.persistence.Temporal;
  * @author Edidelson
  */
 @Entity
-@Table(name="proprietario")
+@Table(name = "proprietario")
 @NamedQueries({
-    @NamedQuery(name="Proprietario.getAll", query="SELECT e FROM Proprietario e")
+    @NamedQuery(name = "Proprietario.getAll", query = "SELECT e FROM Proprietario e")
 })
-public class Proprietario implements Serializable, IModelo{
+public class Proprietario implements Serializable, IModelo {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name="cp_proprietario")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "cp_proprietario")
     private int codigo;
-    @Column(name="tx_nome")
+    @Column(name = "tx_nome")
     private String nome;
-    @Column(name="tx_email")
+    @Column(name = "tx_email")
     private String email;
-    @Column(name="tx_telefone")
+    @Column(name = "tx_telefone")
     private String telefone;
-    @Column(name="tx_celular")
+    @Column(name = "tx_celular")
     private String celular;
-    @Column (name="cpf")
+    @Column(name = "cpf")
     private String cpf;
-    @Column(name="dt_cadastro")
+    @Column(name = "dt_cadastro")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date data_cadastro;
     @Embedded
@@ -53,7 +53,9 @@ public class Proprietario implements Serializable, IModelo{
     }
 
     public void setTelefone(String telefone) {
-        this.telefone = telefone;
+        telefone = telefone.replace("(", "");
+        telefone = telefone.replace(")", "");
+        this.telefone = telefone.length() == 0 ? null : telefone;
     }
 
     public String getCelular() {
@@ -61,7 +63,9 @@ public class Proprietario implements Serializable, IModelo{
     }
 
     public void setCelular(String celular) {
-        this.celular = celular;
+        celular = celular.replace("(", "");
+        celular = celular.replace(")", "");
+        this.celular = celular.length() == 0 ? null : celular;
     }
 
     public void setCodigo(int codigo) {
@@ -77,7 +81,10 @@ public class Proprietario implements Serializable, IModelo{
     }
 
     public void setCpf(String cpf) {
-        this.cpf = cpf;
+        cpf = cpf.replace(".", "");
+        cpf = cpf.replace(".", "");
+        cpf = cpf.replace("-", "");
+        this.cpf = cpf.length() == 0 ? null : cpf;
     }
 
     public void setNome(String nome) {
@@ -112,7 +119,7 @@ public class Proprietario implements Serializable, IModelo{
     public String toString() {
         return nome;
     }
-    
+
     @Override
     public Object getCodigo() {
         return codigo;
@@ -122,5 +129,4 @@ public class Proprietario implements Serializable, IModelo{
     public boolean isInativo() {
         return false;
     }
-    
 }

@@ -344,6 +344,9 @@
                               <Properties>
                                 <Property name="name" type="java.lang.String" value="Descri&#xe7;&#xe3;o" noResource="true"/>
                               </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.zap.arca.JATextField(60)"/>
+                              </AuxValues>
                             </Component>
                           </SubComponents>
                         </Container>

@@ -288,15 +288,16 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="tfNome" alignment="0" min="-2" pref="356" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="1" attributes="1">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
                                           <Component id="tfCodigo" min="-2" pref="60" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
                                           <Component id="lbCodIBGE" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="tfCodIBGE" min="-2" pref="85" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
+                                      <Component id="tfNome" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -315,7 +316,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -329,14 +330,11 @@
                               <Component id="tfCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="3" pref="3" max="3" attributes="0"/>
-                                  <Component id="lbNome" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="tfNome" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfNome" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="6" pref="6" max="6" attributes="0"/>
+                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace min="8" pref="8" max="8" attributes="0"/>
@@ -344,7 +342,7 @@
                               </Group>
                               <Component id="cbEstado" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="8" pref="8" max="8" attributes="0"/>
+                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace min="3" pref="3" max="3" attributes="0"/>
@@ -367,14 +365,15 @@
                     <Property name="text" type="java.lang.String" value="Nome:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="tfNome">
-                </Component>
                 <Component class="javax.swing.JLabel" name="lbCodIBGE">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="C&#xf3;d. IBGE:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfCodIBGE">
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField(10)"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lnEstado">
                   <Properties>
@@ -425,6 +424,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfDDD">
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField()"/>
+                  </AuxValues>
                 </Component>
                 <Component class="com.zap.arca.JATextField" name="tfCodigo">
                   <Events>
@@ -432,6 +434,11 @@
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.zap.arca.JATextField(6,0)"/>
+                  </AuxValues>
+                </Component>
+                <Component class="com.zap.arca.JATextField" name="tfNome">
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.zap.arca.JATextField(40)"/>
                   </AuxValues>
                 </Component>
               </SubComponents>

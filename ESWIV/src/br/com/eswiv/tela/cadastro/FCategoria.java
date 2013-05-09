@@ -59,7 +59,7 @@ public class FCategoria extends FrameGenerico {
         lbCodigo = new javax.swing.JLabel();
         lbNome = new javax.swing.JLabel();
         tfCodigo = new com.zap.arca.JATextField(6,0);
-        tfDescricao = new com.zap.arca.JATextField();
+        tfDescricao = new com.zap.arca.JATextField(60);
         jButton2 = new javax.swing.JButton();
         btOK = new javax.swing.JButton();
         jToolBar1 = new javax.swing.JToolBar();
