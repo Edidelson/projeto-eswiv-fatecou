@@ -156,7 +156,7 @@
                   <Component id="jToolBar1" min="-2" pref="179" max="-2" attributes="1"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
-              <Component id="splitPaneCampos" max="32767" attributes="0"/>
+              <Component id="splitPaneCampos" pref="686" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -370,8 +370,8 @@
                           </AccessibilityProperties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                              <JTabbedPaneConstraints tabName="Bens">
-                                <Property name="tabTitle" type="java.lang.String" value="Bens"/>
+                              <JTabbedPaneConstraints tabName="Calculo">
+                                <Property name="tabTitle" type="java.lang.String" value="Calculo"/>
                               </JTabbedPaneConstraints>
                             </Constraint>
                           </Constraints>
@@ -379,62 +379,55 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="lbCodigo" alignment="0" min="-2" pref="49" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="lbValorVenal" min="-2" max="-2" attributes="0"/>
                                                   <Component id="lbDescricaoBens" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lnTurno" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lbProprietario" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Component id="tfCodigo" min="-2" pref="78" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
-                                                      <Component id="lbDataAquisicao" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="dtAquisicao" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Component id="tfDescricaoBens" alignment="0" min="-2" pref="418" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="102" attributes="0">
-                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                          <Component id="cbTurno" min="-2" pref="87" max="-2" attributes="0"/>
+                                                      <Component id="jsProprietario" min="-2" pref="67" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="lbBemSelecionado" min="-2" pref="182" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                      <Group type="102" alignment="1" attributes="0">
+                                                          <Component id="tfCodigo" min="-2" pref="78" max="-2" attributes="0"/>
+                                                          <EmptySpace max="32767" attributes="0"/>
+                                                          <Component id="lbDataAquisicao" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="dtAquisicao" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" attributes="0">
                                                           <Component id="tfValorVenal" min="-2" pref="87" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="lbDepreciacao" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="tfDepreciacao" min="-2" pref="48" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="jADecimalFormatField1" max="32767" attributes="0"/>
                                                       </Group>
-                                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Group type="102" attributes="0">
-                                                              <Component id="lbProprietario" min="-2" max="-2" attributes="0"/>
-                                                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                                                              <Component id="jsProprietario" min="-2" pref="67" max="-2" attributes="0"/>
-                                                              <EmptySpace max="-2" attributes="0"/>
-                                                              <Component id="lbProprietarioSelecionado" min="-2" pref="182" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <Group type="102" attributes="0">
-                                                              <Component id="lbDepreciacao" min="-2" max="-2" attributes="0"/>
-                                                              <EmptySpace max="-2" attributes="0"/>
-                                                              <Component id="tfDepreciacao" min="-2" pref="48" max="-2" attributes="0"/>
-                                                              <EmptySpace max="-2" attributes="0"/>
-                                                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
+                                                      <Component id="tfDescricaoBens" alignment="0" min="-2" pref="418" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="lbGrupoBens" min="-2" pref="74" max="-2" attributes="0"/>
+                                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="cbGrupoBens" min="-2" pref="87" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="rbNovo" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="rbUsado" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jADecimalFormatField2" min="-2" pref="89" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace pref="147" max="32767" attributes="0"/>
+                                      <EmptySpace pref="190" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -443,71 +436,52 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lbCodigo" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                              <Component id="lbCodigo" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                              <Component id="tfCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="tfCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="dtAquisicao" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="lbDataAquisicao" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="tfDescricaoBens" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lbDescricaoBens" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="jsProprietario" max="32767" attributes="0"/>
-                                                      <Component id="lbProprietario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="tfValorVenal" max="32767" attributes="0"/>
-                                                      <Component id="lbValorVenal" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Component id="lbProprietarioSelecionado" max="32767" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="cbTurno" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                                                  <Component id="lnTurno" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lbDepreciacao" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="tfDepreciacao" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              </Group>
                                           </Group>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lbGrupoBens" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="cbGrupoBens" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                                          <Component id="rbNovo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="rbUsado" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                              <Component id="jsProprietario" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="lbProprietario" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="lbBemSelecionado" max="32767" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="tfDescricaoBens" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbDescricaoBens" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="tfValorVenal" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbValorVenal" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbDepreciacao" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="tfDepreciacao" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jADecimalFormatField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jADecimalFormatField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace pref="157" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
                           </Layout>
                           <SubComponents>
-                            <Component class="javax.swing.JLabel" name="lbGrupoBens">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="Grupo de Bens:"/>
-                              </Properties>
-                            </Component>
-                            <Component class="javax.swing.JComboBox" name="cbGrupoBens">
-                              <Properties>
-                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                                  <StringArray count="3">
-                                    <StringItem index="0" value="Ve&#xed;culos"/>
-                                    <StringItem index="1" value="Equipamentos"/>
-                                    <StringItem index="2" value="M&#xe1;quinas"/>
-                                  </StringArray>
-                                </Property>
-                              </Properties>
-                              <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbGrupoBensActionPerformed"/>
-                              </Events>
-                            </Component>
                             <Component class="javax.swing.JLabel" name="lbValorVenal">
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="Valor Venal:"/>
@@ -515,13 +489,13 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="lbProprietario">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="Propriet&#xe1;rio:"/>
+                                <Property name="text" type="java.lang.String" value="Bem:"/>
                               </Properties>
                             </Component>
                             <Component class="com.zap.arca.JASelectPicker" name="jsProprietario">
                               <Properties>
                                 <Property name="label" type="javax.swing.JLabel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                                  <ComponentRef name="lbProprietarioSelecionado"/>
+                                  <ComponentRef name="lbBemSelecionado"/>
                                 </Property>
                               </Properties>
                               <Events>
@@ -529,32 +503,19 @@
                                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jsProprietarioFocusLost"/>
                               </Events>
                               <AuxValues>
-                                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jsProprietario.setDocument(new NumberValueDocument(10));"/>
-                                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Proprietario&gt;"/>
+                                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Bem&gt;"/>
                               </AuxValues>
                             </Component>
                             <Component class="javax.swing.JLabel" name="lbDataAquisicao">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="Data de Aquisi&#xe7;&#xe3;o:"/>
+                                <Property name="text" type="java.lang.String" value="Data de Calculo:"/>
                               </Properties>
                             </Component>
                             <Component class="com.zap.arca.JADatePicker" name="dtAquisicao">
                             </Component>
-                            <Component class="javax.swing.JLabel" name="lnTurno">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="Turno:"/>
-                              </Properties>
-                            </Component>
-                            <Component class="javax.swing.JComboBox" name="cbTurno">
-                              <Properties>
-                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                                  <StringArray count="0"/>
-                                </Property>
-                              </Properties>
-                            </Component>
                             <Component class="javax.swing.JLabel" name="lbDescricaoBens">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o:"/>
+                                <Property name="text" type="java.lang.String" value="Observa&#xe7;&#xe3;o:"/>
                               </Properties>
                             </Component>
                             <Component class="com.zap.arca.JATextField" name="tfDescricaoBens">
@@ -563,9 +524,6 @@
                               </Events>
                             </Component>
                             <Component class="com.zap.arca.JATextField" name="tfCodigo">
-                              <Properties>
-                                <Property name="enabled" type="boolean" value="false"/>
-                              </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfCodigoActionPerformed"/>
                               </Events>
@@ -578,31 +536,11 @@
                                 <Property name="text" type="java.lang.String" value="C&#xf3;digo:"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="lbProprietarioSelecionado">
+                            <Component class="javax.swing.JLabel" name="lbBemSelecionado">
                             </Component>
                             <Component class="com.zap.arca.JANumberFormatField" name="tfValorVenal">
-                            </Component>
-                            <Component class="javax.swing.JRadioButton" name="rbNovo">
                               <Properties>
-                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                                </Property>
-                                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                                  <ComponentRef name="buttonGroup2"/>
-                                </Property>
-                                <Property name="text" type="java.lang.String" value="Novo"/>
-                              </Properties>
-                            </Component>
-                            <Component class="javax.swing.JRadioButton" name="rbUsado">
-                              <Properties>
-                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                                </Property>
-                                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                                  <ComponentRef name="buttonGroup2"/>
-                                </Property>
-                                <Property name="selected" type="boolean" value="true"/>
-                                <Property name="text" type="java.lang.String" value="Usado"/>
+                                <Property name="enabled" type="boolean" value="false"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="lbDepreciacao">
@@ -611,10 +549,33 @@
                               </Properties>
                             </Component>
                             <Component class="com.zap.arca.JANumberFormatField" name="tfDepreciacao">
+                              <Properties>
+                                <Property name="enabled" type="boolean" value="false"/>
+                              </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel2">
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="%"/>
+                              </Properties>
+                            </Component>
+                            <Component class="com.zap.arca.JADecimalFormatField" name="jADecimalFormatField1">
+                              <Properties>
+                                <Property name="enabled" type="boolean" value="false"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel1">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Valor Calculado:"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel3">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Depre. Acumulada:"/>
+                              </Properties>
+                            </Component>
+                            <Component class="com.zap.arca.JADecimalFormatField" name="jADecimalFormatField2">
+                              <Properties>
+                                <Property name="enabled" type="boolean" value="false"/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -627,8 +588,8 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                              <JTabbedPaneConstraints tabName="Despesas">
-                                <Property name="tabTitle" type="java.lang.String" value="Despesas"/>
+                              <JTabbedPaneConstraints tabName="Hist&#xf3;rico">
+                                <Property name="tabTitle" type="java.lang.String" value="Hist&#xf3;rico"/>
                               </JTabbedPaneConstraints>
                             </Constraint>
                           </Constraints>
@@ -636,45 +597,10 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="lbValorDespesas" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lbDataDespesas" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lbDescricao" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="tfDescricaoDespesas" max="32767" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" attributes="0">
-                                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                          <Component id="tfValorDespesa" alignment="0" max="32767" attributes="0"/>
-                                                          <Component id="dtDespesa" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace max="32767" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <EmptySpace min="0" pref="398" max="32767" attributes="0"/>
-                                                      <Component id="btAdicionar" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="btAlterar" min="-2" pref="75" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="btRemover" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Component id="jScrollPane6" max="32767" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                      <Component id="jScrollPane6" min="-2" pref="628" max="-2" attributes="0"/>
+                                      <EmptySpace pref="67" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -682,29 +608,8 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane6" min="-2" pref="110" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="tfDescricaoDespesas" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lbDescricao" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="tfValorDespesa" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lbValorDespesas" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="dtDespesa" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lbDataDespesas" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace pref="50" max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="btAdicionar" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btRemover" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane6" min="-2" pref="208" max="-2" attributes="0"/>
+                                      <EmptySpace pref="81" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -734,54 +639,6 @@
                                 </Component>
                               </SubComponents>
                             </Container>
-                            <Component class="com.zap.arca.JADatePicker" name="dtDespesa">
-                            </Component>
-                            <Component class="javax.swing.JButton" name="btAdicionar">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="Adicionar"/>
-                                <Property name="opaque" type="boolean" value="false"/>
-                              </Properties>
-                              <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAdicionarActionPerformed"/>
-                              </Events>
-                            </Component>
-                            <Component class="javax.swing.JButton" name="btAlterar">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="Alterar"/>
-                                <Property name="opaque" type="boolean" value="false"/>
-                              </Properties>
-                              <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAlterarActionPerformed"/>
-                              </Events>
-                            </Component>
-                            <Component class="javax.swing.JButton" name="btRemover">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="Remover"/>
-                                <Property name="opaque" type="boolean" value="false"/>
-                              </Properties>
-                              <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btRemoverActionPerformed"/>
-                              </Events>
-                            </Component>
-                            <Component class="com.zap.arca.JATextField" name="tfDescricaoDespesas">
-                            </Component>
-                            <Component class="javax.swing.JLabel" name="lbDescricao">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o:"/>
-                              </Properties>
-                            </Component>
-                            <Component class="javax.swing.JLabel" name="lbValorDespesas">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="Valor:"/>
-                              </Properties>
-                            </Component>
-                            <Component class="javax.swing.JLabel" name="lbDataDespesas">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="Data:"/>
-                              </Properties>
-                            </Component>
-                            <Component class="com.zap.arca.JANumberFormatField" name="tfValorDespesa">
-                            </Component>
                           </SubComponents>
                         </Container>
                       </SubComponents>
