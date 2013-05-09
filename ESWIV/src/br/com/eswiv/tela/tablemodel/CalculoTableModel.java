@@ -4,8 +4,8 @@
  */
 package br.com.eswiv.tela.tablemodel;
 
-import br.com.eswiv.modelo.Proprietario;
-import br.com.util.Util;
+
+import br.com.eswiv.modelo.Calculo;
 import java.util.Date;
 import java.util.List;
 
@@ -13,34 +13,36 @@ import java.util.List;
  *
  * @author Fernando
  */
-public class ProprietarioTableModel extends RowTableModel{
+public class CalculoTableModel extends RowTableModel{
 
     {
-        columns=new String[]{"Código", "Nome", "Cpf", "Data do Cadastro"};
+        columns=new String[]{"Código", "Bem", "Valor Venal", "Data do Cálculo", "Depr. Acumulada"};
     }
     
     @Override
-    public Proprietario getRow(int index) {
-        return (Proprietario) cache.get(index);
+    public Calculo getRow(int index) {
+        return (Calculo) cache.get(index);
     }
 
     @Override
-    public List<Proprietario> getData() {
+    public List<Calculo> getData() {
         return cache;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Proprietario p = (Proprietario) cache.get(rowIndex);
+        Calculo calculo = (Calculo) cache.get(rowIndex);
         switch(columnIndex){
             case 0:
-                return p.getCodigo();
+                return calculo.getCodigo();
             case 1:
-                return p.getNome();
+                return calculo.getBem().getDescricao();
             case 2:
-                return p.getCpf();
+                return calculo.getBem().getValorVenal();
             case 3:
-                return p.getData_cadastro();
+                return calculo.getDataCalculo();
+            case 4:
+                return calculo.getAcumulado().doubleValue();
                 default:
                     return "";
         }
@@ -54,9 +56,11 @@ public class ProprietarioTableModel extends RowTableModel{
             case 1:
                 return String.class;
             case 2:
-                return String.class;
+                return Double.class;
             case 3:
                 return Date.class;
+            case 4: 
+                return Double.class;
                 default:
                     return null;
         }

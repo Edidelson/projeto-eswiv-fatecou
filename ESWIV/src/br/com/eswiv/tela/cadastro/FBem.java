@@ -107,7 +107,7 @@ public class FBem extends FrameGenerico {
         lnTurno = new javax.swing.JLabel();
         cbTurno = new javax.swing.JComboBox();
         lbDescricaoBens = new javax.swing.JLabel();
-        tfDescricaoBens = new com.zap.arca.JATextField();
+        tfDescricaoBens = new com.zap.arca.JATextField(80);
         tfCodigo = new com.zap.arca.JATextField();
         lbCodigo = new javax.swing.JLabel();
         lbProprietarioSelecionado = new javax.swing.JLabel();
@@ -124,7 +124,7 @@ public class FBem extends FrameGenerico {
         btAdicionar = new javax.swing.JButton();
         btAlterar = new javax.swing.JButton();
         btRemover = new javax.swing.JButton();
-        tfDescricaoDespesas = new com.zap.arca.JATextField();
+        tfDescricaoDespesas = new com.zap.arca.JATextField(120);
         lbDescricao = new javax.swing.JLabel();
         lbValorDespesas = new javax.swing.JLabel();
         lbDataDespesas = new javax.swing.JLabel();

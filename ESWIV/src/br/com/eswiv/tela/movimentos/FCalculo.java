@@ -13,6 +13,7 @@ import br.com.eswiv.modelo.Proprietario;
 import br.com.eswiv.tela.cadastro.*;
 import br.com.eswiv.tela.generico.FrameGenerico;
 import br.com.eswiv.tela.principal.DSobreSistema;
+import br.com.eswiv.tela.tablemodel.CalculoTableModel;
 import br.com.eswiv.tela.tablemodel.ProprietarioTableModel;
 import com.zap.arca.JASelectPicker;
 import com.zap.arca.util.WindowUtils;
@@ -34,7 +35,7 @@ public class FCalculo extends FrameGenerico {
         initComponents();
         setLocationRelativeTo(null);
         iniciar();
-        actionMenu(INCLUSAO);
+//        actionMenu(INCLUSAO);
         util.setEnterButton(btOK);
     }
 
@@ -75,7 +76,7 @@ public class FCalculo extends FrameGenerico {
         lbDataAquisicao = new javax.swing.JLabel();
         dtAquisicao = new com.zap.arca.JADatePicker();
         lbDescricaoBens = new javax.swing.JLabel();
-        tfDescricaoBens = new com.zap.arca.JATextField();
+        tfDescricaoBens = new com.zap.arca.JATextField(100);
         tfCodigo = new com.zap.arca.JATextField();
         lbCodigo = new javax.swing.JLabel();
         lbBemSelecionado = new javax.swing.JLabel();
@@ -224,7 +225,7 @@ public class FCalculo extends FrameGenerico {
             }
         });
 
-        lbDataAquisicao.setText("Data de Calculo:");
+        lbDataAquisicao.setText("Data de Cálculo:");
 
         lbDescricaoBens.setText("Observação:");
 
@@ -254,7 +255,7 @@ public class FCalculo extends FrameGenerico {
 
         jLabel1.setText("Valor Calculado:");
 
-        jLabel3.setText("Depre. Acumulada:");
+        jLabel3.setText("Depr. Acumulada:");
 
         jADecimalFormatField2.setEnabled(false);
 
@@ -318,9 +319,8 @@ public class FCalculo extends FrameGenerico {
                             .addComponent(lbDataAquisicao))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jsProprietario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbProprietario))
+                    .addComponent(jsProprietario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbProprietario)
                     .addComponent(lbBemSelecionado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -366,7 +366,7 @@ public class FCalculo extends FrameGenerico {
             }
         });
 
-        jTabbedPane1.addTab("Calculo", plCampos);
+        jTabbedPane1.addTab("Cálculo", plCampos);
         plCampos.getAccessibleContext().setAccessibleName("Informações dos Bens");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -454,7 +454,7 @@ public class FCalculo extends FrameGenerico {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btOK)
                     .addComponent(jButton2))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         jScrollPane2.setViewportView(jPanel3);
@@ -708,7 +708,7 @@ public class FCalculo extends FrameGenerico {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FBem().setVisible(true);
+                new FCalculo().setVisible(true);
             }
         });
     }
@@ -778,7 +778,7 @@ public class FCalculo extends FrameGenerico {
         toggleButton = tbIncluir;
         ctChave = tfCodigo;
 
-
+jATableBem.setModel(new CalculoTableModel());
         camposVerificar = new Component[]{};
         camposLimpar = new Component[]{jsProprietario, tfValorVenal, dtAquisicao, 
             tfDescricaoBens, tfDepreciacao, jsProprietario,lbBemSelecionado};

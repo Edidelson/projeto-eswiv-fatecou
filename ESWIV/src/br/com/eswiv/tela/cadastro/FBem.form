@@ -561,6 +561,9 @@
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfDescricaoBensActionPerformed"/>
                               </Events>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.zap.arca.JATextField(80)"/>
+                              </AuxValues>
                             </Component>
                             <Component class="com.zap.arca.JATextField" name="tfCodigo">
                               <Properties>
@@ -764,6 +767,9 @@
                               </Events>
                             </Component>
                             <Component class="com.zap.arca.JATextField" name="tfDescricaoDespesas">
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.zap.arca.JATextField(120)"/>
+                              </AuxValues>
                             </Component>
                             <Component class="javax.swing.JLabel" name="lbDescricao">
                               <Properties>

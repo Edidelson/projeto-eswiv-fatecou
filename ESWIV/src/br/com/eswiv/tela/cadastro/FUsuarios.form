@@ -448,7 +448,7 @@
             </Component>
             <Component class="com.zap.arca.JATextField" name="tfNome">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.zap.arca.JATextField(45)"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.zap.arca.JATextField(40)"/>
               </AuxValues>
             </Component>
             <Component class="com.zap.arca.JATextField" name="tfApelido">
