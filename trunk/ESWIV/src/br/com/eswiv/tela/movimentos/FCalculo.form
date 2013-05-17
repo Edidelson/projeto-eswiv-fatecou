@@ -153,10 +153,12 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Component id="jToolBar1" min="-2" pref="179" max="-2" attributes="1"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jToolBar1" min="-2" pref="179" max="-2" attributes="1"/>
+                      <Component id="splitPaneCampos" alignment="0" min="-2" pref="757" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
-              <Component id="splitPaneCampos" pref="686" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -288,7 +290,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="com.zap.arca.JATable" name="jATableBem">
+                <Component class="com.zap.arca.JATable" name="tbCalculo">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="4">
@@ -300,7 +302,7 @@
                     </Property>
                   </Properties>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jATableBem.getSelectionModel().addListSelectionListener(new ListSelectionListener() {&#xa;    public void valueChanged(ListSelectionEvent e) {&#xa;        alterar(jATableBem);&#xa;}&#xa;});"/>
+                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="tbCalculo.getSelectionModel().addListSelectionListener(new ListSelectionListener() {&#xa;    public void valueChanged(ListSelectionEvent e) {&#xa;        alterar(tbCalculo);&#xa;}&#xa;});"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
@@ -382,52 +384,45 @@
                                   <Group type="102" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="lbCodigo" alignment="0" min="-2" pref="49" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="lbValorVenal" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lbDescricaoBens" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lbProprietario" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="jsProprietario" min="-2" pref="67" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="lbBemSelecionado" min="-2" pref="182" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                      <Group type="102" alignment="1" attributes="0">
-                                                          <Component id="tfCodigo" min="-2" pref="78" max="-2" attributes="0"/>
-                                                          <EmptySpace max="32767" attributes="0"/>
-                                                          <Component id="lbDataAquisicao" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="dtAquisicao" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="102" attributes="0">
-                                                          <Component id="tfValorVenal" min="-2" pref="87" max="-2" attributes="0"/>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="lbDepreciacao" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="tfDepreciacao" min="-2" pref="48" max="-2" attributes="0"/>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="jADecimalFormatField1" max="32767" attributes="0"/>
-                                                      </Group>
-                                                      <Component id="tfDescricaoBens" alignment="0" min="-2" pref="418" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jADecimalFormatField2" min="-2" pref="89" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="lbValorVenal" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbDescricaoBens" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbProprietario" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="190" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jsBem" min="-2" pref="67" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="lbBemSelecionado" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="tfCodigo" min="-2" pref="78" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="lbDataAquisicao" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="dtAquisicao" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="tfValorVenal" min="-2" pref="87" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="lbDepreciacao" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="tfDepreciacao" min="-2" pref="48" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="tfValorCalculado" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Component id="tfDescricaoBens" alignment="0" min="-2" pref="418" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="jADecimalFormatField2" min="-2" pref="89" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace pref="189" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -436,38 +431,42 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                              <Component id="lbCodigo" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                              <Component id="tfCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="lbCodigo" min="-2" pref="20" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="lbProprietario" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                                              <Component id="lbDescricaoBens" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="tfCodigo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="3" attributes="0">
+                                                          <Component id="dtAquisicao" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="lbDataAquisicao" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="jsBem" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="lbBemSelecionado" min="-2" pref="20" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="tfDescricaoBens" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="dtAquisicao" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lbDataAquisicao" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="tfValorVenal" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lbDepreciacao" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="tfDepreciacao" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="tfValorCalculado" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lbValorVenal" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jsProprietario" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="lbProprietario" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lbBemSelecionado" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="tfDescricaoBens" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lbDescricaoBens" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="tfValorVenal" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lbValorVenal" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lbDepreciacao" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="tfDepreciacao" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jADecimalFormatField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
@@ -490,15 +489,15 @@
                                 <Property name="text" type="java.lang.String" value="Bem:"/>
                               </Properties>
                             </Component>
-                            <Component class="com.zap.arca.JASelectPicker" name="jsProprietario">
+                            <Component class="com.zap.arca.JASelectPicker" name="jsBem">
                               <Properties>
                                 <Property name="label" type="javax.swing.JLabel" editor="org.netbeans.modules.form.ComponentChooserEditor">
                                   <ComponentRef name="lbBemSelecionado"/>
                                 </Property>
                               </Properties>
                               <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jsProprietarioActionPerformed"/>
-                                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jsProprietarioFocusLost"/>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jsBemActionPerformed"/>
+                                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jsBemFocusLost"/>
                               </Events>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Bem&gt;"/>
@@ -559,7 +558,7 @@
                                 <Property name="text" type="java.lang.String" value="%"/>
                               </Properties>
                             </Component>
-                            <Component class="com.zap.arca.JADecimalFormatField" name="jADecimalFormatField1">
+                            <Component class="com.zap.arca.JADecimalFormatField" name="tfValorCalculado">
                               <Properties>
                                 <Property name="enabled" type="boolean" value="false"/>
                               </Properties>
@@ -601,7 +600,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jScrollPane6" min="-2" pref="628" max="-2" attributes="0"/>
-                                      <EmptySpace pref="67" max="32767" attributes="0"/>
+                                      <EmptySpace pref="73" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>

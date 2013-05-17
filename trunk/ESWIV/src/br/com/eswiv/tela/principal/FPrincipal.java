@@ -11,9 +11,11 @@ package br.com.eswiv.tela.principal;
 
 import br.com.eswiv.modelo.Usuario;
 import br.com.eswiv.tela.cadastro.FBem;
+import br.com.eswiv.tela.cadastro.FCategoria;
 import br.com.eswiv.tela.cadastro.FCidade;
 import br.com.eswiv.tela.cadastro.FProprietario;
 import br.com.eswiv.tela.cadastro.FUsuarios;
+import br.com.eswiv.tela.movimentos.FCalculo;
 import br.com.util.Util;
 import com.zap.arca.LoggerEx;
 import com.zap.arca.util.WindowUtils;
@@ -85,11 +87,14 @@ public class FPrincipal extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         miSair = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        menuUsuario = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        menuCategoria = new javax.swing.JMenuItem();
+        menuCidade = new javax.swing.JMenuItem();
+        menuBens = new javax.swing.JMenuItem();
+        menuProprietario = new javax.swing.JMenuItem();
         mnMovimentos = new javax.swing.JMenu();
+        menuCalculo = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         jMenuItem3.setText("jMenuItem3");
@@ -181,42 +186,60 @@ public class FPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem1.setText("Usuário");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        menuUsuario.setText("Usuário");
+        menuUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                menuUsuarioActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(menuUsuario);
+        jMenu1.add(jSeparator2);
 
-        jMenuItem2.setText("Cidade");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        menuCategoria.setText("Categoria");
+        menuCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                menuCategoriaActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(menuCategoria);
 
-        jMenuItem5.setText("Bens e Despesas");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        menuCidade.setText("Cidade");
+        menuCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                menuCidadeActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem5);
+        jMenu1.add(menuCidade);
 
-        jMenuItem6.setText("Proprietário");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        menuBens.setText("Bens e Despesas");
+        menuBens.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                menuBensActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem6);
+        jMenu1.add(menuBens);
+
+        menuProprietario.setText("Proprietário");
+        menuProprietario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuProprietarioActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuProprietario);
 
         mbPrincipal.add(jMenu1);
 
         mnMovimentos.setMnemonic('M');
         mnMovimentos.setText("Movimentos");
+
+        menuCalculo.setText("Cálculo");
+        menuCalculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCalculoActionPerformed(evt);
+            }
+        });
+        mnMovimentos.add(menuCalculo);
+
         mbPrincipal.add(mnMovimentos);
 
         jMenu2.setText("Ajuda");
@@ -274,25 +297,33 @@ public class FPrincipal extends javax.swing.JFrame {
     this.dispose();
     }//GEN-LAST:event_btSairActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void menuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsuarioActionPerformed
         new FUsuarios().setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_menuUsuarioActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void menuCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCidadeActionPerformed
        new FCidade().setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_menuCidadeActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void menuBensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBensActionPerformed
         new FBem().setVisible(true);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_menuBensActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu1ActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void menuProprietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProprietarioActionPerformed
         new FProprietario().setVisible(true); 
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_menuProprietarioActionPerformed
+
+    private void menuCalculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCalculoActionPerformed
+         new FCalculo().setVisible(true); 
+    }//GEN-LAST:event_menuCalculoActionPerformed
+
+    private void menuCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCategoriaActionPerformed
+        new FCategoria().setVisible(true); 
+    }//GEN-LAST:event_menuCategoriaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgButtonPrincipal;
@@ -302,18 +333,21 @@ public class FPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JSeparator jSeparator20;
     private javax.swing.JLabel lbDataAtual;
     private javax.swing.JLabel lbLicenciadoPara;
     private javax.swing.JLabel lbUsuarioLogado;
     private javax.swing.JMenuBar mbPrincipal;
+    private javax.swing.JMenuItem menuBens;
+    private javax.swing.JMenuItem menuCalculo;
+    private javax.swing.JMenuItem menuCategoria;
+    private javax.swing.JMenuItem menuCidade;
+    private javax.swing.JMenuItem menuProprietario;
+    private javax.swing.JMenuItem menuUsuario;
     private javax.swing.JMenuItem miBackup;
     private javax.swing.JMenuItem miSair;
     private javax.swing.JMenu mnArquivo;

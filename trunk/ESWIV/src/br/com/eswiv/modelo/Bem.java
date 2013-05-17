@@ -47,7 +47,8 @@ public class Bem implements Serializable, IModelo {
     @JoinColumn(name = "ce_proprietario")
     private Proprietario proprietario;
     @Column(name = "tx_grupo")
-    private String grupo;
+    @Enumerated(EnumType.STRING)
+    private Categorias grupo;
     @Column(name = "tx_descricao")
     private String descricao;
     @Column(name = "dt_aquisicao")
@@ -59,7 +60,7 @@ public class Bem implements Serializable, IModelo {
     private Turno turno;
     @Column(name = "vl_venal")
     private Double valorVenal;
-    @Column(name = "nu_tipo")
+    @Column(name = "nu_tipo", length=5)
     @Enumerated(EnumType.ORDINAL)
     private Tipo tipo;
     @Column(name="vl_depreciacao")
@@ -71,6 +72,14 @@ public class Bem implements Serializable, IModelo {
     //orphanRemoval = permite remover
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "bem", orphanRemoval = true)
     private List<Despesas> despesas = new ArrayList<>();
+
+    public Categorias getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(Categorias grupo) {
+        this.grupo = grupo;
+    }
 
     public Double getDepreciacao() {
         return depreciacao;
@@ -108,14 +117,7 @@ public class Bem implements Serializable, IModelo {
         this.proprietario = proprietario;
     }
 
-    public String getGrupo() {
-        return grupo;
-    }
-
-    public void setGrupo(String grupo) {
-        this.grupo = grupo;
-    }
-
+    
     public String getDescricao() {
         return descricao;
     }
@@ -191,9 +193,60 @@ public class Bem implements Serializable, IModelo {
         }
     }
 
+    @Override
+    public String toString() {
+        return descricao;
+    }
+
     public static enum Tipo {
 
         NOVO,
         USADO
+    }
+    
+    public static enum Categorias{
+        E(4, 25,"Edifícios"),
+        I(10, 10,"Instalações"),
+        MU(10,10, "Móveis e Utensílios"),
+        V(20,5, "Veículos"),
+        ME(10,10, "Máquinas e Equipamentos");
+        
+        private double taxaPercentual;
+        private int prazo;
+        private String descricao;
+
+        private Categorias() {
+        }
+
+        public double getTaxaPercentual() {
+            return taxaPercentual;
+        }
+
+        public void setTaxaPercentual(double taxaPercentual) {
+            this.taxaPercentual = taxaPercentual;
+        }
+
+        public int getPrazo() {
+            return prazo;
+        }
+
+        public void setPrazo(int prazo) {
+            this.prazo = prazo;
+        }
+
+        public String getDescricao() {
+            return descricao;
+        }
+
+        public void setDescricao(String descricao) {
+            this.descricao = descricao;
+        }
+
+        private Categorias(int taxaPercentual, int prazo, String descricao) {
+            this.taxaPercentual = taxaPercentual;
+            this.prazo = prazo;
+            this.descricao = descricao;
+        }
+        
     }
 }

@@ -129,7 +129,6 @@ public class FProprietario extends FrameGenerico {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Proprietário");
-        setResizable(false);
 
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);

@@ -39,7 +39,7 @@ public class BemTableModel extends RowTableModel {
             case 1:
                 return bem.getProprietario() != null ? bem.getProprietario().getNome() : "";
             case 2:
-                return bem.getGrupo();
+                return setCategoria(bem.getGrupo());
             case 3:
                 return bem.getValorVenal().doubleValue();
             case 4:
@@ -82,6 +82,24 @@ public class BemTableModel extends RowTableModel {
             }
         } else {
             return "";
+        }
+    }
+
+    public String setCategoria(Bem.Categorias categorias) {
+        switch (categorias) {
+            case E:
+                return categorias.E.getDescricao();
+            case I:
+                return categorias.I.getDescricao();
+            case MU:
+                return categorias.MU.getDescricao();
+            case V:
+                return categorias.V.getDescricao();
+            case ME:
+                return categorias.ME.getDescricao();
+            default:
+                return "";
+
         }
     }
 }

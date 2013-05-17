@@ -27,7 +27,10 @@ public class FUsuarios extends FrameGenerico {
     private Criptografia crip;
     UsuariosTableModel usuariosTableModel = new UsuariosTableModel();
     private Usuario usuario;
-    /** Creates new form FModelo */
+
+    /**
+     * Creates new form FModelo
+     */
     public FUsuarios() {
         crip = new Criptografia();
         initComponents();
@@ -36,7 +39,7 @@ public class FUsuarios extends FrameGenerico {
         iniciar();
         exibirDados(dao, tbUsuarios);
         actionMenu(INCLUSAO);
-        util.setEnterButton(btOk); 
+        util.setEnterButton(btOk);
     }
 
     public void iniciar() {
@@ -46,10 +49,10 @@ public class FUsuarios extends FrameGenerico {
         toggleButton = tbIncluir;
         ctChave = tfCodigo;
 
-        camposVerificar = new Component[] {tfNome, tfApelido};
+        camposVerificar = new Component[]{tfNome, tfApelido};
         // Configurações da tabela
-        camposLimpar = new Component[] {tfNome, tfCodigo, tfApelido, pfSenha, pfConfirmacao, checkBoxSupervisor, checkBoxCadastros,
-            checkBoxLancamentos, checkBoxFechamentos, checkBoxRelatorios, checkBoxExtratos,ckbSupervisor};
+        camposLimpar = new Component[]{tfNome, tfCodigo, tfApelido, pfSenha, pfConfirmacao, checkBoxSupervisor, checkBoxCadastros,
+            checkBoxLancamentos, checkBoxFechamentos, checkBoxRelatorios, checkBoxExtratos, ckbSupervisor};
         tbUsuarios.setModel(usuariosTableModel);
 
         // Habilita mudança de campos com a tecla Enter
@@ -61,9 +64,9 @@ public class FUsuarios extends FrameGenerico {
 
     @Override
     public boolean verificarCampos(Component[] c) {
-        if(super.verificarCampos(c)) {
+        if (super.verificarCampos(c)) {
             String senha = String.copyValueOf(pfSenha.getPassword());
-            if(senha.length() < 3) {
+            if (senha.length() < 3) {
                 JOptionPane.showMessageDialog(null, "A senha deve possuir ao menos 4 caracteres");
                 pfSenha.setText("");
                 pfConfirmacao.setText("");
@@ -77,12 +80,13 @@ public class FUsuarios extends FrameGenerico {
 
     /**
      * Verifica se a senha e confirmação conferem
+     *
      * @return
      */
     private boolean verificarSenha() {
         String senha = String.copyValueOf(pfSenha.getPassword());
         String confirmacao = String.copyValueOf(pfConfirmacao.getPassword());
-        if(!senha.equals(confirmacao)) {
+        if (!senha.equals(confirmacao)) {
             JOptionPane.showMessageDialog(null, "Senha e Confirmação não conferem");
             pfConfirmacao.setText("");
             pfSenha.setText("");
@@ -108,21 +112,20 @@ public class FUsuarios extends FrameGenerico {
         usuario.setSupervisor(ckbSupervisor.isSelected());
 
         try {
-            if(tbAlterar.isSelected()) {
+            if (tbAlterar.isSelected()) {
                 usuario.setCodigo(Integer.parseInt(tfCodigo.getText()));
                 dao.alterar(usuario);
             } else {
                 dao.adicionar(usuario);
-               // JOptionPane.showMessageDialog(null, DAOUsuario.M_ADICIONAR);
             }
-        } catch(RuntimeException ex) {
+        } catch (RuntimeException ex) {
             LoggerEx.log(ex);
         }
     }
 
     @Override
     public void preencherCampos(IModelo m) {
-         usuario = (Usuario) m;
+        usuario = (Usuario) m;
         // Código
         tfCodigo.setText(usuario.getCodigo() + "");
         // Nome
@@ -138,13 +141,14 @@ public class FUsuarios extends FrameGenerico {
     // TODO Implementar permissões de usuário
     /**
      * Configura os demais check boxes caso 'Supervisor' esteja marcado
+     *
      * @param supervisor
      */
     private void isSupervisor(boolean supervisor) {
-        JCheckBox[] campos = new JCheckBox[] {checkBoxCadastros, checkBoxLancamentos,
+        JCheckBox[] campos = new JCheckBox[]{checkBoxCadastros, checkBoxLancamentos,
             checkBoxFechamentos, checkBoxRelatorios, checkBoxExtratos};
 
-        for(JCheckBox c: campos) {
+        for (JCheckBox c : campos) {
             c.setSelected(supervisor);
             c.setEnabled(!supervisor);
         }
@@ -154,18 +158,18 @@ public class FUsuarios extends FrameGenerico {
     public void limparCampos() {
         super.limparCampos();
         // Habilitando os campos de permissão
-        JCheckBox[] campos = new JCheckBox[] {checkBoxCadastros, checkBoxLancamentos,
+        JCheckBox[] campos = new JCheckBox[]{checkBoxCadastros, checkBoxLancamentos,
             checkBoxFechamentos, checkBoxRelatorios, checkBoxExtratos};
-        for(JCheckBox c: campos) {
+        for (JCheckBox c : campos) {
             c.setSelected(false);
             c.setEnabled(true);
         }
     }
 
-    /** This method is called from within the constructor to
-     * initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is
-     * always regenerated by the Form Editor.
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -701,9 +705,9 @@ public class FUsuarios extends FrameGenerico {
 
     private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
         // Verificando se os campos foram preenchidos
-        if(verificarCampos(camposVerificar)) {
+        if (verificarCampos(camposVerificar)) {
             // Verificando se a senha e confirmação estão iguais
-            if(verificarSenha()) {
+            if (verificarSenha()) {
                 // Verificando se está em modo de alteração
 //                if(!tfCodigo.getText().equals("")) {
 //                    // Autenticando o usuário
@@ -728,8 +732,8 @@ public class FUsuarios extends FrameGenerico {
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void tfApelidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfApelidoFocusLost
-        if(!tfApelido.getText().equals("")) {
-            if(!new DAOUsuario().verificarApelido(tfApelido.getText())) {
+        if (!tfApelido.getText().equals("")) {
+            if (!new DAOUsuario().verificarApelido(tfApelido.getText())) {
                 tfApelido.setText("");
                 tfApelido.requestFocus();
                 JOptionPane.showMessageDialog(null, "Apelido já utilizado por outro usuário");
@@ -738,21 +742,19 @@ public class FUsuarios extends FrameGenerico {
 }//GEN-LAST:event_tfApelidoFocusLost
 
     private void tfApelidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfApelidoKeyTyped
-
 }//GEN-LAST:event_tfApelidoKeyTyped
 
     private void pfSenhaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pfSenhaKeyTyped
-        if(pfSenha.getPassword().length == 10) {
+        if (pfSenha.getPassword().length == 10) {
             evt.setKeyChar((char) KeyEvent.VK_CLEAR);
         }
 }//GEN-LAST:event_pfSenhaKeyTyped
 
     private void pfConfirmacaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pfConfirmacaoFocusLost
-
 }//GEN-LAST:event_pfConfirmacaoFocusLost
 
     private void pfConfirmacaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pfConfirmacaoKeyTyped
-        if(pfSenha.getPassword().length == 10) {
+        if (pfSenha.getPassword().length == 10) {
             evt.setKeyChar((char) KeyEvent.VK_CLEAR);
         }
 }//GEN-LAST:event_pfConfirmacaoKeyTyped
@@ -811,20 +813,20 @@ private void checkBoxSupervisorActionPerformed(java.awt.event.ActionEvent evt) {
     }//GEN-LAST:event_miEditarLimparActionPerformed
 
     private void tfCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfCodigoFocusLost
-        if(tfCodigo.getText().equals("")){
+        if (tfCodigo.getText().equals("")) {
             return;
         }
-        boolean find= false;
+        boolean find = false;
         loop:
-        for(int i=0; i<usuariosTableModel.getRowCount(); i++){
+        for (int i = 0; i < usuariosTableModel.getRowCount(); i++) {
             int linha = Integer.valueOf(tfCodigo.getText());
-            if(usuariosTableModel.getRow(i).getCodigo().equals(linha)){
+            if (usuariosTableModel.getRow(i).getCodigo().equals(linha)) {
                 tbUsuarios.changeSelection(i, 0, false, false);
                 find = true;
                 break loop;
             }
         }
-        if(!find){
+        if (!find) {
             JOptionPane.showMessageDialog(null, "Código Inválido");
             limparCampos();
             tfNome.requestFocus();
@@ -840,8 +842,8 @@ private void checkBoxSupervisorActionPerformed(java.awt.event.ActionEvent evt) {
     }//GEN-LAST:event_cbInativoActionPerformed
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -849,7 +851,6 @@ private void checkBoxSupervisorActionPerformed(java.awt.event.ActionEvent evt) {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgEditar;
     private javax.swing.JButton btCancelar;
@@ -904,9 +905,7 @@ private void checkBoxSupervisorActionPerformed(java.awt.event.ActionEvent evt) {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void preencherTabela( int linha, IModelo i ) {
+    public void preencherTabela(int linha, IModelo i) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-
 }
