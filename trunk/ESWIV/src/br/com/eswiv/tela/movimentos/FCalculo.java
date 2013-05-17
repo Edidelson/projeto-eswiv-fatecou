@@ -20,12 +20,15 @@ import com.zap.arca.util.WindowUtils;
 import java.awt.Component;
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import org.joda.time.DateTime;
+import org.joda.time.Months;
+import org.joda.time.Years;
 
 /**
  *
@@ -34,6 +37,7 @@ import javax.swing.event.ListSelectionListener;
 public class FCalculo extends FrameGenerico implements ICalculo {
 
     private Bem bem;
+    private CalculoTableModel calculoTableModel = new CalculoTableModel();
 
     public FCalculo() {
         initComponents();
@@ -114,7 +118,7 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         mnSobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de Bens e Despesas");
+        setTitle("Cálculo");
         setResizable(false);
 
         jToolBar1.setFloatable(false);
@@ -270,39 +274,41 @@ public class FCalculo extends FrameGenerico implements ICalculo {
             .addGroup(plCamposLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
                     .addComponent(lbCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbValorVenal)
                     .addComponent(lbDescricaoBens)
-                    .addComponent(lbProprietario))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(plCamposLayout.createSequentialGroup()
-                            .addComponent(jsBem, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lbBemSelecionado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plCamposLayout.createSequentialGroup()
-                            .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbDataAquisicao)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(dtAquisicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plCamposLayout.createSequentialGroup()
-                            .addComponent(tfValorVenal, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lbDepreciacao)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(tfDepreciacao, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel2)
-                            .addGap(21, 21, 21)
+                    .addComponent(lbProprietario)
+                    .addComponent(lbDepreciacao))
+                .addGap(27, 27, 27)
+                .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tfDescricaoBens, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(plCamposLayout.createSequentialGroup()
+                        .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jsBem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(plCamposLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(lbDataAquisicao)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dtAquisicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lbBemSelecionado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(plCamposLayout.createSequentialGroup()
+                        .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfValorVenal, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfDepreciacao, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(tfValorCalculado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(tfDescricaoBens, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jADecimalFormatField2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(189, Short.MAX_VALUE))
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jADecimalFormatField2, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                            .addComponent(tfValorCalculado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
         plCamposLayout.setVerticalGroup(
             plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -331,18 +337,21 @@ public class FCalculo extends FrameGenerico implements ICalculo {
                         .addComponent(tfDescricaoBens, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfValorVenal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbDepreciacao)
-                            .addComponent(tfDepreciacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(tfValorCalculado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(lbValorVenal))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jADecimalFormatField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addContainerGap(157, Short.MAX_VALUE))
+                            .addComponent(lbValorVenal)
+                            .addGroup(plCamposLayout.createSequentialGroup()
+                                .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(tfValorCalculado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jADecimalFormatField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3)
+                                    .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(tfDepreciacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel2)
+                                        .addComponent(lbDepreciacao))))
+                            .addComponent(tfValorVenal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(157, 157, 157))
         );
 
         tfCodigo.getDocument().addDocumentListener(new DocumentListener() {
@@ -403,7 +412,7 @@ public class FCalculo extends FrameGenerico implements ICalculo {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -436,14 +445,13 @@ public class FCalculo extends FrameGenerico implements ICalculo {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btOK)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)))
-                .addContainerGap())
+                        .addComponent(jButton2))
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btOK, jButton2});
@@ -469,10 +477,9 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(splitPaneCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(splitPaneCampos, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -647,7 +654,8 @@ public class FCalculo extends FrameGenerico implements ICalculo {
                     .title("Selecionar Bem...")
                     .dao(DAOBem.class)
                     .model(new BemTableModel())
-                    .frame(FBem.class).open();
+                    .frame(FBem.class)
+                    .open();
         }
     }//GEN-LAST:event_jsBemActionPerformed
 
@@ -664,8 +672,8 @@ public class FCalculo extends FrameGenerico implements ICalculo {
             c = daoBem.consultar(Integer.valueOf(value), false);
         }
         jsBem.setValue(c, c != null ? c.getCodigo() : "");
-        tfValorVenal.setValue(c != null ? c.getValorVenal().doubleValue() : BigDecimal.ZERO);
-        tfDepreciacao.setValue(c != null ? c.getDepreciacao().doubleValue() : BigDecimal.ZERO);
+        tfValorVenal.setValue(c != null ? new BigDecimal(c.getValorVenal()) : BigDecimal.ZERO);
+        tfDepreciacao.setValue(c != null ? new BigDecimal(c.getDepreciacao()) : BigDecimal.ZERO);
         calcular();
     }//GEN-LAST:event_jsBemFocusLost
 
@@ -785,11 +793,11 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         toggleButton = tbIncluir;
         ctChave = tfCodigo;
 
-        tbCalculo.setModel(new CalculoTableModel());
+        tbCalculo.setName("TB_FCALCULO");
+        tbCalculo.setModel(calculoTableModel);
         camposVerificar = new Component[]{};
         camposLimpar = new Component[]{jsBem, tfValorVenal, dtAquisicao,
             tfDescricaoBens, tfDepreciacao, jsBem, lbBemSelecionado};
-
 
         WindowUtils.nextEnter(plCampos);
         WindowUtils.exitEsc(this);
@@ -804,37 +812,107 @@ public class FCalculo extends FrameGenerico implements ICalculo {
     public void preencherCampos(IModelo m) {
     }
 
+    public int getPrazoDepreciacao(Bem.Categorias categorias) {
+        switch (categorias) {
+            case E:
+                return categorias.E.getPrazo();
+            case I:
+                return categorias.I.getPrazo();
+            case ME:
+                return categorias.ME.getPrazo();
+            case MU:
+                return categorias.MU.getPrazo();
+            case V:
+                return categorias.V.getPrazo();
+            default:
+                return 0;
+        }
+    }
+
     @Override
     public void preencherTabela(int linha, IModelo i) {
     }
 
     @Override
-    public Double calcular() {
-        BigDecimal valorVenal = tfValorVenal.getValue();
-        BigDecimal percentualDepreciacao = tfDepreciacao.getValue();
-        BigDecimal valorCalculado = null;
+    public void calcular() {
         bem = jsBem.getValue();
+        if (bem.getTurno() == Bem.Turno.H8) {
+            tfValorCalculado.setValue(calcular8Hrs());
+        } else if (bem.getTurno() == Bem.Turno.H16) {
+            tfValorCalculado.setValue(calcular16Hrs());
+        } else {
+            tfValorCalculado.setValue(calcular24Hrs());
+        }
+    }
+
+    @Override
+    public Double calcular8Hrs() {
+        bem = jsBem.getValue();
+        BigDecimal percentualDepreciacao = tfDepreciacao.getValue();
+        BigDecimal valorCalculado = BigDecimal.ZERO;
         if (bem != null) {
-            if (bem.getTurno() == Bem.Turno.H8) {
-                valorCalculado = valorVenal.multiply(percentualDepreciacao).divide(new BigDecimal(100), MathContext.DECIMAL64);
-                tfValorCalculado.setValue(valorCalculado.doubleValue());
+            int meses = getMeses(bem.getAquisicao());
+            int anos = getAnos(bem.getAquisicao());
+            int prazo = getPrazoDepreciacao(bem.getGrupo());
+            if (anos > prazo) {
+                JOptionPane.showMessageDialog(null, "Bem totalmente depreciado");
             }
-            if (bem.getTurno() == Bem.Turno.H16) {
-                valorCalculado = valorVenal.multiply(percentualDepreciacao).divide(new BigDecimal(100), MathContext.DECIMAL64);
-                
-                tfValorCalculado.setValue(valorCalculado.multiply(new BigDecimal(1.5))); 
+            if (meses > 0) {
+                valorCalculado = percentualDepreciacao.divide(new BigDecimal(meses), MathContext.DECIMAL64).multiply(tfValorVenal.getValue(), MathContext.DECIMAL64);
             }
         }
         return valorCalculado.doubleValue();
     }
 
     @Override
-    public Integer meses(Date date) {
-        Calendar dataFinal = Calendar.getInstance();
-//        Calendar dataInicial = Calendar.getInstance().setTime(null);
-        dataInicial.get(WIDTH);
-        int anos = dataFinal.get(Calendar.MONTH)- dataFinal.get(Calendar.MARCH);
-        return anos;
+    public Double calcular16Hrs() {
+        bem = jsBem.getValue();
+        BigDecimal percentualDepreciacao = tfDepreciacao.getValue();
+        BigDecimal valorCalculado = BigDecimal.ZERO;
+        if (bem != null) {
+            int meses = getMeses(bem.getAquisicao());
+            int anos = getAnos(bem.getAquisicao());
+            int prazo = getPrazoDepreciacao(bem.getGrupo());
+            if (anos > prazo) {
+                JOptionPane.showMessageDialog(null, "Bem totalmente depreciado");
+            }
+            if (meses > 0) {
+                valorCalculado = percentualDepreciacao.multiply(new BigDecimal(1.5)).divide(new BigDecimal(meses), MathContext.DECIMAL64).multiply(tfValorVenal.getValue(), MathContext.DECIMAL64);
+            }
+        }
+        return valorCalculado.doubleValue();
     }
 
+    @Override
+    public Double calcular24Hrs() {
+        bem = jsBem.getValue();
+        BigDecimal percentualDepreciacao = tfDepreciacao.getValue();
+        BigDecimal valorCalculado = BigDecimal.ZERO;
+        if (bem != null) {
+            int meses = getMeses(bem.getAquisicao());
+            int anos = getAnos(bem.getAquisicao());
+            int prazo = getPrazoDepreciacao(bem.getGrupo());
+            if (anos > prazo) {
+                JOptionPane.showMessageDialog(null, "Bem totalmente depreciado");
+            }
+            if (meses > 0) {
+                valorCalculado = percentualDepreciacao.multiply(new BigDecimal(2)).divide(new BigDecimal(meses), MathContext.DECIMAL64).multiply(tfValorVenal.getValue(), MathContext.DECIMAL64);
+            }
+        }
+        return valorCalculado.doubleValue();
+    }
+
+    @Override
+    public Integer getMeses(Date date) {
+        DateTime meses = new DateTime(date);
+        Months m = Months.monthsBetween(meses, new DateTime());
+        return m.getMonths();
+    }
+
+    @Override
+    public Integer getAnos(Date data) {
+        DateTime anos = new DateTime(data);
+        Years y = Years.yearsBetween(anos, new DateTime());
+        return y.getYears();
+    }
 }
