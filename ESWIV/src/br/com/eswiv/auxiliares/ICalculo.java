@@ -12,6 +12,10 @@ import java.util.Date;
  */
 public interface ICalculo {
     
-   Double calcular();
-   Integer meses(Date data);
+   void calcular();
+   Double calcular8Hrs();
+   Double calcular16Hrs();
+   Double calcular24Hrs();
+   Integer getMeses(Date data);
+   Integer getAnos(Date data);
 }
