@@ -441,8 +441,8 @@ public class FCalculo extends FrameGenerico implements ICalculo {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(splitPaneCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addComponent(splitPaneCampos, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Arquivo");
@@ -792,20 +792,14 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         if (bem.getTurno() == Bem.Turno.H8) {
             if (calcular8Hrs() != null) {
                 tfValorCalculado.setValue(calcular8Hrs().doubleValue());
-            } else {
-                return;
             }
         } else if (bem.getTurno() == Bem.Turno.H16) {
             if (calcular16Hrs() != null) {
                 tfValorCalculado.setValue(calcular16Hrs().doubleValue());
-            } else {
-                return;
             }
-        } else {
+        } else if (bem.getTurno() == Bem.Turno.H24) {
             if (calcular24Hrs() != null) {
                 tfValorCalculado.setValue(calcular24Hrs().doubleValue());
-            } else {
-                return;
             }
         }
     }
@@ -820,7 +814,7 @@ public class FCalculo extends FrameGenerico implements ICalculo {
             int anos = getAnos(bem.getAquisicao());
             int prazo = getPrazoDepreciacao(bem.getGrupo());
             if (anos > prazo) {
-                JOptionPane.showMessageDialog(null, "Bem totalmente depreciado");
+                JOptionPane.showMessageDialog(null, "Prazo de depreciação já foi ultrapassado.");
                 return null;
             }
             if (meses > 0) {
@@ -828,6 +822,10 @@ public class FCalculo extends FrameGenerico implements ICalculo {
                         .divide(new BigDecimal(100))
                         .multiply(tfValorVenal.getValue(), MathContext.DECIMAL64)
                         .multiply(new BigDecimal(meses));
+            }
+            if (valorCalculado.doubleValue() >= tfValorVenal.getValue().doubleValue()) {
+                JOptionPane.showMessageDialog(null, "Bem totalmente depreciado.");
+                return tfValorVenal.getValue().doubleValue();
             }
         }
         return valorCalculado.doubleValue();
@@ -843,7 +841,7 @@ public class FCalculo extends FrameGenerico implements ICalculo {
             int anos = getAnos(bem.getAquisicao());
             int prazo = getPrazoDepreciacao(bem.getGrupo());
             if (anos > prazo) {
-                JOptionPane.showMessageDialog(null, "Bem totalmente depreciado");
+                JOptionPane.showMessageDialog(null, "Prazo de depreciação já foi ultrapassado.");
                 return null;
             }
             if (meses > 0) {
@@ -854,6 +852,10 @@ public class FCalculo extends FrameGenerico implements ICalculo {
                         .divide(new BigDecimal(100))
                         .multiply(tfValorVenal.getValue(), MathContext.DECIMAL64)
                         .multiply(new BigDecimal(meses));
+            }
+            if (valorCalculado.doubleValue() >= tfValorVenal.getValue().doubleValue()) {
+                JOptionPane.showMessageDialog(null, "Bem totalmente depreciado.");
+                return tfValorVenal.getValue().doubleValue();
             }
         }
         return valorCalculado.doubleValue();
@@ -869,14 +871,19 @@ public class FCalculo extends FrameGenerico implements ICalculo {
             int anos = getAnos(bem.getAquisicao());
             int prazo = getPrazoDepreciacao(bem.getGrupo());
             if (anos > prazo) {
-                JOptionPane.showMessageDialog(null, "Bem totalmente depreciado");
+                JOptionPane.showMessageDialog(null, "Prazo de depreciação já foi ultrapassado.");
                 return null;
             }
             if (meses > 0) {
                 valorCalculado = percentualDepreciacao.multiply(new BigDecimal(2))
+                        .divide(new BigDecimal(12), MathContext.DECIMAL64)
                         .divide(new BigDecimal(100), MathContext.DECIMAL64)
                         .multiply(tfValorVenal.getValue(), MathContext.DECIMAL64)
-                        .divide(new BigDecimal(meses));
+                        .multiply(new BigDecimal(meses));
+            }
+            if (valorCalculado.doubleValue() >= tfValorVenal.getValue().doubleValue()) {
+                JOptionPane.showMessageDialog(null, "Bem totalmente depreciado.");
+                return tfValorVenal.getValue().doubleValue();
             }
         }
         return valorCalculado.doubleValue();
