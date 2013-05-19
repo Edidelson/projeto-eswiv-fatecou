@@ -27,9 +27,10 @@ import javax.persistence.Temporal;
 @Entity
 @Table(name = "calculo")
 @NamedQueries({
-    @NamedQuery(name = "Calculo.getAll", query = "SELECT e FROM Calculo e")
+    @NamedQuery(name = "Calculo.getAll", query = "SELECT e FROM Calculo e"),
+    @NamedQuery(name = "Calculo.findMax", query = "SELECT MAX(acumulado) FROM Calculo e WHERE e.bem.codigo=:codigo")
 })
-public class Calculo implements Serializable, IModelo {
+public class Calculo implements Serializable, IModelo{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
