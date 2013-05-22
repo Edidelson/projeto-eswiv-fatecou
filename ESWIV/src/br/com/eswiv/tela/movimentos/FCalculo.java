@@ -761,7 +761,7 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         WindowUtils.nextEnter(plCampos);
         WindowUtils.exitEsc(this);
         configurarSincronizacao(dao, tbCalculo);
-        dtAquisicao.setDate(new java.util.Date()); 
+        dtAquisicao.setDate(new java.util.Date());
     }
 
     @Override
@@ -825,21 +825,15 @@ public class FCalculo extends FrameGenerico implements ICalculo {
     @Override
     public void calcular() {
         bem = jsBem.getValue();
-        if (bem.getTurno() == Bem.Turno.H8) {
-            if (calcular8Hrs() != null) {
-                tfValorCalculado.setValue(calcular8Hrs().doubleValue());
-                tfDepreciacaoAcumulada.setValue(calcular8Hrs().doubleValue());
-            }
-        } else if (bem.getTurno() == Bem.Turno.H16) {
-            if (calcular16Hrs() != null) {
-                tfValorCalculado.setValue(calcular16Hrs().doubleValue());
-                tfDepreciacaoAcumulada.setValue(calcular16Hrs().doubleValue());
-            }
-        } else if (bem.getTurno() == Bem.Turno.H24) {
-            if (calcular24Hrs() != null) {
-                tfValorCalculado.setValue(calcular24Hrs().doubleValue());
-                tfDepreciacaoAcumulada.setValue(calcular24Hrs().doubleValue());
-            }
+        if (bem.getTurno() == Bem.Turno.H8 && calcular8Hrs() != null) {
+            tfValorCalculado.setValue(calcular8Hrs().doubleValue());
+            tfDepreciacaoAcumulada.setValue(calcular8Hrs().doubleValue());
+        } else if (bem.getTurno() == Bem.Turno.H16 && calcular16Hrs() != null) {
+            tfValorCalculado.setValue(calcular16Hrs().doubleValue());
+            tfDepreciacaoAcumulada.setValue(calcular16Hrs().doubleValue());
+        } else if (bem.getTurno() == Bem.Turno.H24 && calcular24Hrs() != null) {
+            tfValorCalculado.setValue(calcular24Hrs().doubleValue());
+            tfDepreciacaoAcumulada.setValue(calcular24Hrs().doubleValue());
         } else {
             if (calcular8Hrs() != null) {
                 tfValorCalculado.setValue(calcular8Hrs().doubleValue());
