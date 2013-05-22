@@ -5,6 +5,7 @@
 package br.com.eswiv.auxiliares;
 
 import java.util.Date;
+import org.joda.time.DateTime;
 
 /**
  *
@@ -16,6 +17,6 @@ public interface ICalculo {
    Double calcular8Hrs();
    Double calcular16Hrs();
    Double calcular24Hrs();
-   Integer getMeses(Date data);
-   Integer getAnos(Date data);
+   Integer getMeses(Date data, DateTime now);
+   Integer getAnos(Date data, DateTime now);
 }

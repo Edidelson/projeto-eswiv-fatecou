@@ -7,6 +7,7 @@ package br.com.eswiv.dao;
 import br.com.eswiv.modelo.Bem;
 import br.com.eswiv.modelo.Calculo;
 import br.com.eswiv.modelo.IModelo;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -35,16 +36,15 @@ public class DAOCalculo extends DAOGenerico {
         return super.getLista("Calculo.getAll");
     }
 
-    public Bem getMaxValue(Integer codigo) {
-
+    public BigDecimal getMaxValue(Bem codigo) {
         try {
             abrirSessao();
             getSession().beginTransaction();
-            Bem bem = (Bem) session.getNamedQuery("Calculo.findMax")
+            BigDecimal valorAcumulado = (BigDecimal) session.getNamedQuery("Calculo.findMax")
                     .setParameter("codigo", codigo)
                     .uniqueResult();
             getSession().getTransaction().commit();
-            return bem;
+            return valorAcumulado;
         } catch (RuntimeException ex) {
             getSession().getTransaction().rollback();
             throw ex;
