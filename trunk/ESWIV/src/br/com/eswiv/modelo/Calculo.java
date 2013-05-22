@@ -5,6 +5,7 @@
 package br.com.eswiv.modelo;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -28,7 +29,7 @@ import javax.persistence.Temporal;
 @Table(name = "calculo")
 @NamedQueries({
     @NamedQuery(name = "Calculo.getAll", query = "SELECT e FROM Calculo e"),
-    @NamedQuery(name = "Calculo.findMax", query = "SELECT MAX(acumulado) FROM Calculo e WHERE e.bem.codigo=:codigo")
+    @NamedQuery(name = "Calculo.findMax", query = "SELECT MAX(acumulado) FROM Calculo e WHERE e.bem=:codigo")
 })
 public class Calculo implements Serializable, IModelo{
 
@@ -36,10 +37,8 @@ public class Calculo implements Serializable, IModelo{
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cp_calculo")
     private int codigo;
-    @Column(name = "vl_depreciacao")
-    private Double depreciacao;
     @Column(name = "vl_acumulado")
-    private Double acumulado;
+    private BigDecimal acumulado;
     @Column(name = "dt_calculo")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataCalculo;
@@ -48,7 +47,17 @@ public class Calculo implements Serializable, IModelo{
     @ManyToOne(fetch= FetchType.LAZY, cascade= CascadeType.ALL)
     @JoinColumn(name="ce_bem")
     private Bem bem;
+    @Column(name="vl_calculo")
+    private Double valorCalculo;
 
+    public Double getValorCalculo() {
+        return valorCalculo;
+    }
+
+    public void setValorCalculo(Double valorCalculo) {
+        this.valorCalculo = valorCalculo;
+    }
+    
     public Bem getBem() {
         return bem;
     }
@@ -61,19 +70,11 @@ public class Calculo implements Serializable, IModelo{
         this.codigo = codigo;
     }
 
-    public Double getDepreciacao() {
-        return depreciacao;
-    }
-
-    public void setDepreciacao(Double depreciacao) {
-        this.depreciacao = depreciacao;
-    }
-
-    public Double getAcumulado() {
+    public BigDecimal getAcumulado() {
         return acumulado;
     }
 
-    public void setAcumulado(Double acumulado) {
+    public void setAcumulado(BigDecimal acumulado) {
         this.acumulado = acumulado;
     }
 
