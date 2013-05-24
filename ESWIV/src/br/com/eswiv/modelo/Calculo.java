@@ -7,19 +7,7 @@ package br.com.eswiv.modelo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
+import javax.persistence.*;
 
 /**
  *
@@ -28,7 +16,7 @@ import javax.persistence.Temporal;
 @Entity
 @Table(name = "calculo")
 @NamedQueries({
-    @NamedQuery(name = "Calculo.getAll", query = "SELECT e FROM Calculo e"),
+    @NamedQuery(name = "Calculo.getAll", query = "SELECT e FROM Calculo e ORDER BY e.codigo ASC"),
     @NamedQuery(name = "Calculo.findMax", query = "SELECT MAX(acumulado) FROM Calculo e WHERE e.bem=:codigo")
 })
 public class Calculo implements Serializable, IModelo{
@@ -44,7 +32,7 @@ public class Calculo implements Serializable, IModelo{
     private Date dataCalculo;
     @Column(name = "tx_observacao")
     private String observacao;
-    @ManyToOne(fetch= FetchType.LAZY, cascade= CascadeType.ALL)
+    @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="ce_bem")
     private Bem bem;
     @Column(name="vl_calculo")

@@ -2,6 +2,7 @@ package br.com.eswiv.tela.generico;
 
 import br.com.eswiv.auxiliares.DFiltro;
 import br.com.eswiv.auxiliares.genericos.DFiltroGenerico;
+import br.com.eswiv.dao.DAOUsuario;
 import br.com.eswiv.dao.IDAOGenerico;
 import br.com.eswiv.exceptions.CannotDeleteException;
 import br.com.eswiv.modelo.IModelo;
@@ -9,13 +10,11 @@ import br.com.eswiv.tela.tablemodel.RowTableModel;
 import br.com.util.Util;
 import com.zap.arca.JADecimalFormatField;
 import com.zap.arca.JANumberFormatField;
-import com.zap.arca.JASelectPicker;
+import com.zap.arca.JAStatusBar;
 import com.zap.arca.JATable;
 import com.zap.arca.JATextField;
 import com.zap.arca.LoggerEx;
-import com.zap.arca.event.DataEvent;
-import com.zap.arca.event.DataListener;
-import com.zap.arca.event.IDataController;
+import com.zap.arca.event.*;
 import com.zap.arca.util.DateUtils;
 import com.zap.arca.util.StringUtils;
 import com.zap.arca.util.WindowUtils;
@@ -33,6 +32,8 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import org.jdesktop.swingx.JXDatePicker;
+import org.jdesktop.swingx.JXFrame;
+import org.jdesktop.swingx.JXStatusBar;
 import org.jdesktop.swingx.renderer.DefaultTreeRenderer;
 import org.jdesktop.swingx.renderer.IconValues;
 import org.jdesktop.swingx.renderer.StringValues;
@@ -44,9 +45,9 @@ import table.model.RowContainer;
  *
  * 29/12/2010
  *
- * @author Everton
+ * @author Edidelson
  */
-public abstract class FrameGenerico extends javax.swing.JFrame implements IFuncionalidades {
+public abstract class FrameGenerico extends JXFrame implements IFuncionalidades {
 
     public static final byte INCLUSAO = 0;
     public static final byte ALTERACAO = 1;
@@ -67,6 +68,9 @@ public abstract class FrameGenerico extends javax.swing.JFrame implements IFunci
     protected IDataController ctrl;
     protected DataListener sinc;
     private RowTableModel kModel;
+    protected JLabel lbStatus;
+    protected JLabel lbUsuario;
+    protected JLabel lbEmpresa;
 
     // Bloco de inicialização que aplica o ícone da aplicação
     {
@@ -81,6 +85,7 @@ public abstract class FrameGenerico extends javax.swing.JFrame implements IFunci
      */
     public FrameGenerico() {
         initComponents();
+        habilitarStatusBar();
     }
 
     /**
@@ -121,7 +126,7 @@ public abstract class FrameGenerico extends javax.swing.JFrame implements IFunci
      */
     protected void configurarSincronizacao(final IDAOGenerico dao, final JATable tabela) {
         sinc = new DataListener() {
-
+            @Override
             public void update(DataEvent de) {
                 exibirDados(dao, tabela);
             }
@@ -141,6 +146,11 @@ public abstract class FrameGenerico extends javax.swing.JFrame implements IFunci
         super.dispose();
     }
 
+    public void delete(){
+        if(tbPrincipal.getSelectedRowCount()>0){
+            
+        }
+    }
     /**
      * Verifica se o CPF ou CNPJ é válido
      *
@@ -219,14 +229,14 @@ public abstract class FrameGenerico extends javax.swing.JFrame implements IFunci
      * @return true se todos os campos foram preenchidos
      */
     public boolean verificarCampos(Component[] components) {
-         boolean estahPreenchido = true;
+        boolean estahPreenchido = true;
         // Itera sobre os componentes do array
         for (Component c : components) {
             // Verifica se é um JTextField
             if (c instanceof JATextField) {
                 JATextField tf = (JATextField) c;
                 if (tf.getText().trim().equals("")) {
-                   estahPreenchido = false;
+                    estahPreenchido = false;
                 }
             }
             // Verifica se é um JFormattedTextField
@@ -235,7 +245,7 @@ public abstract class FrameGenerico extends javax.swing.JFrame implements IFunci
                 if ((ftf.getText().trim().equals("")) || (ftf.getText().equals("  .   .   /    -  "))
                         || (ftf.getText().equals("   .   .   -  ")) || (ftf.getText().equals("   "))
                         || (ftf.getText().equals("   .   .   ")) || (ftf.getText().equals("   -    "))) {
-                   estahPreenchido = false;
+                    estahPreenchido = false;
                 }
             }
             // Verifica se é um JANumberFormatField
@@ -259,19 +269,19 @@ public abstract class FrameGenerico extends javax.swing.JFrame implements IFunci
                     estahPreenchido = false;
                 }
             }
-            if(!estahPreenchido){
-                if(c.getName()!=null){
-                    JOptionPane.showMessageDialog(null,"<html><body>Campo <b><font color=black>" +c.getName().toUpperCase()+ "</font color> </b> não preenchido.</body></html>");
-                }else{
-                    JOptionPane.showMessageDialog(null,"Campo obrigatório não preenchido.");
+            if (!estahPreenchido) {
+                if (c.getName() != null) {
+                    JOptionPane.showMessageDialog(null, "<html><body>Campo <b><font color=black>" + c.getName().toUpperCase() + "</font color> </b> não preenchido.</body></html>");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Campo obrigatório não preenchido.");
                 }
-                
+
                 c.requestFocus();
                 return false;
 //                break;
             }
         }
-        
+
         return true;
     }
 
@@ -284,40 +294,9 @@ public abstract class FrameGenerico extends javax.swing.JFrame implements IFunci
         for (Component c : camposLimpar) {
             if (c.equals(ctChave) && OPERACAO == LIMPAR) {
                 continue;
-            }
-            if (c instanceof JTextField) {
-                JTextField tf = (JTextField) c;
-                tf.setText("");
-            } else if (c instanceof JADecimalFormatField) {
-                JADecimalFormatField ftf = (JADecimalFormatField) c;
-                ftf.setValue(BigDecimal.ZERO);
-            } else if (c instanceof JANumberFormatField) {
-                JANumberFormatField ftf = (JANumberFormatField) c;
-                ftf.setValue(BigDecimal.ZERO);
-            } else if (c instanceof JCheckBox) {
-                JCheckBox cb = (JCheckBox) c;
-                cb.setSelected(false);
-            } else if (c instanceof JLabel) {
-                JLabel lb = (JLabel) c;
-                lb.setText(" ");
-            } else if (c instanceof JXDatePicker) {
-                JXDatePicker dp = (JXDatePicker) c;
-                dp.setDate(null);
-            } else if (c instanceof JComboBox) {
-                JComboBox cb = (JComboBox) c;
-                cb.setSelectedIndex(0);
-            } else if (c instanceof JPasswordField) {
-                JPasswordField jp = (JPasswordField) c;
-                jp.setText("");
-            } else if (c instanceof JASelectPicker) {
-                JASelectPicker jxsp = (JASelectPicker) c;
-                jxsp.setValue(null, "");
-            } else if (c instanceof JTextArea) {
-                JTextArea jta = (JTextArea) c;
-                jta.setText("");
-            }
+            } 
+            WindowUtils.cleanFields(camposLimpar);            
         }
-        camposLimpar[0].requestFocus();
     }
 
     /**
@@ -633,7 +612,6 @@ public abstract class FrameGenerico extends javax.swing.JFrame implements IFunci
     protected void addAtalhoFiltro(JPanel pl, final DFiltroGenerico filtro) {
         // Adiciona uma ação para o evento FILTRO
         pl.getActionMap().put("FILTRO", new AbstractAction() {
-
             public void actionPerformed(ActionEvent e) {
                 filtro.setVisible(true);
             }
@@ -657,7 +635,6 @@ public abstract class FrameGenerico extends javax.swing.JFrame implements IFunci
 
         // Em ordem decrescente do inicio do mandato
         Collections.sort(datas, new Comparator<Date>() {
-
             public int compare(Date o1, Date o2) {
                 if (o1.before(o2)) {
                     return -1;
@@ -689,12 +666,12 @@ public abstract class FrameGenerico extends javax.swing.JFrame implements IFunci
                 ano = new DefaultMutableTreeNode(DateUtils.dateFormat(index, 3));
                 root.add(ano);
             }
-            
+
             if (!(StringUtils.leftPad(DateUtils.dateFormatter(index, "MM"), 2, "0") + "/" + DateUtils.dateFormatter(index, "yyyy")).equals(mesAnterior)) {
                 mes = new DefaultMutableTreeNode(StringUtils.leftPad(DateUtils.dateFormatter(index, "MM"), 2, "0") + "/" + DateUtils.dateFormatter(index, "yyyy"));
                 ano.add(mes);
             }
-            
+
             if (!(StringUtils.leftPad(DateUtils.dateFormatter(index, "dd"), 2, "0") + "/" + StringUtils.leftPad(DateUtils.dateFormatter(index, "MM"), 2, "0") + "/" + DateUtils.dateFormatter(index, "yyyy")).equals(diaAnterior)) {
                 dia = new DefaultMutableTreeNode(StringUtils.leftPad(DateUtils.dateFormatter(index, "dd"), 2, "0") + "/" + StringUtils.leftPad(DateUtils.dateFormatter(index, "MM"), 2, "0") + "/" + DateUtils.dateFormatter(index, "yyyy"));
                 mes.add(dia);
@@ -902,5 +879,46 @@ public abstract class FrameGenerico extends javax.swing.JFrame implements IFunci
             return false;
         }
         return true;
+    }
+
+    /**
+     * Returns the
+     * <code>JXFrame</code>'s status bar. Lazily creates and sets an instance if
+     * necessary.
+     *
+     * @param frame the target frame
+     * @return the frame's statusbar
+     */
+    public JXStatusBar getStatusBar(JXFrame frame) {
+        JXStatusBar statusBar = (JXStatusBar) frame.getRootPaneExt().getStatusBar();
+        if (statusBar == null) {
+            // statusBar = new JAStatusBar();
+            statusBar = new JAStatusBar();
+            frame.setStatusBar(statusBar);
+        }
+        return statusBar;
+    }
+
+    private void habilitarStatusBar() {
+        JXStatusBar statusBar = getStatusBar(this);
+        initStatusBarLabels();
+        statusBar.add(lbStatus, JXStatusBar.Constraint.ResizeBehavior.FILL);
+        statusBar.add(lbUsuario);
+        statusBar.add(lbEmpresa);
+    }
+
+    /**
+     * Inicializa os labels a serem utilizados na StatusBar.
+     */
+    private void initStatusBarLabels() {
+        if (lbStatus == null) {
+            lbStatus = new JLabel("Pronto");
+        }
+        if (lbUsuario == null ) {
+            lbUsuario = new JLabel("Usuário: " + DAOUsuario.getUsuarioAtual());
+        } 
+        if (lbEmpresa == null) {
+            lbEmpresa = new JLabel("Fatec Ourinhos");
+        }
     }
 }

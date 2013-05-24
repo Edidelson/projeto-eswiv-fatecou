@@ -19,7 +19,5 @@
         <mapping class="br.com.eswiv.modelo.Bem"/>
         <mapping class="br.com.eswiv.modelo.Despesas"/>
         <mapping class="br.com.eswiv.modelo.Calculo"/>
-        <mapping class="br.com.eswiv.modelo.Historico"/>
-        <mapping class="br.com.eswiv.modelo.HistoricoPK"/>
     </session-factory>
 </hibernate-configuration>

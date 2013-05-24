@@ -24,7 +24,7 @@ import javax.persistence.Temporal;
 @Entity
 @Table(name = "proprietario")
 @NamedQueries({
-    @NamedQuery(name = "Proprietario.getAll", query = "SELECT e FROM Proprietario e")
+    @NamedQuery(name = "Proprietario.getAll", query = "SELECT e FROM Proprietario e ORDER BY e.codigo ASC")
 })
 public class Proprietario implements Serializable, IModelo {
 

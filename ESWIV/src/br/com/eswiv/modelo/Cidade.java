@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="cidades")
 @NamedQueries({
-        @NamedQuery(name="Cidade.getAll", query="SELECT e FROM Cidade e")
+        @NamedQuery(name="Cidade.getAll", query="SELECT e FROM Cidade e ORDER BY e.codigo ASC")
     })
 public class Cidade implements Serializable, IModelo, Cloneable {
 

@@ -33,7 +33,7 @@ import javax.persistence.Temporal;
 @Table(name = "bem")
 //@NamedQuery = responsável por controlar as HQL no banco
 @NamedQueries({
-    @NamedQuery(name = "Bem.getAll", query = "SELECT e FROM Bem e")
+    @NamedQuery(name = "Bem.getAll", query = "SELECT e FROM Bem e ORDER BY e.codigo ASC")
 })
 public class Bem implements Serializable, IModelo {
 
@@ -60,18 +60,29 @@ public class Bem implements Serializable, IModelo {
     private Turno turno;
     @Column(name = "vl_venal")
     private Double valorVenal;
-    @Column(name = "nu_tipo", length=5)
+    @Column(name = "nu_tipo", length = 5)
     @Enumerated(EnumType.ORDINAL)
     private Tipo tipo;
-    @Column(name="vl_depreciacao")
+    @Column(name = "vl_depreciacao")
     private Double depreciacao;
-     //@OneToMany = muitos para um
+    @Column(name = "dt_fabricacao")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fabricacao;
+    //@OneToMany = muitos para um
     //Cascade = Se um bem for removido, automaticamente remove todas as despesas
     //Fetch = Une o bem com a despesa
     //mappedBy = Ele vai buscar dentro da classe Despesa o nome do chave estrangeira, no caso "bem"
     //orphanRemoval = permite remover
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "bem", orphanRemoval = true)
     private List<Despesas> despesas = new ArrayList<>();
+
+    public Date getFabricacao() {
+        return fabricacao;
+    }
+
+    public void setFabricacao(Date fabricacao) {
+        this.fabricacao = fabricacao;
+    }
 
     public Categorias getGrupo() {
         return grupo;
@@ -117,7 +128,6 @@ public class Bem implements Serializable, IModelo {
         this.proprietario = proprietario;
     }
 
-    
     public String getDescricao() {
         return descricao;
     }
@@ -203,14 +213,14 @@ public class Bem implements Serializable, IModelo {
         NOVO,
         USADO
     }
-    
-    public static enum Categorias{
-        E(4, 25,"Edifícios"),
-        I(10, 10,"Instalações"),
-        MU(10,10, "Móveis e Utensílios"),
-        V(20,5, "Veículos"),
-        ME(10,10, "Máquinas e Equipamentos");
-        
+
+    public static enum Categorias {
+
+        E(4, 25, "Edifícios"),
+        I(10, 10, "Instalações"),
+        MU(10, 10, "Móveis e Utensílios"),
+        V(20, 5, "Veículos"),
+        ME(10, 10, "Máquinas e Equipamentos");
         private double taxaPercentual;
         private int prazo;
         private String descricao;
@@ -247,6 +257,5 @@ public class Bem implements Serializable, IModelo {
             this.prazo = prazo;
             this.descricao = descricao;
         }
-        
     }
 }
