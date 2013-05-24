@@ -77,12 +77,13 @@ public class BemTableModel extends RowTableModel {
                 return bem.getTurno().H8.getDescricao();
             } else if (turno == 2) {
                 return bem.getTurno().H16.getDescricao();
-            } else {
+            } else if (turno == 3) {
                 return bem.getTurno().H24.getDescricao();
+            } else {
+                return "";
             }
-        } else {
-            return "";
         }
+        return null;
     }
 
     public String setCategoria(Bem.Categorias categorias) {

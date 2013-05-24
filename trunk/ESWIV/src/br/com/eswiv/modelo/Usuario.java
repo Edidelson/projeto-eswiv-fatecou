@@ -13,7 +13,7 @@ import javax.persistence.*;
  * <br><br>
  * HISTÓRICO DE DESENVOLVIMENTO:
  * <br>
- * 10/01/2011 - @author Everton - Primeira versão
+ * 10/01/2011 - @author Edidelson - Primeira versão
  *
  * <br><br>
  * LISTA DE CLASSES INTERNAS:
@@ -28,7 +28,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="usuarios")
 @NamedQueries({
-    @NamedQuery(name="Usuario.getAll", query="SELECT u FROM Usuario u"),
+    @NamedQuery(name="Usuario.getAll", query="SELECT u FROM Usuario u ORDER BY u.codigo ASC"),
     @NamedQuery(name="Usuario.verificarApelido", query="SELECT u FROM Usuario u WHERE u.apelido = :apelido"),
     @NamedQuery(name="Usuario.autenticar", query="SELECT u FROM Usuario u WHERE UPPER(u.apelido) = :apelido AND u.senha = :senha AND u.inativo = false")
 })

@@ -300,6 +300,7 @@
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="tbCalculo.getSelectionModel().addListSelectionListener(new ListSelectionListener() {&#xa;    public void valueChanged(ListSelectionEvent e) {&#xa;        alterar(tbCalculo);&#xa;}&#xa;});"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="tbCalculo.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
@@ -511,21 +512,27 @@
                                 <Property name="label" type="javax.swing.JLabel" editor="org.netbeans.modules.form.ComponentChooserEditor">
                                   <ComponentRef name="lbBemSelecionado"/>
                                 </Property>
+                                <Property name="name" type="java.lang.String" value="Bem" noResource="true"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jsBemActionPerformed"/>
                                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jsBemFocusLost"/>
                               </Events>
                               <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jsBem.setDocument(new NumberValueDocument(10));"/>
                                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Bem&gt;"/>
                               </AuxValues>
                             </Component>
                             <Component class="javax.swing.JLabel" name="lbDataAquisicao">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="Data de C&#xe1;lculo:"/>
+                                <Property name="text" type="java.lang.String" value="Data do C&#xe1;lculo:"/>
                               </Properties>
                             </Component>
                             <Component class="com.zap.arca.JADatePicker" name="dtAquisicao">
+                              <Properties>
+                                <Property name="enabled" type="boolean" value="false"/>
+                                <Property name="name" type="java.lang.String" value="Data do C&#xe1;lculo" noResource="true"/>
+                              </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="lbDescricaoBens">
                               <Properties>
@@ -533,6 +540,9 @@
                               </Properties>
                             </Component>
                             <Component class="com.zap.arca.JATextField" name="tfObervacao">
+                              <Properties>
+                                <Property name="name" type="java.lang.String" value="Oberva&#xe7;&#xe3;o" noResource="true"/>
+                              </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfObervacaoActionPerformed"/>
                               </Events>
@@ -545,7 +555,8 @@
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfCodigoActionPerformed"/>
                               </Events>
                               <AuxValues>
-                                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="tfCodigo.getDocument().addDocumentListener(new DocumentListener() {&#xa;    public void insertUpdate(DocumentEvent e) {&#xa;       // verificaAlteracao();&#xa;        if(tfCodigo.getText().equals(&quot;&quot;)) {&#xa;            tbAlterar.setSelected(false);&#xa;            tbIncluir.setSelected(true);&#xa;        } else {&#xa;            tbAlterar.setSelected(true);&#xa;            tbIncluir.setSelected(false);&#xa;        }&#xa;    }&#xa;    public void changedUpdate(DocumentEvent e) { }&#xa;    public void removeUpdate(DocumentEvent e) { &#xa;        //verificaAlteracao();&#xa;        if(tfCodigo.getText().equals(&quot;&quot;)) {&#xa;            tbAlterar.setSelected(false);&#xa;            tbIncluir.setSelected(true);&#xa;        } else {&#xa;            tbAlterar.setSelected(true);&#xa;            tbIncluir.setSelected(false);&#xa;        }&#xa;    }   &#xa;});"/>
+                                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="tfCodigo.getDocument().addDocumentListener(new DocumentListener() {&#xa;    public void insertUpdate(DocumentEvent e) {&#xa;        if(tfCodigo.getText().equals(&quot;&quot;)) {&#xa;            tbAlterar.setSelected(false);&#xa;            tbIncluir.setSelected(true);&#xa;        } else {&#xa;            tbAlterar.setSelected(true);&#xa;            tbIncluir.setSelected(false);&#xa;        }&#xa;    }&#xa;    public void changedUpdate(DocumentEvent e) { }&#xa;    public void removeUpdate(DocumentEvent e) { &#xa;        if(tfCodigo.getText().equals(&quot;&quot;)) {&#xa;            tbAlterar.setSelected(false);&#xa;            tbIncluir.setSelected(true);&#xa;        } else {&#xa;            tbAlterar.setSelected(true);&#xa;            tbIncluir.setSelected(false);&#xa;        }&#xa;    }&#xa;});"/>
+                                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.zap.arca.JATextField(10,0)"/>
                               </AuxValues>
                             </Component>
                             <Component class="javax.swing.JLabel" name="lbCodigo">
@@ -558,6 +569,7 @@
                             <Component class="com.zap.arca.JANumberFormatField" name="tfValorVenal">
                               <Properties>
                                 <Property name="enabled" type="boolean" value="false"/>
+                                <Property name="name" type="java.lang.String" value="Valor venal" noResource="true"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="lbDepreciacao">
@@ -568,6 +580,7 @@
                             <Component class="com.zap.arca.JANumberFormatField" name="tfDepreciacao">
                               <Properties>
                                 <Property name="enabled" type="boolean" value="false"/>
+                                <Property name="name" type="java.lang.String" value="Deprecia&#xe7;&#xe3;o" noResource="true"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel2">
@@ -578,6 +591,7 @@
                             <Component class="com.zap.arca.JADecimalFormatField" name="tfValorCalculado">
                               <Properties>
                                 <Property name="enabled" type="boolean" value="false"/>
+                                <Property name="name" type="java.lang.String" value="Valor Calculado" noResource="true"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel1">
@@ -593,6 +607,7 @@
                             <Component class="com.zap.arca.JADecimalFormatField" name="tfDepreciacaoAcumulada">
                               <Properties>
                                 <Property name="enabled" type="boolean" value="false"/>
+                                <Property name="name" type="java.lang.String" value="Deprecia&#xe7;&#xe3;o Acumulada" noResource="true"/>
                               </Properties>
                             </Component>
                           </SubComponents>

@@ -52,7 +52,7 @@ public class FUsuarios extends FrameGenerico {
         camposVerificar = new Component[]{tfNome, tfApelido};
         // Configurações da tabela
         camposLimpar = new Component[]{tfNome, tfCodigo, tfApelido, pfSenha, pfConfirmacao, checkBoxSupervisor, checkBoxCadastros,
-            checkBoxLancamentos, checkBoxFechamentos, checkBoxRelatorios, checkBoxExtratos, ckbSupervisor};
+            checkBoxLancamentos, checkBoxFechamentos, checkBoxRelatorios, checkBoxExtratos};
         tbUsuarios.setModel(usuariosTableModel);
 
         // Habilita mudança de campos com a tecla Enter
@@ -109,7 +109,6 @@ public class FUsuarios extends FrameGenerico {
         usuario.setDataInclusao(new Date(new java.util.Date().getTime()));
         // Está inativo?
         usuario.setInativo(cbInativo.isSelected());
-        usuario.setSupervisor(ckbSupervisor.isSelected());
 
         try {
             if (tbAlterar.isSelected()) {
@@ -134,8 +133,7 @@ public class FUsuarios extends FrameGenerico {
         tfApelido.setText(usuario.getApelido());
         // Está inativo?
         cbInativo.setSelected(usuario.isInativo());
-        //supervisor
-        ckbSupervisor.setSelected(usuario.isSupervisor());
+
     }
 
     // TODO Implementar permissões de usuário
@@ -196,7 +194,6 @@ public class FUsuarios extends FrameGenerico {
         pfSenha = new com.zap.arca.JAPasswordField();
         pfConfirmacao = new com.zap.arca.JAPasswordField();
         cbInativo = new javax.swing.JCheckBox();
-        ckbSupervisor = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbUsuarios = new com.zap.arca.JATable(UsuariosTableModel.DEFAULT_COL_SIZES);
         plBotoes = new javax.swing.JPanel();
@@ -313,6 +310,9 @@ public class FUsuarios extends FrameGenerico {
             }
         });
 
+        tfNome.setName("Nome"); // NOI18N
+
+        tfApelido.setName("Apelido"); // NOI18N
         tfApelido.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 tfApelidoFocusLost(evt);
@@ -324,12 +324,14 @@ public class FUsuarios extends FrameGenerico {
             }
         });
 
+        pfSenha.setName("Senha"); // NOI18N
         pfSenha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 pfSenhaKeyTyped(evt);
             }
         });
 
+        pfConfirmacao.setName("Confirmação"); // NOI18N
         pfConfirmacao.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 pfConfirmacaoFocusLost(evt);
@@ -350,14 +352,6 @@ public class FUsuarios extends FrameGenerico {
             }
         });
 
-        ckbSupervisor.setBackground(new java.awt.Color(255, 255, 255));
-        ckbSupervisor.setText("Supervisor");
-        ckbSupervisor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ckbSupervisorActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -370,7 +364,7 @@ public class FUsuarios extends FrameGenerico {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ckbSupervisor)
+                        .addComponent(cbInativo)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -390,9 +384,7 @@ public class FUsuarios extends FrameGenerico {
                                 .addComponent(lbConfirmacao)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(pfConfirmacao, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cbInativo)
-                        .addGap(24, 24, 24))))
+                        .addGap(24, 129, Short.MAX_VALUE))))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lbApelido, lbCodigo, lbConfirmacao, lbNome, lbSenha});
@@ -400,16 +392,15 @@ public class FUsuarios extends FrameGenerico {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbCodigo)
                     .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ckbSupervisor))
+                    .addComponent(cbInativo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNome)
-                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbInativo))
+                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbApelido)
@@ -833,10 +824,6 @@ private void checkBoxSupervisorActionPerformed(java.awt.event.ActionEvent evt) {
         }
     }//GEN-LAST:event_tfCodigoFocusLost
 
-    private void ckbSupervisorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckbSupervisorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ckbSupervisorActionPerformed
-
     private void cbInativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbInativoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbInativoActionPerformed
@@ -865,7 +852,6 @@ private void checkBoxSupervisorActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JCheckBox checkBoxLancamentos;
     private javax.swing.JCheckBox checkBoxRelatorios;
     private javax.swing.JCheckBox checkBoxSupervisor;
-    private javax.swing.JCheckBox ckbSupervisor;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbApelido;

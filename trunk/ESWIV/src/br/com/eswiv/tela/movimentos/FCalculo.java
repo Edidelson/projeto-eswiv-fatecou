@@ -20,6 +20,7 @@ import br.com.eswiv.tela.tablemodel.BemTableModel;
 import br.com.eswiv.tela.tablemodel.CalculoTableModel;
 import com.zap.arca.JASelectPicker;
 import com.zap.arca.LoggerEx;
+import com.zap.arca.document.NumberValueDocument;
 import com.zap.arca.util.WindowUtils;
 import java.awt.Component;
 import java.math.BigDecimal;
@@ -50,11 +51,6 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         iniciar();
         actionMenu(INCLUSAO);
         util.setEnterButton(btOK);
-    }
-
-    @Override
-    public void limparCampos() {
-        super.limparCampos();
     }
 
     /**
@@ -90,7 +86,7 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         dtAquisicao = new com.zap.arca.JADatePicker();
         lbDescricaoBens = new javax.swing.JLabel();
         tfObervacao = new com.zap.arca.JATextField(100);
-        tfCodigo = new com.zap.arca.JATextField();
+        tfCodigo = new com.zap.arca.JATextField(10,0);
         lbCodigo = new javax.swing.JLabel();
         lbBemSelecionado = new javax.swing.JLabel();
         tfValorVenal = new com.zap.arca.JANumberFormatField();
@@ -194,6 +190,7 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         splitPaneCampos.setDividerLocation(120);
         splitPaneCampos.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
+        tbCalculo.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tbCalculo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -225,6 +222,7 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         lbProprietario.setText("Bem:");
 
         jsBem.setLabel(lbBemSelecionado);
+        jsBem.setName("Bem"); // NOI18N
         jsBem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jsBemActionPerformed(evt);
@@ -236,10 +234,14 @@ public class FCalculo extends FrameGenerico implements ICalculo {
             }
         });
 
-        lbDataAquisicao.setText("Data de Cálculo:");
+        lbDataAquisicao.setText("Data do Cálculo:");
+
+        dtAquisicao.setEnabled(false);
+        dtAquisicao.setName("Data do Cálculo"); // NOI18N
 
         lbDescricaoBens.setText("Observação:");
 
+        tfObervacao.setName("Obervação"); // NOI18N
         tfObervacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfObervacaoActionPerformed(evt);
@@ -255,20 +257,24 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         lbCodigo.setText("Código:");
 
         tfValorVenal.setEnabled(false);
+        tfValorVenal.setName("Valor venal"); // NOI18N
 
         lbDepreciacao.setText("Depreciação:");
 
         tfDepreciacao.setEnabled(false);
+        tfDepreciacao.setName("Depreciação"); // NOI18N
 
         jLabel2.setText("%");
 
         tfValorCalculado.setEnabled(false);
+        tfValorCalculado.setName("Valor Calculado"); // NOI18N
 
         jLabel1.setText("Valor Calculado:");
 
         jLabel3.setText("Depr. Acumulada:");
 
         tfDepreciacaoAcumulada.setEnabled(false);
+        tfDepreciacaoAcumulada.setName("Depreciação Acumulada"); // NOI18N
 
         javax.swing.GroupLayout plCamposLayout = new javax.swing.GroupLayout(plCampos);
         plCampos.setLayout(plCamposLayout);
@@ -359,9 +365,9 @@ public class FCalculo extends FrameGenerico implements ICalculo {
                 .addGap(157, 157, 157))
         );
 
+        jsBem.setDocument(new NumberValueDocument(10));
         tfCodigo.getDocument().addDocumentListener(new DocumentListener() {
             public void insertUpdate(DocumentEvent e) {
-                // verificaAlteracao();
                 if(tfCodigo.getText().equals("")) {
                     tbAlterar.setSelected(false);
                     tbIncluir.setSelected(true);
@@ -372,7 +378,6 @@ public class FCalculo extends FrameGenerico implements ICalculo {
             }
             public void changedUpdate(DocumentEvent e) { }
             public void removeUpdate(DocumentEvent e) {
-                //verificaAlteracao();
                 if(tfCodigo.getText().equals("")) {
                     tbAlterar.setSelected(false);
                     tbIncluir.setSelected(true);
@@ -594,7 +599,6 @@ public class FCalculo extends FrameGenerico implements ICalculo {
             inserirOuAlterar();
             limparCampos();
         }
-        actionMenu(INCLUSAO);
     }//GEN-LAST:event_btOKActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -635,7 +639,11 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         }
         jsBem.setValue(c, c != null ? c.getCodigo() : "");
         tfValorVenal.setValue(c != null ? new BigDecimal(c.getValorVenal()) : BigDecimal.ZERO);
-        tfDepreciacao.setValue(c != null ? new BigDecimal(c.getDepreciacao()) : BigDecimal.ZERO);
+        if (jsBem.getValue().getTipo() == Bem.Tipo.USADO) {
+            tfDepreciacao.setValue(c != null ? new BigDecimal(c.getDepreciacao() * 2) : BigDecimal.ZERO);
+        } else {
+            tfDepreciacao.setValue(c != null ? new BigDecimal(c.getDepreciacao()) : BigDecimal.ZERO);
+        }
         calcular();
     }//GEN-LAST:event_jsBemFocusLost
 
@@ -754,9 +762,10 @@ public class FCalculo extends FrameGenerico implements ICalculo {
 
         tbCalculo.setName("TB_FCALCULO");
         tbCalculo.setModel(calculoTableModel);
+        
         camposVerificar = new Component[]{};
         camposLimpar = new Component[]{jsBem, tfValorVenal, tfObervacao, tfDepreciacao,
-            jsBem, lbBemSelecionado, tfCodigo, tfDepreciacaoAcumulada};
+            jsBem, lbBemSelecionado, tfCodigo, tfDepreciacaoAcumulada, tfValorCalculado};
 
         WindowUtils.nextEnter(plCampos);
         WindowUtils.exitEsc(this);
@@ -764,6 +773,13 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         dtAquisicao.setDate(new java.util.Date());
     }
 
+    @Override
+    public void limparCampos() {
+        super.limparCampos();
+        dtAquisicao.setDate(new java.util.Date());
+    }
+
+    
     @Override
     public void inserirOuAlterar() {
         calculo = new Calculo();
@@ -850,7 +866,10 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         if (bem != null) {
             int meses = getMeses(bem.getAquisicao(), new DateTime(dtAquisicao.getDate()));
             int anos = getAnos(bem.getAquisicao(), new DateTime(dtAquisicao.getDate()));
-            int prazo = getPrazoDepreciacao(bem.getGrupo());
+            double prazo = getPrazoDepreciacao(bem.getGrupo());
+            if (bem.getTipo() == Bem.Tipo.USADO) {
+                prazo = prazo / 2;
+            }
             if (anos > prazo) {
                 JOptionPane.showMessageDialog(null, "Prazo de depreciação já foi ultrapassado.");
                 return null;
@@ -877,7 +896,10 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         if (bem != null) {
             int meses = getMeses(bem.getAquisicao(), new DateTime(dtAquisicao.getDate()));
             int anos = getAnos(bem.getAquisicao(), new DateTime(dtAquisicao.getDate()));
-            int prazo = getPrazoDepreciacao(bem.getGrupo());
+            double prazo = getPrazoDepreciacao(bem.getGrupo());
+            if (bem.getTipo() == Bem.Tipo.USADO) {
+                prazo /= 2;
+            }
             if (anos > prazo) {
                 JOptionPane.showMessageDialog(null, "Prazo de depreciação já foi ultrapassado.");
                 return null;
@@ -907,7 +929,10 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         if (bem != null) {
             int meses = getMeses(bem.getAquisicao(), new DateTime(dtAquisicao.getDate()));
             int anos = getAnos(bem.getAquisicao(), new DateTime(dtAquisicao.getDate()));
-            int prazo = getPrazoDepreciacao(bem.getGrupo());
+            double prazo = getPrazoDepreciacao(bem.getGrupo());
+            if (bem.getTipo() == Bem.Tipo.USADO) {
+                prazo /= 2;
+            }
             if (anos > prazo) {
                 JOptionPane.showMessageDialog(null, "Prazo de depreciação já foi ultrapassado.");
                 return null;

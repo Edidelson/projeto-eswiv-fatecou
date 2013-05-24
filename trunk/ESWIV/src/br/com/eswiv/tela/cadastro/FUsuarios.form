@@ -342,7 +342,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="tfCodigo" min="-2" pref="60" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="ckbSupervisor" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbInativo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
@@ -368,9 +368,7 @@
                                       <Component id="pfConfirmacao" min="-2" pref="100" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="cbInativo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                              <EmptySpace min="24" pref="129" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -379,17 +377,16 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="12" max="32767" attributes="0"/>
+                      <EmptySpace pref="13" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tfCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ckbSupervisor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbInativo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbNome" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tfNome" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cbInativo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -447,11 +444,17 @@
               </AuxValues>
             </Component>
             <Component class="com.zap.arca.JATextField" name="tfNome">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="Nome" noResource="true"/>
+              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.zap.arca.JATextField(40)"/>
               </AuxValues>
             </Component>
             <Component class="com.zap.arca.JATextField" name="tfApelido">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="Apelido" noResource="true"/>
+              </Properties>
               <Events>
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tfApelidoFocusLost"/>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfApelidoKeyTyped"/>
@@ -461,6 +464,9 @@
               </AuxValues>
             </Component>
             <Component class="javax.swing.JPasswordField" name="pfSenha">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="Senha" noResource="true"/>
+              </Properties>
               <Events>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="pfSenhaKeyTyped"/>
               </Events>
@@ -469,6 +475,9 @@
               </AuxValues>
             </Component>
             <Component class="javax.swing.JPasswordField" name="pfConfirmacao">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="Confirma&#xe7;&#xe3;o" noResource="true"/>
+              </Properties>
               <Events>
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="pfConfirmacaoFocusLost"/>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="pfConfirmacaoKeyTyped"/>
@@ -487,17 +496,6 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbInativoActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JCheckBox" name="ckbSupervisor">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Supervisor"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ckbSupervisorActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
