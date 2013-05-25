@@ -15,7 +15,7 @@ import java.util.List;
 public class CalculoTableModel extends RowTableModel {
 
     {
-        columns = new String[]{"Código", "Bem", "Valor Venal", "Data do Cálculo", "Depr. Acumulada"};
+        columns = new String[]{"Código", "Bem","Grupo do Bem","Valor Venal", "Data do Cálculo", "Depr. Acumulada"};
     }
 
     @Override
@@ -37,10 +37,12 @@ public class CalculoTableModel extends RowTableModel {
             case 1:
                 return calculo.getBem().getDescricao();
             case 2:
-                return calculo.getBem().getValorVenal().doubleValue();
+                return calculo.getBem().getGrupo().getDescricao();
             case 3:
-                return calculo.getDataCalculo();
+                return calculo.getBem().getValorVenal().doubleValue();
             case 4:
+                return calculo.getDataCalculo();
+            case 5:
                 return calculo.getAcumulado().doubleValue();
             default:
                 return "";
@@ -55,10 +57,12 @@ public class CalculoTableModel extends RowTableModel {
             case 1:
                 return String.class;
             case 2:
-                return Double.class;
+                return String.class;
             case 3:
-                return Date.class;
+                return Double.class;
             case 4:
+                return Date.class;
+            case 5:
                 return Double.class;
             default:
                 return null;

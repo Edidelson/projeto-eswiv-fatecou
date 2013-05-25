@@ -25,8 +25,8 @@ import table.model.ArcaTableModel;
 
 /**
  * Classe destinada a métodos que auxiliaram em outras classes.
- * 
- * @author Renato 
+ *
+ * @author Renato
  * @version Util 0.1, 01/05/10
  */
 public class Util {
@@ -42,42 +42,43 @@ public class Util {
     public static final DateFormat DF_BANCO;
     public static final DateFormat DF_PADRAO;
     public static final DateFormat DF_HORA;
-    
+
     static {
         NF_VALORES = NumberFormat.getInstance(new Locale("pt", "BR"));
         NF_VALORES.setMinimumFractionDigits(2);
         NF_VALORES.setMaximumFractionDigits(2);
-        
+
         NF_SEM_DECIMAIS = NumberFormat.getInstance(new Locale("pt", "BR"));
         NF_SEM_DECIMAIS.setMinimumFractionDigits(0);
         NF_SEM_DECIMAIS.setMaximumFractionDigits(0);
-        
+
         NF_GRAMA = NumberFormat.getInstance(new Locale("pt", "BR"));
         NF_GRAMA.setMinimumFractionDigits(3);
         NF_GRAMA.setMaximumFractionDigits(3);
-        
+
         NF_TONELADA = NumberFormat.getInstance(new Locale("pt", "BR"));
         NF_TONELADA.setMinimumFractionDigits(3);
         NF_TONELADA.setMaximumFractionDigits(3);
-        
+
         NF_GENERICO = NumberFormat.getInstance(new Locale("pt", "BR"));
-        
+
         DF_BANCO = new SimpleDateFormat("yyyy-MM-dd", new Locale("pt", "BR"));
         DF_PADRAO = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
         DF_HORA = new SimpleDateFormat("HH:mm:ss", new Locale("pt", "BR"));
-        
+
         NF_CODIGO = NumberFormat.getInstance(new Locale("pt", "BR"));
         NF_CODIGO.setMinimumIntegerDigits(4);
         NF_CODIGO.setMaximumIntegerDigits(4);
     }
-    
+
     /**
-     * Retorna uma string com o valor formatado com o número de 
-     * inteiros e decimais informados
+     * Retorna uma string com o valor formatado com o número de inteiros e
+     * decimais informados
+     *
      * @param numInteiros
      * @param numDecimais
      * @param valor
-     * @return 
+     * @return
      */
     public static String formatarValores(int numInteiros, int numDecimais, BigDecimal valor) {
         NF_GENERICO.setMinimumFractionDigits(numDecimais);
@@ -86,23 +87,24 @@ public class Util {
         NF_GENERICO.setMaximumIntegerDigits(numInteiros);
         return NF_GENERICO.format(valor);
     }
-    
+
     /**
      * Retorna uma String com o valor informado com o número de decimais inviado
+     *
      * @param numDecimais
      * @param valor
-     * @return 
+     * @return
      */
     public static String formatarValores(int numDecimais, BigDecimal valor) {
         NF_GENERICO.setMinimumFractionDigits(numDecimais);
         NF_GENERICO.setMaximumFractionDigits(numDecimais);
         return NF_GENERICO.format(valor);
-    }                   
-        
+    }
+
     public static String formatarCodigo(int codigo) {
         return NF_CODIGO.format(codigo).replace(".", "");
     }
-    
+
     public static String formatarCodigo(int codigo, int numCaracteres) {
         NumberFormat nf = NumberFormat.getInstance();
         nf.setMaximumFractionDigits(0);
@@ -114,101 +116,101 @@ public class Util {
         formatado = formatado.replace(",", "");
         return formatado;
     }
-    
+
     public String capitalizeAllWords(String s) {
         String minusculo = s.toLowerCase();
         String[] palavras = minusculo.split(" ");
         StringBuilder resultado = new StringBuilder();
-        for(String p: palavras) {
-            if(p.length() < 2) {
+        for (String p : palavras) {
+            if (p.length() < 2) {
                 continue;
             }
             resultado.append(p.toUpperCase().charAt(0));
             resultado.append(p.substring(1, p.length()));
-            resultado.append(" ");            
+            resultado.append(" ");
         }
         return resultado.toString();
     }
-    
+
+    public static String formatarCpf(String cpf) {
+        if (cpf == null) {
+            return "";
+        }
+        String cpf1 = cpf;
+        if (cpf.length() == 11) {
+            cpf1 = cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11);
+        }
+        if (cpf1.equals("   .   .   -  ")) {
+            cpf1 = "";
+        }
+        return cpf1;
+    }
+
     public void salvarConfiguracao(Configuration cfg, File arquivo) {
         try {
             FileOutputStream fos = new FileOutputStream(arquivo);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(cfg);
             oos.close();
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-    
+
     public Configuration restaurarConfiguracao(File arquivo) {
         try {
             FileInputStream fis = new FileInputStream(arquivo);
             ObjectInputStream ois = new ObjectInputStream(fis);
             Configuration cfg = (Configuration) ois.readObject();
             return cfg;
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
             return null;
         }
-    }    
+    }
 
     public static String formatarTelefone(String telefone) {
-        if(telefone == null) {
+        if (telefone == null) {
             return "";
         }
         String telefone1 = telefone;
-        if( (telefone != null) && (telefone.length() == 10) ) {
+        if ((telefone != null) && (telefone.length() == 10)) {
             telefone1 = "(" + telefone.substring(0, 2) + ")" + " " + telefone.substring(2, 6) + "-" + telefone.substring(6, 10);
         }
         return telefone1;
     }
 
     public String formatarCep(String cep) {
-        if(cep == null) {
+        if (cep == null) {
             return "";
         }
         String cep1 = cep;
-        if(cep1.length() == 8){
+        if (cep1.length() == 8) {
             cep1 = cep.substring(0, 5) + "-" + cep.substring(5, 8);
         }
         return cep1;
     }
 
     public String formatarCnh(String cnh) {
-        if(cnh == null) {
+        if (cnh == null) {
             return "";
         }
         return cnh;
     }
 
-    public String formatarCpf(String cpf) {
-        if(cpf == null) {
-            return "";
-        }
-        String cpf1 = cpf;
-        if(cpf.length() == 11) {
-            cpf1 = cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11);
-        }
-        if(cpf1.equals("   .   .   -  ")) {
-            cpf1 = "";
-        }
-        return cpf1;
-    }
-
     public String formatarCarteiraDeTrabalho(String ct) {
-        if(ct == null) {
+        if (ct == null) {
             return "";
         }
         String ct1 = ct;
-        if(ct.length() == 12) {
+        if (ct.length() == 12) {
             ct1 = ct.substring(0, 6) + "-" + ct.substring(6, 10) + "-" + ct.substring(10, 12);
         }
         return ct1;
     }
 
     public String formatarRg(String rg) {
-        if(rg == null) {
+        if (rg == null) {
             return "";
         }
         return rg;
@@ -216,45 +218,50 @@ public class Util {
 
     /**
      * Adiciona os caracteres especiais de uma string contendo um CNPJ
+     *
      * @param cnpj - String
      * @return
      */
     public static String formatarCnpj(String cnpj) {
         String cnpj1 = cnpj;
-        if(cnpj.length() == 14) {
-            cnpj1 = cnpj.substring(0, 2) + "." + cnpj.substring(2, 5) + "." + cnpj.substring(5, 8) + "/" +
-                    cnpj.substring(8, 12) + "-" + cnpj.substring(12, 14);
+        if (cnpj.length() == 14) {
+            cnpj1 = cnpj.substring(0, 2) + "." + cnpj.substring(2, 5) + "." + cnpj.substring(5, 8) + "/"
+                    + cnpj.substring(8, 12) + "-" + cnpj.substring(12, 14);
         }
         return cnpj1;
     }
 
     /**
      * Método estático para retornar apenas uma referencia do objeto util.
+     *
      * @return Util
      */
     public static Util getUtil() {
         return (instance == null) ? new Util() : instance;
-    } 
-    
+    }
+
     /**
      * Verifica se o valor informado está entre 0 e 100
+     *
      * @param ftf - JANumberFormatField que possui o número a verificar
      */
-    public void verificarPorcentagemInformada(JComponent ftf) {                    
+    public void verificarPorcentagemInformada(JComponent ftf) {
         if (ftf instanceof JADecimalFormatField) {
             if (((JADecimalFormatField) ftf).getValue().doubleValue() > 100) {
                 ((JADecimalFormatField) ftf).setValue(BigDecimal.valueOf(100));
-            }        
+            }
         }
         if (ftf instanceof JANumberFormatField) {
             if (((JANumberFormatField) ftf).getValue().doubleValue() > 100) {
                 ((JANumberFormatField) ftf).setValue(BigDecimal.valueOf(100));
-            }        
+            }
         }
-    }  
-    
+    }
+
     /**
-     * Armazena em um arquivo de Texto o stacktrace de uma exceção junto com a data e hora em que ocorreu
+     * Armazena em um arquivo de Texto o stacktrace de uma exceção junto com a
+     * data e hora em que ocorreu
+     *
      * @param e - Exception a ser armazenada
      */
     public static void logException(Exception e) {
@@ -273,16 +280,17 @@ public class Util {
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Falha ao armazenar exceção");
         }
-    }         
-    
+    }
+
     /**
      * Desativa todos os componentes de um Array
+     *
      * @param components - Component[] Array com os componentes a desativar
      */
     private static void desativarCampos(Component[] components) {
-        for(Component c: components) {
+        for (Component c : components) {
             c.setEnabled(false);
-            if(c instanceof JANumberFormatField) {
+            if (c instanceof JANumberFormatField) {
                 JANumberFormatField ftf = (JANumberFormatField) c;
                 ftf.setText("");
             }
@@ -291,37 +299,40 @@ public class Util {
 
     /**
      * Ativa todos os campos de um Array de acordo com o produto selecionado
+     *
      * @param components - Component[] Array com os componentes a ativar
      */
     private static void ativarCampos(Component[] components) {
-        for(Component c: components) {
+        for (Component c : components) {
             c.setEnabled(true);
         }
     }
+
     /**
-     * Método para inserir um icone na aplicação com a passagem do parâmento com o nome do diretório da classe
-     * dentro do jar.
+     * Método para inserir um icone na aplicação com a passagem do parâmento com
+     * o nome do diretório da classe dentro do jar.
+     *
      * @param frame o frame que deverá conter o icone.
      */
     public void inserirIconeAplicacao(JFrame frame) {
-
 //        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/imagens/ZAP.jpg")));
-
     }
 
     /**
-     * Método para inserir um icone na aplicação com a passagem do parâmento com o nome do diretório da classe
-     * dentro do jar.
+     * Método para inserir um icone na aplicação com a passagem do parâmento com
+     * o nome do diretório da classe dentro do jar.
+     *
      * @param frame o frame que deverá conter o icone.
      */
     public void inserirIconeAplicacao(JDialog frame) {
 
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/imagens/ZAP.jpg")));
 
-    }   
+    }
 
     /**
      * Método para validar o CNPJ ou CPF digitado.
+     *
      * @param CNPJ_CPF string com o valor a ser validado
      * @return verdadeiro se correto, falso caso contrario.
      */
@@ -414,22 +425,22 @@ public class Util {
 
         return false;
     }// Fim Método valida CNPJ/CPF  
-    
+
     /**
      * Método que utilizado para filtrar a tabela por determinada coluna
      * passando a tabela, texto a ser filtrado e coluna a ser filtrada.
+     *
      * @param campo
      * @param tabela
-     * @param coluna  
+     * @param coluna
      */
     public static void filtrarColuna(final String texto, JTable tabela, final int coluna) {
 
         RowFilter cust_rfilter = new RowFilter() {
-
             public boolean include(javax.swing.RowFilter.Entry entry) {
 
                 // if you are using your own model, then cast to your own                
-                TableModel kModel = (TableModel) entry.getModel();  
+                TableModel kModel = (TableModel) entry.getModel();
 
                 String filter = texto;
 
@@ -442,37 +453,39 @@ public class Util {
                                 (java.util.Date) kModel.getValueAt(((Integer) entry.getIdentifier()).intValue(), coluna), "yyyy-MM-dd");
                         b1 = value == null ? false : value.startsWith(filter);
                     } else {
-                        
-                        if (kModel.getValueAt(((Integer) entry.getIdentifier()).intValue(), coluna) == null) {                            
+
+                        if (kModel.getValueAt(((Integer) entry.getIdentifier()).intValue(), coluna) == null) {
                             return true;
                         }
-                        
+
                         String value = kModel.getValueAt(((Integer) entry.getIdentifier()).intValue(), coluna).toString();
                         // use your own regex if need
                         b1 = value.toUpperCase() == null ? false : value.toUpperCase().startsWith(filter.toUpperCase());
                     }
                 }
-                
-                if (kModel instanceof ArcaTableModel) {                    
+
+                if (kModel instanceof ArcaTableModel) {
                     ((ArcaTableModel<RowTableModel>) kModel).getRow(((Integer) entry.getIdentifier()).intValue()).setFiltro(!b1);
                 }
-                    
+
                 return b1;
             }
         };
 
-        if (tabela.getModel() instanceof ArcaTableModel)
-            ((ArcaTableModel<RowTableModel>)(tabela.getModel())).recalculate();
-        
+        if (tabela.getModel() instanceof ArcaTableModel) {
+            ((ArcaTableModel<RowTableModel>) (tabela.getModel())).recalculate();
+        }
+
         if (texto.length() != 0) {
             ((DefaultRowSorter) tabela.getRowSorter()).setRowFilter(cust_rfilter);
         } else {
             ((DefaultRowSorter) tabela.getRowSorter()).setRowFilter(null);
         }
     }
-    
+
     /**
      * Faz a tecla enter funcionar como a tecla Tab para mudar de campos
+     *
      * @param c conteiner principal
      */
     public void proximoComEnter(Component c) {
@@ -480,7 +493,7 @@ public class Util {
         conj.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_ENTER, 0));
         c.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, conj);
     }
-    
+
     public void setEnterButton(Component component) {
 
         if (component instanceof JButton) {

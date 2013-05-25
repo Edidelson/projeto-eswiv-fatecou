@@ -763,7 +763,7 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         tbCalculo.setName("TB_FCALCULO");
         tbCalculo.setModel(calculoTableModel);
         
-        camposVerificar = new Component[]{};
+        camposVerificar = new Component[]{jsBem, dtAquisicao};
         camposLimpar = new Component[]{jsBem, tfValorVenal, tfObervacao, tfDepreciacao,
             jsBem, lbBemSelecionado, tfCodigo, tfDepreciacaoAcumulada, tfValorCalculado};
 
@@ -776,14 +776,16 @@ public class FCalculo extends FrameGenerico implements ICalculo {
     @Override
     public void limparCampos() {
         super.limparCampos();
+        bem = null;
+        calculo=null;
         dtAquisicao.setDate(new java.util.Date());
+        exibirDados(dao, tbCalculo); 
     }
 
     
     @Override
     public void inserirOuAlterar() {
         calculo = new Calculo();
-        calculo.setAcumulado(tfDepreciacaoAcumulada.getValue());
         calculo.setBem(bem);
         calculo.setValorCalculo(tfValorCalculado.getValue().doubleValue());
         calculo.setDataCalculo(dtAquisicao.getDate());

@@ -17,7 +17,7 @@ public class BemTableModel extends RowTableModel {
     private Bem bem;
 
     {
-        columns = new String[]{"Código", "Proprietário", "Grupo de Bens", "Valor Venal", "Data de Aquisição", "Turno"};
+        columns = new String[]{"Código", "Descrição", "Proprietário", "Grupo de Bens", "Valor Venal", "Data de Aquisição", "Turno"};
     }
 
     @Override
@@ -37,14 +37,16 @@ public class BemTableModel extends RowTableModel {
             case 0:
                 return bem.getCodigo();
             case 1:
-                return bem.getProprietario() != null ? bem.getProprietario().getNome() : "";
+                return bem.getDescricao();
             case 2:
-                return setCategoria(bem.getGrupo());
+                return bem.getProprietario() != null ? bem.getProprietario().getNome() : "";
             case 3:
-                return bem.getValorVenal().doubleValue();
+                return setCategoria(bem.getGrupo());
             case 4:
-                return bem.getAquisicao();
+                return bem.getValorVenal().doubleValue();
             case 5:
+                return bem.getAquisicao();
+            case 6:
                 return setTurno(bem.getTurno() != null ? bem.getTurno().getCodigo() : null);
             default:
                 return "";
@@ -61,10 +63,12 @@ public class BemTableModel extends RowTableModel {
             case 2:
                 return String.class;
             case 3:
-                return Float.class;
+                return String.class;
             case 4:
-                return Date.class;
+                return Float.class;
             case 5:
+                return Date.class;
+            case 6:
                 return String.class;
             default:
                 return null;
