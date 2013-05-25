@@ -20,6 +20,7 @@ import com.zap.arca.LoggerEx;
 import com.zap.arca.document.NumberValueDocument;
 import com.zap.arca.util.WindowUtils;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
@@ -77,7 +78,7 @@ public class FProprietario extends FrameGenerico {
         tfCodigo = new com.zap.arca.JATextField(6,0);
         dtCadastro = new com.zap.arca.JADatePicker();
         lbCpf = new javax.swing.JLabel();
-        tfCpf = new com.zap.arca.JAFormattedTextField(11);
+        tfCpf = new com.zap.arca.JAFormattedTextField();
         lbEmail = new javax.swing.JLabel();
         tfEmail = new com.zap.arca.JATextField(60);
         jLabel1 = new javax.swing.JLabel();
@@ -239,11 +240,13 @@ public class FProprietario extends FrameGenerico {
 
         lbCpf.setText("CPF:");
 
+        tfCpf.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
         try {
             tfCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tfCpf.setName("cpf"); // NOI18N
 
         lbEmail.setText("E-mail:");
 
@@ -384,6 +387,8 @@ public class FProprietario extends FrameGenerico {
 
         jsCidade.setDocument(new NumberValueDocument(10));
 
+        tfNome.setName("nome"); // NOI18N
+
         javax.swing.GroupLayout plCamposLayout = new javax.swing.GroupLayout(plCampos);
         plCampos.setLayout(plCamposLayout);
         plCamposLayout.setHorizontalGroup(
@@ -397,22 +402,18 @@ public class FProprietario extends FrameGenerico {
                             .addComponent(lbEmail)
                             .addComponent(lbNome)
                             .addComponent(lbCodigo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(15, 15, 15)
                         .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tfNome, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
-                                .addComponent(tfEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(tfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(plCamposLayout.createSequentialGroup()
-                        .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(plCamposLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dtCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(24, 24, 24))))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dtCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 24, 24))
         );
         plCamposLayout.setVerticalGroup(
             plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -690,10 +691,11 @@ public class FProprietario extends FrameGenerico {
         // Verifica se os campos foram preenchidos
         if (verificarCampos(camposVerificar)) {
             // Adiciona ou altera o objeto
-            inserirOuAlterar();
-            limparCampos();
+            if (validarCpfCnpj(tfCpf)) {
+                inserirOuAlterar();
+                limparCampos();
+            }
         }
-        actionMenu(INCLUSAO);
     }//GEN-LAST:event_btOKActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -701,26 +703,26 @@ public class FProprietario extends FrameGenerico {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void tfCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfCodigoFocusLost
-//        if(tfCodigo.getText().equals("")){
-//            return;
-//        }
-//        boolean encontrou = false;
-//       
-//        loop:
-//        for(int i=0; i<cidadesTableModel.getRowCount(); i++){
-//            int linha = Integer.valueOf(tfCodigo.getText());
-//            if(cidadesTableModel.getRow(i).getCodigo().equals(linha)){
-//                tbProprietario.changeSelection(i, 0, false, false);
-//                encontrou = true;
-//                break loop;
-//            } 
-//        }
-//   
-//        if (!encontrou) {
-//            JOptionPane.showMessageDialog(null, "Código Inválido");
-//            limparCampos();
-//            tfNome.requestFocus();
-//        }
+        if(tfCodigo.getText().equals("")){
+            return;
+        }
+        boolean encontrou = false;
+       
+        loop:
+        for(int i=0; i<proprietarioTableModel.getRowCount(); i++){
+            int linha = Integer.valueOf(tfCodigo.getText());
+            if(proprietarioTableModel.getRow(i).getCodigo().equals(linha)){
+                tbProprietario.changeSelection(i, 0, false, false);
+                encontrou = true;
+                break loop;
+            } 
+        }
+   
+        if (!encontrou) {
+            JOptionPane.showMessageDialog(null, "Código Inválido");
+            limparCampos();
+            tfNome.requestFocus();
+        }
     }//GEN-LAST:event_tfCodigoFocusLost
 
     private void jsCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsCidadeActionPerformed
@@ -859,13 +861,19 @@ public class FProprietario extends FrameGenerico {
         tbProprietario.setName("TB_FPROPRIETARIO");
         tbProprietario.setModel(proprietarioTableModel);
 
-        camposVerificar = new Component[]{tfNome};
-        camposLimpar = new Component[]{tfCodigo, tfNome, tfEmail, tfComplemento,
+        camposVerificar = new Component[]{tfNome, dtCadastro};
+        camposLimpar = new Component[]{tfNome, tfCodigo, tfEmail, tfComplemento,
             tfBairro, tfLogradouro, tfNumero, tfCpf, tfCelular, dtCadastro, tfCep, tfTelefone, jsCidade};
 
         WindowUtils.nextEnter(plCampos);
         WindowUtils.exitEsc(this);
         configurarSincronizacao(dao, tbProprietario);
+    }
+
+    @Override
+    public void limparCampos() {
+        super.limparCampos();
+        exibirDados(dao, tbProprietario);
     }
 
     @Override

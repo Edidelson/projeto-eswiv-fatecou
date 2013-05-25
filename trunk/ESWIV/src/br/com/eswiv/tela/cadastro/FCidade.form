@@ -344,7 +344,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
                   <SubComponents>
-                    <Container class="javax.swing.JPanel" name="jPanel1">
+                    <Container class="javax.swing.JPanel" name="plCamposCidade">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -522,6 +522,7 @@
                             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tfCodigoFocusLost"/>
                           </Events>
                           <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="tfCodigo.getDocument().addDocumentListener(new DocumentListener() {&#xa;    public void insertUpdate(DocumentEvent e) {&#xa;        if(tfCodigo.getText().equals(&quot;&quot;)) {&#xa;            tbAlterar.setSelected(false);&#xa;            tbIncluir.setSelected(true);&#xa;        } else {&#xa;            tbAlterar.setSelected(true);&#xa;            tbIncluir.setSelected(false);&#xa;        }&#xa;    }&#xa;    public void changedUpdate(DocumentEvent e) { }&#xa;    public void removeUpdate(DocumentEvent e) { &#xa;        if(tfCodigo.getText().equals(&quot;&quot;)) {&#xa;            tbAlterar.setSelected(false);&#xa;            tbIncluir.setSelected(true);&#xa;        } else {&#xa;            tbAlterar.setSelected(true);&#xa;            tbIncluir.setSelected(false);&#xa;        }&#xa;    }&#xa;});"/>
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.zap.arca.JATextField(6,0)"/>
                           </AuxValues>
                         </Component>

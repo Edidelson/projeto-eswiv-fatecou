@@ -38,7 +38,7 @@ public class ProprietarioTableModel extends RowTableModel{
             case 1:
                 return p.getNome();
             case 2:
-                return p.getCpf();
+                return p.getCpf()!=null?Util.formatarCpf(p.getCpf()):"";
             case 3:
                 return p.getData_cadastro();
                 default:

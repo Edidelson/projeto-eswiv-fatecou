@@ -21,7 +21,6 @@ import com.zap.arca.LoggerEx;
 import com.zap.arca.document.NumberValueDocument;
 import com.zap.arca.util.WindowUtils;
 import java.awt.Component;
-import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +49,7 @@ public class FBem extends FrameGenerico {
         actionMenu(INCLUSAO);
         util.setEnterButton(btOK);
         dtAquisicao.setDate(new java.util.Date());
+        tfDepreciacao.setValue(getPercentual());
     }
 
     @Override
@@ -77,7 +77,7 @@ public class FBem extends FrameGenerico {
         despesaTableModel.clear();
         limpar();
         super.limparCampos();
-        exibirDados(dao, tbBem); 
+        exibirDados(dao, tbBem);
     }
 
     /**
@@ -258,6 +258,11 @@ public class FBem extends FrameGenerico {
 
         lbGrupoBens.setText("Grupo de Bens:");
 
+        cbGrupoBens.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbGrupoBensItemStateChanged(evt);
+            }
+        });
         cbGrupoBens.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 cbGrupoBensFocusLost(evt);
@@ -774,7 +779,7 @@ public class FBem extends FrameGenerico {
             // Adiciona ou altera o objeto
             inserirOuAlterar();
             limparCampos();
-        } 
+        }
     }//GEN-LAST:event_btOKActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -861,8 +866,11 @@ public class FBem extends FrameGenerico {
     }//GEN-LAST:event_mnLimpar1ActionPerformed
 
     private void cbGrupoBensFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbGrupoBensFocusLost
-        tfDepreciacao.setValue(getPercentual());
     }//GEN-LAST:event_cbGrupoBensFocusLost
+
+    private void cbGrupoBensItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbGrupoBensItemStateChanged
+            tfDepreciacao.setValue(getPercentual());
+    }//GEN-LAST:event_cbGrupoBensItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -993,10 +1001,11 @@ public class FBem extends FrameGenerico {
         for (Bem.Categorias categorias : Bem.Categorias.values()) {
             cbGrupoBens.addItem(categorias.getDescricao());
         }
-
+        
         WindowUtils.nextEnter(plCampos);
         WindowUtils.exitEsc(this);
         configurarSincronizacao(dao, tbBem);
+
     }
 
     public Bem.Turno getTurno() {
@@ -1040,6 +1049,26 @@ public class FBem extends FrameGenerico {
                 break;
             case USADO:
                 rbUsado.setSelected(true);
+                break;
+        }
+    }
+
+    public void setCategoria(Bem.Categorias categorias) {
+        switch (categorias) {
+            case E:
+                cbGrupoBens.setSelectedIndex(0);
+                break;
+            case I:
+                cbGrupoBens.setSelectedIndex(1);
+                break;
+            case MU:
+                cbGrupoBens.setSelectedIndex(2);
+                break;
+            case V:
+                cbGrupoBens.setSelectedIndex(3);
+                break;
+            case ME:
+                cbGrupoBens.setSelectedIndex(4);
                 break;
         }
     }
@@ -1092,11 +1121,11 @@ public class FBem extends FrameGenerico {
             tfCodigo.setText(String.valueOf(bem.getCodigo()));
             tfDescricaoBens.setText(bem.getDescricao());
             cbGrupoBens.setSelectedItem(bem.getGrupo());
-            cbTurno.setSelectedItem(bem.getTurno());
             dtAquisicao.setDate(bem.getAquisicao());
             tfValorVenal.setValue(bem.getValorVenal().doubleValue());
             Proprietario proprietario = bem.getProprietario();
             jsProprietario.setValue(proprietario, proprietario != null ? proprietario.getCodigo() : "");
+            setCategoria(bem.getGrupo());
             setTipo(bem.getTipo());
             if (bem.getTurno() != null) {
                 setTurno(bem.getTurno());
