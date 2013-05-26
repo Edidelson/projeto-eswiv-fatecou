@@ -415,10 +415,10 @@
                                               </Group>
                                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="tfCodigo" min="-2" pref="52" max="-2" attributes="0"/>
                                                   <Component id="tfNome" min="-2" pref="412" max="-2" attributes="0"/>
                                                   <Component id="tfEmail" alignment="0" min="-2" pref="412" max="-2" attributes="0"/>
                                                   <Component id="tfCpf" min="-2" pref="128" max="-2" attributes="0"/>
+                                                  <Component id="tfCodigo" alignment="0" min="-2" pref="78" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Component id="jPanel3" alignment="0" min="-2" pref="613" max="-2" attributes="0"/>
@@ -488,10 +488,13 @@
                               </Events>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="tfCodigo.getDocument().addDocumentListener(new DocumentListener() {&#xa;    public void insertUpdate(DocumentEvent e) {&#xa;       // verificaAlteracao();&#xa;        if(tfCodigo.getText().equals(&quot;&quot;)) {&#xa;            tbAlterar.setSelected(false);&#xa;            tbIncluir.setSelected(true);&#xa;        } else {&#xa;            tbAlterar.setSelected(true);&#xa;            tbIncluir.setSelected(false);&#xa;        }&#xa;    }&#xa;    public void changedUpdate(DocumentEvent e) { }&#xa;    public void removeUpdate(DocumentEvent e) { &#xa;        //verificaAlteracao();&#xa;        if(tfCodigo.getText().equals(&quot;&quot;)) {&#xa;            tbAlterar.setSelected(false);&#xa;            tbIncluir.setSelected(true);&#xa;        } else {&#xa;            tbAlterar.setSelected(true);&#xa;            tbIncluir.setSelected(false);&#xa;        }&#xa;    }   &#xa;});"/>
-                                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.zap.arca.JATextField(6,0)"/>
+                                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.zap.arca.JATextField(10,0)"/>
                               </AuxValues>
                             </Component>
                             <Component class="com.zap.arca.JADatePicker" name="dtCadastro">
+                              <Properties>
+                                <Property name="name" type="java.lang.String" value="Data do Cadastro" noResource="true"/>
+                              </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="lbCpf">
                               <Properties>

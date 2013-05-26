@@ -21,6 +21,7 @@ import com.zap.arca.LoggerEx;
 import com.zap.arca.document.NumberValueDocument;
 import com.zap.arca.util.WindowUtils;
 import java.awt.Component;
+import java.awt.HeadlessException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -295,15 +296,10 @@ public class FBem extends FrameGenerico {
         lbDescricaoBens.setText("Descrição:");
 
         tfDescricaoBens.setName("Descrição"); // NOI18N
-        tfDescricaoBens.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfDescricaoBensActionPerformed(evt);
-            }
-        });
 
-        tfCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfCodigoActionPerformed(evt);
+        tfCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfCodigoFocusLost(evt);
             }
         });
 
@@ -337,46 +333,47 @@ public class FBem extends FrameGenerico {
                         .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbDescricaoBens))
-                        .addGap(18, 18, 18)
+                        .addGap(23, 23, 23)
                         .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(plCamposLayout.createSequentialGroup()
-                                .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(183, 183, 183)
                                 .addComponent(lbDataAquisicao)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(dtAquisicao, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(tfDescricaoBens, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tfDescricaoBens, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(plCamposLayout.createSequentialGroup()
                         .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbValorVenal)
-                            .addComponent(lnTurno))
+                            .addComponent(lnTurno)
+                            .addComponent(lbProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbTurno, 0, 91, Short.MAX_VALUE)
-                            .addComponent(tfValorVenal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(plCamposLayout.createSequentialGroup()
-                                .addComponent(lbGrupoBens, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jsProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbGrupoBens, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lbProprietarioSelecionado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(plCamposLayout.createSequentialGroup()
-                                .addComponent(rbNovo)
-                                .addGap(18, 18, 18)
-                                .addComponent(rbUsado)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbDepreciacao)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfDepreciacao, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(plCamposLayout.createSequentialGroup()
-                        .addComponent(lbProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jsProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbProprietarioSelecionado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cbTurno, 0, 91, Short.MAX_VALUE)
+                                    .addComponent(tfValorVenal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(plCamposLayout.createSequentialGroup()
+                                        .addComponent(lbGrupoBens, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cbGrupoBens, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(plCamposLayout.createSequentialGroup()
+                                        .addComponent(rbNovo)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rbUsado)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbDepreciacao)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfDepreciacao, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(187, Short.MAX_VALUE))
         );
         plCamposLayout.setVerticalGroup(
@@ -537,7 +534,7 @@ public class FBem extends FrameGenerico {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 456, Short.MAX_VALUE)
+                                .addGap(0, 458, Short.MAX_VALUE)
                                 .addComponent(btAdicionar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -786,14 +783,6 @@ public class FBem extends FrameGenerico {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void tfDescricaoBensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDescricaoBensActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfDescricaoBensActionPerformed
-
-    private void tfCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfCodigoActionPerformed
-
     private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
         if (despesa != null) {
             if (verificarCampos()) {
@@ -869,8 +858,12 @@ public class FBem extends FrameGenerico {
     }//GEN-LAST:event_cbGrupoBensFocusLost
 
     private void cbGrupoBensItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbGrupoBensItemStateChanged
-            tfDepreciacao.setValue(getPercentual());
+        tfDepreciacao.setValue(getPercentual());
     }//GEN-LAST:event_cbGrupoBensItemStateChanged
+
+    private void tfCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfCodigoFocusLost
+        consultar();
+    }//GEN-LAST:event_tfCodigoFocusLost
 
     /**
      * @param args the command line arguments
@@ -1001,7 +994,7 @@ public class FBem extends FrameGenerico {
         for (Bem.Categorias categorias : Bem.Categorias.values()) {
             cbGrupoBens.addItem(categorias.getDescricao());
         }
-        
+
         WindowUtils.nextEnter(plCampos);
         WindowUtils.exitEsc(this);
         configurarSincronizacao(dao, tbBem);
@@ -1191,5 +1184,27 @@ public class FBem extends FrameGenerico {
         } else {
             return Bem.Categorias.ME.getTaxaPercentual();
         }
+    }
+
+    private boolean consultar() throws NumberFormatException, HeadlessException {
+        if (tfCodigo.getText().equals("")) {
+            return true;
+        }
+        boolean encontrou = false;
+        loop:
+        for (int i = 0; i < bemTableModel.getRowCount(); i++) {
+            int linha = Integer.valueOf(tfCodigo.getText());
+            if (bemTableModel.getRow(i).getCodigo().equals(linha)) {
+                tbBem.changeSelection(i, 0, false, false);
+                encontrou = true;
+                break loop;
+            }
+        }
+        if (!encontrou) {
+            JOptionPane.showMessageDialog(null, "Código Inválido");
+            limparCampos();
+            tfDepreciacao.requestFocus();
+        }
+        return false;
     }
 }

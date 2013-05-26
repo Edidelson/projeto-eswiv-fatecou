@@ -76,6 +76,10 @@ public class FPrincipal extends javax.swing.JFrame {
         lbLicenciadoPara = new javax.swing.JLabel();
         tbAtalhos = new javax.swing.JToolBar();
         btSair = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JToolBar.Separator();
+        btProprietario = new javax.swing.JButton();
+        btBens = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jSeparator20 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         lbUsuarioLogado = new javax.swing.JLabel();
@@ -127,6 +131,43 @@ public class FPrincipal extends javax.swing.JFrame {
             }
         });
         tbAtalhos.add(btSair);
+        tbAtalhos.add(jSeparator4);
+
+        btProprietario.setBackground(new java.awt.Color(213, 220, 226));
+        btProprietario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagens/empregado.png"))); // NOI18N
+        btProprietario.setFocusable(false);
+        btProprietario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btProprietario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btProprietario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btProprietarioActionPerformed(evt);
+            }
+        });
+        tbAtalhos.add(btProprietario);
+
+        btBens.setBackground(new java.awt.Color(213, 220, 226));
+        btBens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagens/login_icone_empresa copy.png"))); // NOI18N
+        btBens.setFocusable(false);
+        btBens.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btBens.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btBens.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBensActionPerformed(evt);
+            }
+        });
+        tbAtalhos.add(btBens);
+
+        jButton1.setBackground(new java.awt.Color(213, 220, 226));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagens/dollar_coin.png"))); // NOI18N
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        tbAtalhos.add(jButton1);
 
         javax.swing.GroupLayout imPanelLayout = new javax.swing.GroupLayout(imPanel);
         imPanel.setLayout(imPanelLayout);
@@ -313,10 +354,26 @@ public class FPrincipal extends javax.swing.JFrame {
     private void menuCalculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCalculoActionPerformed
         new FCalculo().setVisible(true);
     }//GEN-LAST:event_menuCalculoActionPerformed
+
+    private void btProprietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProprietarioActionPerformed
+        new FProprietario().setVisible(true); 
+    }//GEN-LAST:event_btProprietarioActionPerformed
+
+    private void btBensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBensActionPerformed
+        new FBem().setVisible(true); 
+    }//GEN-LAST:event_btBensActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new FCalculo().setVisible(true); 
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgButtonPrincipal;
+    private javax.swing.JButton btBens;
+    private javax.swing.JButton btProprietario;
     private javax.swing.JButton btSair;
     private org.jdesktop.swingx.JXImagePanel imPanel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
@@ -327,6 +384,7 @@ public class FPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JSeparator jSeparator20;
     private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JLabel lbDataAtual;
     private javax.swing.JLabel lbLicenciadoPara;
     private javax.swing.JLabel lbUsuarioLogado;

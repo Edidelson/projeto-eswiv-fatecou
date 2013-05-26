@@ -236,23 +236,11 @@ public class FCalculo extends FrameGenerico implements ICalculo {
 
         lbDataAquisicao.setText("Data do Cálculo:");
 
-        dtAquisicao.setEnabled(false);
         dtAquisicao.setName("Data do Cálculo"); // NOI18N
 
         lbDescricaoBens.setText("Observação:");
 
         tfObervacao.setName("Obervação"); // NOI18N
-        tfObervacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfObervacaoActionPerformed(evt);
-            }
-        });
-
-        tfCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfCodigoActionPerformed(evt);
-            }
-        });
 
         lbCodigo.setText("Código:");
 
@@ -605,14 +593,6 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void tfObervacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfObervacaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfObervacaoActionPerformed
-
-    private void tfCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfCodigoActionPerformed
-
     private void jsBemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsBemActionPerformed
         if (JASelectPicker.SELECT_KEY.equals(evt.getActionCommand())) {
             jsBem.requestFocus();
@@ -762,7 +742,7 @@ public class FCalculo extends FrameGenerico implements ICalculo {
 
         tbCalculo.setName("TB_FCALCULO");
         tbCalculo.setModel(calculoTableModel);
-        
+
         camposVerificar = new Component[]{jsBem, dtAquisicao};
         camposLimpar = new Component[]{jsBem, tfValorVenal, tfObervacao, tfDepreciacao,
             jsBem, lbBemSelecionado, tfCodigo, tfDepreciacaoAcumulada, tfValorCalculado};
@@ -777,12 +757,11 @@ public class FCalculo extends FrameGenerico implements ICalculo {
     public void limparCampos() {
         super.limparCampos();
         bem = null;
-        calculo=null;
+        calculo = null;
         dtAquisicao.setDate(new java.util.Date());
-        exibirDados(dao, tbCalculo); 
+        exibirDados(dao, tbCalculo);
     }
 
-    
     @Override
     public void inserirOuAlterar() {
         calculo = new Calculo();
@@ -790,7 +769,6 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         calculo.setValorCalculo(tfValorCalculado.getValue().doubleValue());
         calculo.setDataCalculo(dtAquisicao.getDate());
         calculo.setObservacao(tfObervacao.getText());
-        calculo.setAcumulado(tfDepreciacaoAcumulada.getValue());
         try {
             if (tbAlterar.isSelected()) {
                 calculo.setCodigo(tfCodigo.intValue());
@@ -958,6 +936,7 @@ public class FCalculo extends FrameGenerico implements ICalculo {
     public Integer getMeses(Date date, DateTime now) {
         DateTime meses = new DateTime(date);
         Months m = Months.monthsBetween(meses, now);
+        System.out.println("Mese: "+ m.getMonths());
         return m.getMonths();
     }
 
