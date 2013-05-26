@@ -17,7 +17,7 @@ import javax.persistence.*;
 @Table(name = "calculo")
 @NamedQueries({
     @NamedQuery(name = "Calculo.getAll", query = "SELECT e FROM Calculo e ORDER BY e.codigo ASC"),
-    @NamedQuery(name = "Calculo.findMax", query = "SELECT MAX(acumulado) FROM Calculo e WHERE e.bem=:codigo")
+    @NamedQuery(name = "Calculo.findMax", query = "SELECT MAX(valorCalculo) FROM Calculo e WHERE e.bem=:codigo")
 })
 public class Calculo implements Serializable, IModelo{
 
@@ -25,8 +25,6 @@ public class Calculo implements Serializable, IModelo{
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cp_calculo")
     private int codigo;
-    @Column(name = "vl_acumulado")
-    private BigDecimal acumulado;
     @Column(name = "dt_calculo")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataCalculo;
@@ -56,14 +54,6 @@ public class Calculo implements Serializable, IModelo{
     
     public void setCodigo(int codigo) {
         this.codigo = codigo;
-    }
-
-    public BigDecimal getAcumulado() {
-        return acumulado;
-    }
-
-    public void setAcumulado(BigDecimal acumulado) {
-        this.acumulado = acumulado;
     }
 
     public Date getDataCalculo() {

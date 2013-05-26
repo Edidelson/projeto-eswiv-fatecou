@@ -255,11 +255,11 @@ public class DSelecionarObjeto extends DSelecionarGenerico {
                     .addGroup(pnBuscaLayout.createSequentialGroup()
                         .addComponent(lbCampo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbCampos, 0, 544, Short.MAX_VALUE))
+                        .addComponent(cbCampos, 0, 696, Short.MAX_VALUE))
                     .addGroup(pnBuscaLayout.createSequentialGroup()
                         .addComponent(lbBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)))
+                        .addComponent(tfBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -318,7 +318,7 @@ public class DSelecionarObjeto extends DSelecionarGenerico {
         pnOpcoesLayout.setHorizontalGroup(
             pnOpcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnOpcoesLayout.createSequentialGroup()
-                .addContainerGap(376, Short.MAX_VALUE)
+                .addContainerGap(528, Short.MAX_VALUE)
                 .addComponent(btOk)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btCancelar)
@@ -348,7 +348,7 @@ public class DSelecionarObjeto extends DSelecionarGenerico {
             .addComponent(pnBusca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -356,13 +356,13 @@ public class DSelecionarObjeto extends DSelecionarGenerico {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnOpcoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-639)/2, (screenSize.height-514)/2, 639, 514);
+        setBounds((screenSize.width-791)/2, (screenSize.height-514)/2, 791, 514);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed

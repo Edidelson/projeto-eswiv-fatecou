@@ -386,55 +386,58 @@
                                                   <Component id="lbCodigo" alignment="0" min="-2" pref="49" max="-2" attributes="0"/>
                                                   <Component id="lbDescricaoBens" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                   <Group type="102" attributes="0">
-                                                      <Component id="tfCodigo" min="-2" pref="78" max="-2" attributes="0"/>
-                                                      <EmptySpace max="32767" attributes="0"/>
+                                                      <Component id="tfCodigo" max="32767" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
                                                       <Component id="lbDataAquisicao" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="dtAquisicao" min="-2" pref="91" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Component id="tfDescricaoBens" min="-2" pref="446" max="-2" attributes="0"/>
+                                                  <Component id="tfDescricaoBens" min="-2" pref="441" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <Group type="102" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="lbValorVenal" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="lnTurno" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lbProprietario" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="cbTurno" pref="91" max="32767" attributes="0"/>
-                                                  <Component id="tfValorVenal" max="32767" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="lbGrupoBens" min="-2" pref="74" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="jsProprietario" min="-2" pref="83" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="cbGrupoBens" min="-2" pref="104" max="-2" attributes="0"/>
+                                                      <Component id="lbProprietarioSelecionado" max="32767" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" attributes="0">
-                                                      <Component id="rbNovo" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="rbUsado" min="-2" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                          <Component id="cbTurno" pref="91" max="32767" attributes="0"/>
+                                                          <Component id="tfValorVenal" max="32767" attributes="0"/>
+                                                      </Group>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="1" attributes="0">
+                                                          <Group type="102" attributes="0">
+                                                              <Component id="lbGrupoBens" min="-2" pref="74" max="-2" attributes="0"/>
+                                                              <EmptySpace max="-2" attributes="0"/>
+                                                              <Component id="cbGrupoBens" min="-2" pref="104" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <Group type="102" attributes="0">
+                                                              <Component id="rbNovo" min="-2" max="-2" attributes="0"/>
+                                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                              <Component id="rbUsado" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="lbDepreciacao" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="tfDepreciacao" min="-2" pref="78" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="lbDepreciacao" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="tfDepreciacao" min="-2" pref="78" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="lbProprietario" min="-2" pref="65" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                                              <Component id="jsProprietario" min="-2" pref="81" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="lbProprietarioSelecionado" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace pref="187" max="32767" attributes="0"/>
@@ -578,16 +581,13 @@
                               <Properties>
                                 <Property name="name" type="java.lang.String" value="Descri&#xe7;&#xe3;o" noResource="true"/>
                               </Properties>
-                              <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfDescricaoBensActionPerformed"/>
-                              </Events>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.zap.arca.JATextField(80)"/>
                               </AuxValues>
                             </Component>
                             <Component class="com.zap.arca.JATextField" name="tfCodigo">
                               <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfCodigoActionPerformed"/>
+                                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tfCodigoFocusLost"/>
                               </Events>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="tfCodigo.getDocument().addDocumentListener(new DocumentListener() {&#xa;    public void insertUpdate(DocumentEvent e) {&#xa;        if(tfCodigo.getText().equals(&quot;&quot;)) {&#xa;            tbAlterar.setSelected(false);&#xa;            tbIncluir.setSelected(true);&#xa;        } else {&#xa;            tbAlterar.setSelected(true);&#xa;            tbIncluir.setSelected(false);&#xa;        }&#xa;    }&#xa;    public void changedUpdate(DocumentEvent e) { }&#xa;    public void removeUpdate(DocumentEvent e) { &#xa;        if(tfCodigo.getText().equals(&quot;&quot;)) {&#xa;            tbAlterar.setSelected(false);&#xa;            tbIncluir.setSelected(true);&#xa;        } else {&#xa;            tbAlterar.setSelected(true);&#xa;            tbIncluir.setSelected(false);&#xa;        }&#xa;    }&#xa;});"/>
@@ -690,7 +690,7 @@
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="102" alignment="1" attributes="0">
-                                                      <EmptySpace min="0" pref="456" max="32767" attributes="0"/>
+                                                      <EmptySpace min="0" pref="458" max="32767" attributes="0"/>
                                                       <Component id="btAdicionar" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="btAlterar" min="-2" pref="75" max="-2" attributes="0"/>

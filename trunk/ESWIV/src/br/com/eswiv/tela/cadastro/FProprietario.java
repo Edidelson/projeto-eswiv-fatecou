@@ -20,6 +20,7 @@ import com.zap.arca.LoggerEx;
 import com.zap.arca.document.NumberValueDocument;
 import com.zap.arca.util.WindowUtils;
 import java.awt.Component;
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -75,7 +76,7 @@ public class FProprietario extends FrameGenerico {
         plCampos = new javax.swing.JPanel();
         lbCodigo = new javax.swing.JLabel();
         lbNome = new javax.swing.JLabel();
-        tfCodigo = new com.zap.arca.JATextField(6,0);
+        tfCodigo = new com.zap.arca.JATextField(10,0);
         dtCadastro = new com.zap.arca.JADatePicker();
         lbCpf = new javax.swing.JLabel();
         tfCpf = new com.zap.arca.JAFormattedTextField();
@@ -237,6 +238,8 @@ public class FProprietario extends FrameGenerico {
                 tfCodigoFocusLost(evt);
             }
         });
+
+        dtCadastro.setName("Data do Cadastro"); // NOI18N
 
         lbCpf.setText("CPF:");
 
@@ -404,10 +407,10 @@ public class FProprietario extends FrameGenerico {
                             .addComponent(lbCodigo))
                         .addGap(15, 15, 15)
                         .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(plCamposLayout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -703,26 +706,7 @@ public class FProprietario extends FrameGenerico {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void tfCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfCodigoFocusLost
-        if(tfCodigo.getText().equals("")){
-            return;
-        }
-        boolean encontrou = false;
-       
-        loop:
-        for(int i=0; i<proprietarioTableModel.getRowCount(); i++){
-            int linha = Integer.valueOf(tfCodigo.getText());
-            if(proprietarioTableModel.getRow(i).getCodigo().equals(linha)){
-                tbProprietario.changeSelection(i, 0, false, false);
-                encontrou = true;
-                break loop;
-            } 
-        }
-   
-        if (!encontrou) {
-            JOptionPane.showMessageDialog(null, "Código Inválido");
-            limparCampos();
-            tfNome.requestFocus();
-        }
+        consultar();
     }//GEN-LAST:event_tfCodigoFocusLost
 
     private void jsCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsCidadeActionPerformed
@@ -928,5 +912,27 @@ public class FProprietario extends FrameGenerico {
     @Override
     public void preencherTabela(int linha, IModelo i) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    private boolean consultar() throws NumberFormatException, HeadlessException {
+        if (tfCodigo.getText().equals("")) {
+            return true;
+        }
+        boolean encontrou = false;
+        loop:
+        for (int i = 0; i < proprietarioTableModel.getRowCount(); i++) {
+            int linha = Integer.valueOf(tfCodigo.getText());
+            if (proprietarioTableModel.getRow(i).getCodigo().equals(linha)) {
+                tbProprietario.changeSelection(i, 0, false, false);
+                encontrou = true;
+                break loop;
+            }
+        }
+        if (!encontrou) {
+            JOptionPane.showMessageDialog(null, "Código Inválido");
+            limparCampos();
+            tfNome.requestFocus();
+        }
+        return false;
     }
 }

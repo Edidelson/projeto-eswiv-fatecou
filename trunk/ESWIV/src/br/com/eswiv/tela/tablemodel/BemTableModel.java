@@ -17,7 +17,9 @@ public class BemTableModel extends RowTableModel {
     private Bem bem;
 
     {
-        columns = new String[]{"Código", "Descrição", "Proprietário", "Grupo de Bens", "Valor Venal", "Data de Aquisição", "Turno"};
+        columns = new String[]{"Código",
+            "Descrição", "Proprietário", "Grupo de Bens",
+            "Valor Venal", "Data de Aquisição", "Turno", "Tipo"};
     }
 
     @Override
@@ -48,6 +50,8 @@ public class BemTableModel extends RowTableModel {
                 return bem.getAquisicao();
             case 6:
                 return setTurno(bem.getTurno() != null ? bem.getTurno().getCodigo() : null);
+            case 7:
+                return bem.getTipo();
             default:
                 return "";
         }
@@ -70,6 +74,8 @@ public class BemTableModel extends RowTableModel {
                 return Date.class;
             case 6:
                 return String.class;
+            case 7:
+                return Enum.class;
             default:
                 return null;
         }

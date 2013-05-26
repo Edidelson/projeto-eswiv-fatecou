@@ -530,7 +530,6 @@
                             </Component>
                             <Component class="com.zap.arca.JADatePicker" name="dtAquisicao">
                               <Properties>
-                                <Property name="enabled" type="boolean" value="false"/>
                                 <Property name="name" type="java.lang.String" value="Data do C&#xe1;lculo" noResource="true"/>
                               </Properties>
                             </Component>
@@ -543,17 +542,11 @@
                               <Properties>
                                 <Property name="name" type="java.lang.String" value="Oberva&#xe7;&#xe3;o" noResource="true"/>
                               </Properties>
-                              <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfObervacaoActionPerformed"/>
-                              </Events>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.zap.arca.JATextField(100)"/>
                               </AuxValues>
                             </Component>
                             <Component class="com.zap.arca.JATextField" name="tfCodigo">
-                              <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfCodigoActionPerformed"/>
-                              </Events>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="tfCodigo.getDocument().addDocumentListener(new DocumentListener() {&#xa;    public void insertUpdate(DocumentEvent e) {&#xa;        if(tfCodigo.getText().equals(&quot;&quot;)) {&#xa;            tbAlterar.setSelected(false);&#xa;            tbIncluir.setSelected(true);&#xa;        } else {&#xa;            tbAlterar.setSelected(true);&#xa;            tbIncluir.setSelected(false);&#xa;        }&#xa;    }&#xa;    public void changedUpdate(DocumentEvent e) { }&#xa;    public void removeUpdate(DocumentEvent e) { &#xa;        if(tfCodigo.getText().equals(&quot;&quot;)) {&#xa;            tbAlterar.setSelected(false);&#xa;            tbIncluir.setSelected(true);&#xa;        } else {&#xa;            tbAlterar.setSelected(true);&#xa;            tbIncluir.setSelected(false);&#xa;        }&#xa;    }&#xa;});"/>
                                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.zap.arca.JATextField(10,0)"/>
