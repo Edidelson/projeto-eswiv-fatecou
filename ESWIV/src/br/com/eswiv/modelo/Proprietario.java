@@ -53,6 +53,7 @@ public class Proprietario implements Serializable, IModelo {
     }
 
     public void setTelefone(String telefone) {
+        telefone = telefone.replace(" ", "");
         telefone = telefone.replace("(", "");
         telefone = telefone.replace(")", "");
         this.telefone = telefone.length() == 0 ? null : telefone;
@@ -63,6 +64,7 @@ public class Proprietario implements Serializable, IModelo {
     }
 
     public void setCelular(String celular) {
+        celular = celular.replace(" ", "");
         celular = celular.replace("(", "");
         celular = celular.replace(")", "");
         this.celular = celular.length() == 0 ? null : celular;
@@ -85,7 +87,7 @@ public class Proprietario implements Serializable, IModelo {
         cpf = cpf.replace(".", "");
         cpf = cpf.replace("-", "");
         this.cpf = cpf.length() == 0 ? null : cpf;
-    }
+    } 
 
     public void setNome(String nome) {
         this.nome = nome;

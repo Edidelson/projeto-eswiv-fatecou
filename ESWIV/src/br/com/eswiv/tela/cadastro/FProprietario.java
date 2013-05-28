@@ -260,6 +260,7 @@ public class FProprietario extends FrameGenerico {
 
         lbTelefone.setText("Telefone:");
 
+        tfTelefone.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
         try {
             tfTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #########")));
         } catch (java.text.ParseException ex) {
@@ -268,6 +269,7 @@ public class FProprietario extends FrameGenerico {
 
         lbCelular.setText("Celular:");
 
+        tfCelular.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
         try {
             tfCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #########")));
         } catch (java.text.ParseException ex) {
