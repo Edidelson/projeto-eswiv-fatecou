@@ -100,6 +100,7 @@ public class FPrincipal extends javax.swing.JFrame {
         mnMovimentos = new javax.swing.JMenu();
         menuCalculo = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        menuSobre = new javax.swing.JMenuItem();
 
         jMenuItem3.setText("jMenuItem3");
 
@@ -277,6 +278,15 @@ public class FPrincipal extends javax.swing.JFrame {
         mbPrincipal.add(mnMovimentos);
 
         jMenu2.setText("Ajuda");
+
+        menuSobre.setText("Sobre...");
+        menuSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSobreActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuSobre);
+
         mbPrincipal.add(jMenu2);
 
         setJMenuBar(mbPrincipal);
@@ -356,17 +366,20 @@ public class FPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuCalculoActionPerformed
 
     private void btProprietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProprietarioActionPerformed
-        new FProprietario().setVisible(true); 
+        new FProprietario().setVisible(true);
     }//GEN-LAST:event_btProprietarioActionPerformed
 
     private void btBensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBensActionPerformed
-        new FBem().setVisible(true); 
+        new FBem().setVisible(true);
     }//GEN-LAST:event_btBensActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new FCalculo().setVisible(true); 
+        new FCalculo().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void menuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSobreActionPerformed
+        new DSobreSistema(this, true).setVisible(true);
+    }//GEN-LAST:event_menuSobreActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgButtonPrincipal;
     private javax.swing.JButton btBens;
@@ -393,6 +406,7 @@ public class FPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuCalculo;
     private javax.swing.JMenuItem menuCidade;
     private javax.swing.JMenuItem menuProprietario;
+    private javax.swing.JMenuItem menuSobre;
     private javax.swing.JMenuItem menuUsuario;
     private javax.swing.JMenuItem miBackup;
     private javax.swing.JMenuItem miSair;

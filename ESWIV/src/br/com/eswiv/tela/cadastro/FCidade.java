@@ -91,8 +91,6 @@ public class FCidade extends FrameGenerico {
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         mnFiltrar = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        miAjudaConteudo = new javax.swing.JMenuItem();
-        jSeparator3 = new javax.swing.JPopupMenu.Separator();
         mnSobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -414,11 +412,6 @@ public class FCidade extends FrameGenerico {
 
         jMenu4.setText("Ajuda");
 
-        miAjudaConteudo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
-        miAjudaConteudo.setText("Conteúdo de Ajuda");
-        jMenu4.add(miAjudaConteudo);
-        jMenu4.add(jSeparator3);
-
         mnSobre.setText("Sobre...");
         mnSobre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -586,7 +579,6 @@ public class FCidade extends FrameGenerico {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
-    private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JToolBar jToolBar1;
@@ -595,7 +587,6 @@ public class FCidade extends FrameGenerico {
     private javax.swing.JLabel lbDDD;
     private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lnEstado;
-    private javax.swing.JMenuItem miAjudaConteudo;
     private javax.swing.JMenuItem mnAlterar;
     private javax.swing.JMenuItem mnAtualizar;
     private javax.swing.JMenuItem mnExcluir;

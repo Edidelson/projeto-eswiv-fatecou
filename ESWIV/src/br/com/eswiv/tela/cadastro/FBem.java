@@ -154,7 +154,6 @@ public class FBem extends FrameGenerico {
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         mnFiltrar = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jSeparator3 = new javax.swing.JPopupMenu.Separator();
         mnSobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -707,7 +706,6 @@ public class FBem extends FrameGenerico {
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Ajuda");
-        jMenu4.add(jSeparator3);
 
         mnSobre.setText("Sobre...");
         mnSobre.addActionListener(new java.awt.event.ActionListener() {
@@ -928,7 +926,6 @@ public class FBem extends FrameGenerico {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
-    private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JToolBar jToolBar1;
     private com.zap.arca.JASelectPicker<Proprietario> jsProprietario;

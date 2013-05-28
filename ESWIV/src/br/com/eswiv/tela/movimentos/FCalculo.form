@@ -98,8 +98,6 @@
             <Property name="text" type="java.lang.String" value="Ajuda"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator3">
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnSobre">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sobre..."/>
@@ -411,7 +409,7 @@
                                                   <Component id="lbBemSelecionado" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <Group type="102" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="tfValorVenal" min="-2" pref="86" max="-2" attributes="0"/>
                                                   <Component id="tfDepreciacao" min="-2" pref="86" max="-2" attributes="0"/>
