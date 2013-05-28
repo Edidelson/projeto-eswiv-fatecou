@@ -36,11 +36,11 @@ public class DAOCalculo extends DAOGenerico {
         return super.getLista("Calculo.getAll");
     }
 
-    public BigDecimal getMaxValue(Bem codigo) {
+    public Double getMaxValue(Bem codigo) {
         try {
             abrirSessao();
             getSession().beginTransaction();
-            BigDecimal valorAcumulado = (BigDecimal) session.getNamedQuery("Calculo.findMax")
+            Double valorAcumulado = (Double) session.getNamedQuery("Calculo.findMax")
                     .setParameter("codigo", codigo)
                     .uniqueResult();
             getSession().getTransaction().commit();

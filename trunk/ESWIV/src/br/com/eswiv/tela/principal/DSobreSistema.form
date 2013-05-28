@@ -37,88 +37,34 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lbserial" min="-2" pref="148" max="-2" attributes="1"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lbDescricaoWebsite" alignment="0" pref="169" max="32767" attributes="0"/>
-                              <Component id="jLabel6" alignment="0" min="-2" pref="159" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="lbtelefone" alignment="0" max="32767" attributes="1"/>
-                                  <Component id="lbempresa" alignment="0" max="32767" attributes="1"/>
-                                  <Component id="lbAll" alignment="0" pref="149" max="32767" attributes="1"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="btSair" min="-2" pref="70" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="btSair" min="-2" pref="70" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="lbLink" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lbInformacoes" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace min="0" pref="21" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  <Component id="lbInformacoes" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lbAll" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbLink" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lbempresa" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lbtelefone" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lbDescricaoWebsite" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lbserial" min="-2" max="-2" attributes="0"/>
-                      <Component id="btSair" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btSair" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="lbAll">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Todos Direitos Reservados"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lbempresa">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="ZapInfo Inform&#xe1;tica &#xa9;2012"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lbtelefone">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Fone: (43) 3532-3423"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lbDescricaoWebsite">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="33" red="33" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="http://www.zapinformatica.net"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbDescricaoWebsiteMouseClicked"/>
-            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbDescricaoWebsiteMouseEntered"/>
-            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbDescricaoWebsiteMouseExited"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel6">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Vers&#xe3;o: 1.0.0 - (17/12/2012)"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="btSair">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sair"/>
@@ -127,19 +73,26 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSairActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbserial">
+        <Component class="javax.swing.JLabel" name="lbInformacoes">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="cc" red="cc" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="11" style="2"/>
+              <Font name="Arial" size="12" style="1"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="99" green="99" red="99" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Serial: 20110406FST1"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;br&gt;FATEC &#x2013; OURINHOS&lt;/br&gt;&#xa;&lt;br&gt;Curso ASTI &#x2013; 6&#xba; ciclo&lt;/br&gt;&#xa;&lt;br&gt;Projeto de calculo de deprecia&#xe7;&#xf5;es permanentes desenvolvido&lt;/br&gt;&#xa;&lt;br&gt; para mat&#xe9;ria de Engenharia de Software IV.&lt;/br&gt;&#xa;&lt;br&gt;Integrantes:&lt;/br&gt;&#xa;&lt;br&gt;Fernando Aparecido Paulo                  2100147-2&lt;/br&gt;&#xa;&lt;br&gt;Rodrigo Moreira Alexandre                 2100146-4&lt;/br&gt;&#xa;&lt;br&gt;Edidelson Aparecido Lucien                 2100103-0&lt;/br&gt;&#xa;&lt;br&gt;Professor: Dr.Luiz Carlos Begosso&lt;/br&gt;&#xa;&lt;/html&gt;"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbLink">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="http://www.receita.fazenda.gov.br"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbLinkMouseClicked"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbLinkMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbLinkMouseExited"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -112,7 +112,6 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         mnFiltrar = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jSeparator3 = new javax.swing.JPopupMenu.Separator();
         mnSobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -291,7 +290,7 @@ public class FCalculo extends FrameGenerico implements ICalculo {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(dtAquisicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lbBemSelecionado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(plCamposLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plCamposLayout.createSequentialGroup()
                         .addGroup(plCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfValorVenal, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfDepreciacao, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -516,7 +515,6 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Ajuda");
-        jMenu4.add(jSeparator3);
 
         mnSobre.setText("Sobre...");
         mnSobre.addActionListener(new java.awt.event.ActionListener() {
@@ -700,7 +698,6 @@ public class FCalculo extends FrameGenerico implements ICalculo {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
-    private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JToolBar jToolBar1;
     private com.zap.arca.JASelectPicker<Bem> jsBem;
@@ -793,8 +790,8 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         dtAquisicao.setDate(calculo.getDataCalculo());
         tfObervacao.setText(calculo.getObservacao());
         DAOCalculo daoCalculo = new DAOCalculo();
-        BigDecimal b = daoCalculo.getMaxValue(bem);
-        tfDepreciacaoAcumulada.setValue(b);
+        Double b = daoCalculo.getMaxValue(bem);
+        tfDepreciacaoAcumulada.setValue(b.doubleValue());
     }
 
     public int getPrazoDepreciacao(Bem.Categorias categorias) {
@@ -821,20 +818,20 @@ public class FCalculo extends FrameGenerico implements ICalculo {
     @Override
     public void calcular() {
         bem = jsBem.getValue();
-        if (bem.getTurno() == Bem.Turno.H8 && calcular8Hrs() != null) {
-            tfValorCalculado.setValue(calcular8Hrs().doubleValue());
-            tfDepreciacaoAcumulada.setValue(calcular8Hrs().doubleValue());
-        } else if (bem.getTurno() == Bem.Turno.H16 && calcular16Hrs() != null) {
-            tfValorCalculado.setValue(calcular16Hrs().doubleValue());
-            tfDepreciacaoAcumulada.setValue(calcular16Hrs().doubleValue());
-        } else if (bem.getTurno() == Bem.Turno.H24 && calcular24Hrs() != null) {
-            tfValorCalculado.setValue(calcular24Hrs().doubleValue());
-            tfDepreciacaoAcumulada.setValue(calcular24Hrs().doubleValue());
-        } else {
-            if (calcular8Hrs() != null) {
-                tfValorCalculado.setValue(calcular8Hrs().doubleValue());
-                tfDepreciacaoAcumulada.setValue(calcular8Hrs().doubleValue());
-            }
+        Double calculoTurno8Hrs = calcular8Hrs();
+        Double calculoTurno16Hrs = calcular16Hrs();
+        Double calculoTurno24Hrs = calcular24Hrs();
+        if (calculoTurno8Hrs!=null && calculoTurno8Hrs>0) {
+            tfValorCalculado.setValue(calculoTurno8Hrs.doubleValue());
+            tfDepreciacaoAcumulada.setValue(calculoTurno8Hrs.doubleValue());
+        }
+        if (calculoTurno16Hrs!=null && calculoTurno16Hrs>0) {
+            tfValorCalculado.setValue(calculoTurno16Hrs.doubleValue()); 
+            tfDepreciacaoAcumulada.setValue(calculoTurno16Hrs.doubleValue());
+        }
+        if (calculoTurno24Hrs!=null && calculoTurno24Hrs>0) {
+            tfValorCalculado.setValue(calculoTurno24Hrs.doubleValue());
+            tfDepreciacaoAcumulada.setValue(calculoTurno24Hrs.doubleValue());
         }
     }
 
@@ -843,7 +840,7 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         bem = jsBem.getValue();
         BigDecimal percentualDepreciacao = tfDepreciacao.getValue();
         BigDecimal valorCalculado = BigDecimal.ZERO;
-        if (bem != null) {
+        if (bem != null && bem.getTurno() == null || bem.getTurno().equals(Bem.Turno.H8)) {
             int meses = getMeses(bem.getAquisicao(), new DateTime(dtAquisicao.getDate()));
             int anos = getAnos(bem.getAquisicao(), new DateTime(dtAquisicao.getDate()));
             double prazo = getPrazoDepreciacao(bem.getGrupo());
@@ -862,7 +859,7 @@ public class FCalculo extends FrameGenerico implements ICalculo {
             }
             if (valorCalculado.doubleValue() >= tfValorVenal.getValue().doubleValue()) {
                 JOptionPane.showMessageDialog(null, "Bem totalmente depreciado.");
-                return tfValorVenal.getValue().doubleValue();
+                return bem.getValorVenal().doubleValue();
             }
         }
         return valorCalculado.doubleValue();
@@ -873,7 +870,7 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         bem = jsBem.getValue();
         BigDecimal percentualDepreciacao = tfDepreciacao.getValue();
         BigDecimal valorCalculado = BigDecimal.ZERO;
-        if (bem != null) {
+        if (bem != null && bem.getTurno() != null && bem.getTurno().equals(Bem.Turno.H16)) {
             int meses = getMeses(bem.getAquisicao(), new DateTime(dtAquisicao.getDate()));
             int anos = getAnos(bem.getAquisicao(), new DateTime(dtAquisicao.getDate()));
             double prazo = getPrazoDepreciacao(bem.getGrupo());
@@ -906,7 +903,7 @@ public class FCalculo extends FrameGenerico implements ICalculo {
         bem = jsBem.getValue();
         BigDecimal percentualDepreciacao = tfDepreciacao.getValue();
         BigDecimal valorCalculado = BigDecimal.ZERO;
-        if (bem != null) {
+        if (bem != null && bem.getTurno() != null && bem.getTurno().equals(Bem.Turno.H24)) {
             int meses = getMeses(bem.getAquisicao(), new DateTime(dtAquisicao.getDate()));
             int anos = getAnos(bem.getAquisicao(), new DateTime(dtAquisicao.getDate()));
             double prazo = getPrazoDepreciacao(bem.getGrupo());
@@ -936,7 +933,7 @@ public class FCalculo extends FrameGenerico implements ICalculo {
     public Integer getMeses(Date date, DateTime now) {
         DateTime meses = new DateTime(date);
         Months m = Months.monthsBetween(meses, now);
-        System.out.println("Mese: "+ m.getMonths());
+        System.out.println("Mese: " + m.getMonths());
         return m.getMonths();
     }
 

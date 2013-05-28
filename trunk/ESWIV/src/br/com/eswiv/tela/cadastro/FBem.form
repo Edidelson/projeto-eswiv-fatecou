@@ -98,8 +98,6 @@
             <Property name="text" type="java.lang.String" value="Ajuda"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator3">
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnSobre">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sobre..."/>
