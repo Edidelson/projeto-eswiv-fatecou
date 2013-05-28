@@ -13,12 +13,12 @@ import java.util.List;
  *
  * @author Fernando
  */
-public class ProprietarioTableModel extends RowTableModel{
+public class ProprietarioTableModel extends RowTableModel {
 
     {
-        columns=new String[]{"Código", "Nome", "Cpf", "Data do Cadastro"};
+        columns = new String[]{"Código", "Nome", "CPF", "Data do Cadastro"};
     }
-    
+
     @Override
     public Proprietario getRow(int index) {
         return (Proprietario) cache.get(index);
@@ -32,23 +32,23 @@ public class ProprietarioTableModel extends RowTableModel{
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Proprietario p = (Proprietario) cache.get(rowIndex);
-        switch(columnIndex){
+        switch (columnIndex) {
             case 0:
                 return p.getCodigo();
             case 1:
                 return p.getNome();
             case 2:
-                return p.getCpf()!=null?Util.formatarCpf(p.getCpf()):"";
+                return p.getCpf() != null ? Util.formatarCpf(p.getCpf()) : "";
             case 3:
                 return p.getData_cadastro();
-                default:
-                    return "";
+            default:
+                return "";
         }
     }
 
     @Override
     public Class getColumnClass(int col) {
-        switch(col){
+        switch (col) {
             case 0:
                 return Integer.class;
             case 1:
@@ -57,9 +57,8 @@ public class ProprietarioTableModel extends RowTableModel{
                 return String.class;
             case 3:
                 return Date.class;
-                default:
-                    return null;
+            default:
+                return null;
         }
     }
-
 }
