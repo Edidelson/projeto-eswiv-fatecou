@@ -814,7 +814,7 @@ public class FBem extends FrameGenerico {
         if (JASelectPicker.SELECT_KEY.equals(evt.getActionCommand())) {
             jsProprietario.requestFocus();
             new DSelecionarObjeto(this, true, jsProprietario)
-                    .title("Selecionar Cidade...")
+                    .title("Selecionar Proprietário...")
                     .dao(DAOProprietario.class)
                     .model(new ProprietarioTableModel())
                     .frame(FProprietario.class).open();
