@@ -14,6 +14,8 @@ import br.com.eswiv.tela.cadastro.FCidade;
 import br.com.eswiv.tela.cadastro.FProprietario;
 import br.com.eswiv.tela.cadastro.FUsuarios;
 import br.com.eswiv.tela.movimentos.FCalculo;
+import br.com.eswiv.tela.relatorio.DSelecionarRelatorio;
+import br.com.eswiv.tela.relatorio.FRelatorio;
 import br.com.util.Util;
 import com.zap.arca.LoggerEx;
 import com.zap.arca.util.WindowUtils;
@@ -99,6 +101,8 @@ public class FPrincipal extends javax.swing.JFrame {
         menuCidade = new javax.swing.JMenuItem();
         mnMovimentos = new javax.swing.JMenu();
         menuCalculo = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        menuRelatorio = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         menuSobre = new javax.swing.JMenuItem();
 
@@ -277,6 +281,18 @@ public class FPrincipal extends javax.swing.JFrame {
 
         mbPrincipal.add(mnMovimentos);
 
+        jMenu3.setText("Relatório");
+
+        menuRelatorio.setText("Relatórios...");
+        menuRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuRelatorioActionPerformed(evt);
+            }
+        });
+        jMenu3.add(menuRelatorio);
+
+        mbPrincipal.add(jMenu3);
+
         jMenu2.setText("Ajuda");
 
         menuSobre.setText("Sobre...");
@@ -380,6 +396,11 @@ public class FPrincipal extends javax.swing.JFrame {
     private void menuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSobreActionPerformed
         new DSobreSistema(this, true).setVisible(true);
     }//GEN-LAST:event_menuSobreActionPerformed
+
+    private void menuRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelatorioActionPerformed
+        new DSelecionarRelatorio(this, true, "RELS", new FRelatorio()).setVisible(true);
+    }//GEN-LAST:event_menuRelatorioActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgButtonPrincipal;
     private javax.swing.JButton btBens;
@@ -391,6 +412,7 @@ public class FPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPopupMenu.Separator jSeparator1;
@@ -406,6 +428,7 @@ public class FPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuCalculo;
     private javax.swing.JMenuItem menuCidade;
     private javax.swing.JMenuItem menuProprietario;
+    private javax.swing.JMenuItem menuRelatorio;
     private javax.swing.JMenuItem menuSobre;
     private javax.swing.JMenuItem menuUsuario;
     private javax.swing.JMenuItem miBackup;

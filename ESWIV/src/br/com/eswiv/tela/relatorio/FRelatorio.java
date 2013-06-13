@@ -36,13 +36,13 @@ public class FRelatorio extends Filtro {
         setLocationRelativeTo(null);
         // campos obrigatórios
         componentes = new HashMap();
-//        componentes.put("Socio", new Component[]{});
-//        componentes.put("Filial", new Component[]{});
-//        componentes.put("Periodo", new Component[]{dtFinal, dtInicial});
+        componentes.put("Propriatario", new Component[]{jsProprietario});
+        componentes.put("Bem", new Component[]{jsBem});
+        componentes.put("Periodo", new Component[]{dtFinal, dtInicial});
 
         obrigatorios = new HashMap();
-        //obrigatorios.put("Socio", tfSocio);
-//        obrigatorios.put("Filial", );
+        obrigatorios.put("Propriatario", jsProprietario);
+        obrigatorios.put("Bem", jsBem);
     }
 
     private boolean verificarCampos() {
@@ -84,7 +84,8 @@ public class FRelatorio extends Filtro {
                 dataFinal = new Date(dtFinal.getDate().getTime());
             }
             Map<String, Object> parametros = new HashMap<>();
-            parametros.put("PROPRIETARIOA", proprietario);
+            parametros.put("PROPRIETARIOA", jsProprietario.getValue());
+             parametros.put("BEM", jsBem.getValue());
             parametros.put("DATA_INICIAL", dataInicial);
             parametros.put("DATA_FINAL", dataFinal);
 
