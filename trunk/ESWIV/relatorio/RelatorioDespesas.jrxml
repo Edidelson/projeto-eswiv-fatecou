@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioDespesas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b771c4bc-9c76-48ca-8f13-4a95ce7090e2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="BEM" class="java.lang.String"/>
+	<parameter name="PROPRIETARIO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[Select
+bem.tx_descricao,
+bem.dt_aquisicao,
+bem.tx_grupo,
+bem.vl_venal,
+proprietario.tx_nome,proprietario.cpf,proprietario.tx_logradouro,
+cidades.tx_nome as cidade,cidades.tx_estado
+ FROM (((bem LEFT JOIN despesas on bem.cp_bem = despesas.ce_bem)
+LEFT JOIN proprietario on bem.ce_proprietario = proprietario.cp_proprietario)
+LEFT JOIN cidades on proprietario.ce_cidade = cidades.cp_cidade)
+]]>
+	</queryString>
+	<field name="tx_descricao" class="java.lang.String"/>
+	<field name="dt_aquisicao" class="java.sql.Date"/>
+	<field name="tx_grupo" class="java.lang.String"/>
+	<field name="vl_venal" class="java.lang.Double"/>
+	<field name="tx_nome" class="java.lang.String"/>
+	<field name="cpf" class="java.lang.String"/>
+	<field name="tx_logradouro" class="java.lang.String"/>
+	<field name="cidade" class="java.lang.String"/>
+	<field name="tx_estado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="409872a1-e152-42c9-9117-4bd7c6e80a89" x="229" y="0" width="326" height="41"/>
+				<textElement>
+					<font size="28"/>
+				</textElement>
+				<text><![CDATA[Relatório de Despesas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="137" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="63c8e06d-1353-496c-a674-98201a9570b3" x="20" y="7" width="37" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nome:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dbb3b197-256e-4552-8fa0-6a0b5a77ddf1" x="20" y="38" width="37" height="20"/>
+				<textElement/>
+				<text><![CDATA[CPF:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="08c86488-56a3-4108-9084-fc91934e0b44" x="20" y="69" width="57" height="20"/>
+				<textElement/>
+				<text><![CDATA[Endereço:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="48f5bfaa-fcf8-4505-84a9-c6841c86245e" x="12" y="22" width="65" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3f285d06-0680-44c5-9b1a-929fee99ff87" x="100" y="22" width="86" height="20"/>
+				<textElement/>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="972595fe-3922-449c-8253-8d029aa4d0eb" x="218" y="22" width="70" height="20"/>
+				<textElement/>
+				<text><![CDATA[Grupo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="70631aa9-b49b-4dbd-bf5d-678a23531e54" x="320" y="22" width="66" height="20"/>
+				<textElement/>
+				<text><![CDATA[Valor Venal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bfdedb51-1844-4cd5-a183-284e16c5322f" x="425" y="22" width="90" height="20"/>
+				<textElement/>
+				<text><![CDATA[Data de Aquisição]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement uuid="907281cb-0253-4d05-8a8b-8034f65a9a99" x="12" y="18" width="65" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tx_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2e387c13-1398-4555-9db3-ccd3fa9671c1" x="100" y="18" width="86" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tx_descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="eacd0eca-4a89-40a2-bb38-75a1fe8e6246" x="218" y="18" width="70" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tx_grupo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;###0.00-">
+				<reportElement uuid="3cd7a2cc-2e4b-41a2-9933-fbc839868a2f" x="320" y="18" width="66" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{vl_venal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="fab0514b-b04c-4755-8c8a-252767922df8" x="425" y="18" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{dt_aquisicao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
