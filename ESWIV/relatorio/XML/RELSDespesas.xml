@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <grupo versao="1.00" grupo="RELS" modificadoEm="" usuario="" empresa="">
-	<relatorio nome="Relatório de Comissão" caminho="RelatorioComissao" padrao="false" componentes="Dav,Empresa,Cliente" obrigatorios="Dav,Empresa,Vendedor">
+	<relatorio nome="Relatório de Despesas" caminho="RelatorioDespesas" padrao="false" componentes="Bem" obrigatorios="Bem">
 	<filtros editavel="" campoOrdenacao="" tipoOrdenacao="">
       <campo chave="" valorComparar="" chaveCampoComparador="" operador="" comparador="" />
       <campo chave="" valorComparar="" chaveCampoComparador="" operador="" comparador="" />

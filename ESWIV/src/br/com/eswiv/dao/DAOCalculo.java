@@ -7,7 +7,6 @@ package br.com.eswiv.dao;
 import br.com.eswiv.modelo.Bem;
 import br.com.eswiv.modelo.Calculo;
 import br.com.eswiv.modelo.IModelo;
-import java.math.BigDecimal;
 import java.util.List;
 
 /**

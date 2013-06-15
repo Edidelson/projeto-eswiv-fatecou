@@ -847,7 +847,7 @@ public class FProprietario extends FrameGenerico {
         tbProprietario.setName("TB_FPROPRIETARIO");
         tbProprietario.setModel(proprietarioTableModel);
 
-        camposVerificar = new Component[]{tfNome, dtCadastro};
+        camposVerificar = new Component[]{tfNome, dtCadastro, jsCidade, tfLogradouro, tfBairro, tfNumero};
         camposLimpar = new Component[]{tfNome, tfCodigo, tfEmail, tfComplemento,
             tfBairro, tfLogradouro, tfNumero, tfCpf, tfCelular, dtCadastro, tfCep, tfTelefone, jsCidade};
 
