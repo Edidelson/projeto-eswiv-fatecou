@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioAvaliacao" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e13cbd8a-ae1a-4239-a6dc-60b2912262c7">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioAvaliacao" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ea8ee61b-83ad-48a9-9cbc-98caa54dfc6b">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -115,15 +115,15 @@
 			<style backcolor="#FFEFEF"/>
 		</conditionalStyle>
 	</style>
-	<subDataset name="DataSetDespesas" uuid="b4b2abe6-6a78-4825-bc33-166e0021600e">
+	<subDataset name="DataSetDespesas" uuid="4498a9a8-e82d-4009-b09f-7894bbe5bfd1">
 		<parameter name="BEM" class="java.lang.Integer"/>
-		<queryString language="SQL">
+		<queryString>
 			<![CDATA[SELECT
      despesas."dt_despesa" AS despesas_dt_despesa,
      despesas."tx_descricao" AS despesas_tx_descricao,
      despesas."vl_valor" AS despesas_vl_valor
 FROM
-     "despesas" despesas]]>
+     "despesas" despesas where despesas.ce_bem=$P!{BEM}]]>
 		</queryString>
 		<field name="despesas_dt_despesa" class="java.sql.Date"/>
 		<field name="despesas_tx_descricao" class="java.lang.String"/>
@@ -133,15 +133,15 @@ FROM
 			<initialValueExpression><![CDATA[0]]></initialValueExpression>
 		</variable>
 	</subDataset>
-	<subDataset name="NewDataset" uuid="c852a49e-9547-4e1c-a663-7a38ae52e53c">
+	<subDataset name="NewDataset" uuid="08bee788-01e6-4a0e-9bcc-d5ca8458faa3">
 		<parameter name="BEM" class="java.lang.Integer"/>
-		<queryString language="SQL">
+		<queryString>
 			<![CDATA[SELECT
      calculo."tx_observacao" AS calculo_tx_observacao,
      calculo."dt_calculo" AS calculo_dt_calculo,
      calculo."vl_calculo" AS calculo_vl_calculo
 FROM
-     "calculo" calculo]]>
+     "calculo" calculo where calculo.ce_bem=$P{BEM}]]>
 		</queryString>
 		<field name="calculo_tx_observacao" class="java.lang.String"/>
 		<field name="calculo_dt_calculo" class="java.sql.Date"/>
@@ -154,14 +154,14 @@ FROM
 		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
 	</parameter>
 	<parameter name="AND_BEM" class="java.lang.String">
-		<defaultValueExpression><![CDATA[($P{BEM} == null ? " " : " bem.cp_bem = " + $P{BEM}.getCodigo())]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[($P{BEM} == null ? " " : " AND bem.cp_bem = " + $P{BEM}.getCodigo())]]></defaultValueExpression>
 	</parameter>
 	<parameter name="AND_PROPRIETARIO" class="java.lang.String">
 		<defaultValueExpression><![CDATA[($P{PROPRIETARIO} == null ? " " : " AND proprietario.cp_proprietario = " + $P{PROPRIETARIO}.getCodigo())]]></defaultValueExpression>
 	</parameter>
+	<parameter name="AVALIACAO" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT bem.cp_bem,
-		proprietario.tx_nome,
         proprietario.cpf,
         proprietario.tx_bairro,
         proprietario.tx_nome AS Prop,
@@ -173,8 +173,7 @@ FROM
         cidades.tx_nome, cidades.tx_estado
 FROM bem LEFT JOIN proprietario ON bem.ce_proprietario=proprietario.cp_proprietario
 LEFT JOIN cidades ON proprietario.ce_cidade = cidades.cp_cidade
-where $P!{AND_BEM}
-      $P!{AND_PROPRIETARIO}]]>
+where true $P!{AND_BEM} $P!{AND_PROPRIETARIO}]]>
 	</queryString>
 	<field name="cp_bem" class="java.lang.Integer"/>
 	<field name="tx_nome" class="java.lang.String"/>
@@ -193,7 +192,7 @@ where $P!{AND_BEM}
 	<title>
 		<band height="39" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="b731758b-fa1c-4e03-8b0e-f4f3cbc37c24" x="247" y="0" width="308" height="39"/>
+				<reportElement uuid="ac270c17-be9c-4db6-8388-c6c3d32c2fc6" x="247" y="0" width="308" height="39"/>
 				<textElement textAlignment="Right">
 					<font fontName="Arial" size="28" isBold="true"/>
 				</textElement>
@@ -204,45 +203,45 @@ where $P!{AND_BEM}
 	<pageHeader>
 		<band height="44" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="ba1bd5f5-a0d0-460a-889f-c06afda4f2c9" x="0" y="0" width="52" height="14"/>
+				<reportElement uuid="74e64c4b-26d8-4c9e-94d7-b39abf82dd29" x="0" y="0" width="52" height="14"/>
 				<textElement>
 					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nome:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="cbac0da5-31bd-4d4e-b478-3f77f7aa80d8" x="0" y="14" width="52" height="14"/>
+				<reportElement uuid="c7185b22-28aa-4dbc-b4fd-037b591dddd5" x="0" y="14" width="52" height="14"/>
 				<textElement>
 					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CPF:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="c1de9c05-ae93-481a-af3d-1f27e770af67" x="0" y="28" width="52" height="15"/>
+				<reportElement uuid="0db71d5b-bbdb-4a5d-b804-d67cbd97a88d" x="0" y="28" width="52" height="15"/>
 				<textElement>
 					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Endereço:]]></text>
 			</staticText>
 			<line>
-				<reportElement uuid="5b47f9ab-77f1-478b-8d3b-e1d245bbc8c5" x="0" y="43" width="555" height="1"/>
+				<reportElement uuid="7a4e5a40-b8bb-406e-a8c2-9d91bc8d2fe2" x="0" y="43" width="555" height="1"/>
 			</line>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="eaf7e371-eed7-454e-a23f-89c556a0fa06" x="52" y="0" width="487" height="14"/>
+				<reportElement uuid="7d79a80e-692e-475b-b416-c7229e1f12c1" x="52" y="0" width="487" height="14"/>
 				<textElement>
 					<font fontName="Arial" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{prop}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="9694d6a8-6d22-483b-8f22-e7af87c1e0e7" x="52" y="14" width="249" height="14"/>
+				<reportElement uuid="5ce61878-87d6-4d8d-a168-00c8cc48686f" x="52" y="14" width="249" height="14"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[br.com.util.Util.formatarCpf($F{cpf})]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="6b872174-6879-415d-ae40-7a7c9086ef4b" x="52" y="28" width="487" height="14"/>
+				<reportElement uuid="780202e8-7138-4ced-a6e4-d91e1f413b4e" x="52" y="28" width="487" height="14"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
@@ -250,26 +249,26 @@ where $P!{AND_BEM}
 ((((($F{nr_numero} == null? "":
 $F{nr_numero}) + " - " + $F{tx_bairro})
 + " - " + $F{tx_nome})
-+ " - " + $F{tx_estado})+" - "+"Fone: "+ $F{tx_telefone})]]></textFieldExpression>
++ " - " + $F{tx_estado})+" - "+"Fone: "+ br.com.util.Util.formatarTelefone($F{tx_telefone}))]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="29" splitType="Stretch">
+		<band height="52" splitType="Stretch">
 			<componentElement>
-				<reportElement uuid="461b480f-4f14-4c9a-b62c-9156d22965a7" key="table 1" style="table 1" mode="Opaque" x="1" y="3" width="247" height="23" isRemoveLineWhenBlank="true" backcolor="#FFFFFF"/>
+				<reportElement uuid="7e99b3c8-b351-47a0-a096-005d315aec60" key="table 1" style="table 1" mode="Opaque" x="1" y="3" width="247" height="23" isRemoveLineWhenBlank="true" backcolor="#FFFFFF"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" whenNoDataType="AllSectionsNoDetail">
-					<datasetRun subDataset="DataSetDespesas" uuid="76a0d603-8706-4856-a591-92eb921e87af">
+					<datasetRun subDataset="DataSetDespesas" uuid="07f60b9c-3dc0-490f-9e6d-5cf525ce6a72">
 						<datasetParameter name="BEM">
 							<datasetParameterExpression><![CDATA[$F{cp_bem}]]></datasetParameterExpression>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="90" uuid="50e30517-9ba3-4502-af8d-51f3a7987656">
+					<jr:column width="90" uuid="9f8d0c28-2af9-4c29-b814-67c3b25882d1">
 						<jr:tableHeader height="24" rowSpan="1"/>
 						<jr:columnHeader style="table 1" height="14" rowSpan="1">
 							<staticText>
-								<reportElement uuid="b3727ecd-ad8b-4f19-ab34-7ad4de3d9975" x="0" y="0" width="90" height="14"/>
+								<reportElement uuid="334bce74-a6d6-4f97-a9ad-eafa0668e4a5" x="0" y="0" width="90" height="14"/>
 								<textElement textAlignment="Center">
 									<font fontName="Arial" isBold="true"/>
 								</textElement>
@@ -279,7 +278,7 @@ $F{nr_numero}) + " - " + $F{tx_bairro})
 						<jr:columnFooter height="0" rowSpan="1"/>
 						<jr:detailCell style="table 2" height="20" rowSpan="1">
 							<textField isBlankWhenNull="true">
-								<reportElement uuid="e95c9136-b06b-4f9c-a374-a88080b5a8b5" x="0" y="0" width="90" height="20"/>
+								<reportElement uuid="4ad9f90e-fccb-43ce-b2ea-8d1f009f0bfe" x="0" y="0" width="90" height="20"/>
 								<textElement>
 									<font fontName="Arial"/>
 								</textElement>
@@ -287,10 +286,10 @@ $F{nr_numero}) + " - " + $F{tx_bairro})
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="42371844-6b53-46fd-8130-6f88c3c75f34">
+					<jr:column width="90" uuid="ef2bfc49-4f74-410e-8e3f-f8e4acad9fa0">
 						<jr:tableHeader height="24" rowSpan="1">
 							<staticText>
-								<reportElement uuid="b337be18-2fe8-446f-9ccf-b58cf19671d6" x="0" y="0" width="90" height="24"/>
+								<reportElement uuid="6129a675-b3db-48bf-832f-b61a8397aa24" x="0" y="0" width="90" height="24"/>
 								<textElement textAlignment="Center">
 									<font fontName="Arial" size="12" isBold="true"/>
 								</textElement>
@@ -299,7 +298,7 @@ $F{nr_numero}) + " - " + $F{tx_bairro})
 						</jr:tableHeader>
 						<jr:tableFooter style="table 1" height="20" rowSpan="1">
 							<staticText>
-								<reportElement uuid="a881a57c-ca8e-4ebf-90cb-caae8bc32a8f" x="0" y="0" width="90" height="20"/>
+								<reportElement uuid="93741bce-9942-419b-b7e2-ff425b5136d0" x="0" y="0" width="90" height="20"/>
 								<textElement textAlignment="Right">
 									<font fontName="Arial"/>
 								</textElement>
@@ -308,7 +307,7 @@ $F{nr_numero}) + " - " + $F{tx_bairro})
 						</jr:tableFooter>
 						<jr:columnHeader style="table 2" height="14" rowSpan="1">
 							<staticText>
-								<reportElement uuid="250de6b5-a96a-4074-ad9d-8ab628e29610" x="0" y="0" width="90" height="14"/>
+								<reportElement uuid="08f36c6e-30ac-43cb-a17c-1d125885b1d8" x="0" y="0" width="90" height="14"/>
 								<textElement textAlignment="Center">
 									<font fontName="Arial" isBold="true"/>
 								</textElement>
@@ -318,7 +317,7 @@ $F{nr_numero}) + " - " + $F{tx_bairro})
 						<jr:columnFooter height="0" rowSpan="1"/>
 						<jr:detailCell style="table 2" height="20" rowSpan="1">
 							<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-								<reportElement uuid="0b7696d3-f6f2-4c82-90e5-4bb239e01f22" x="0" y="0" width="90" height="20"/>
+								<reportElement uuid="488b7ea3-89e3-4954-a262-81af154fae2d" x="0" y="0" width="90" height="20"/>
 								<textElement textAlignment="Center">
 									<font fontName="Arial"/>
 								</textElement>
@@ -326,11 +325,11 @@ $F{nr_numero}) + " - " + $F{tx_bairro})
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="cf1a2535-d538-4221-8ed9-340600b6f01f">
+					<jr:column width="90" uuid="f2e85a3e-3054-47d8-9af2-64b19d306e42">
 						<jr:tableHeader height="24" rowSpan="1"/>
 						<jr:tableFooter style="table 1" height="20" rowSpan="1">
 							<textField pattern="###0.00;###0.00-">
-								<reportElement uuid="4c9f5761-50f6-44b4-9b35-75e7a982811a" x="0" y="0" width="80" height="20"/>
+								<reportElement uuid="637c8fa3-7ff9-42ea-b49a-ea1ed4dbb32f" x="0" y="0" width="80" height="20"/>
 								<textElement textAlignment="Right">
 									<font fontName="Arial" isBold="true"/>
 								</textElement>
@@ -339,7 +338,7 @@ $F{nr_numero}) + " - " + $F{tx_bairro})
 						</jr:tableFooter>
 						<jr:columnHeader style="table 2" height="14" rowSpan="1">
 							<staticText>
-								<reportElement uuid="30890ddd-3993-4cae-a101-a8da4c6d310a" x="0" y="0" width="90" height="14"/>
+								<reportElement uuid="2ae548a1-ed22-4d6a-81e6-f8b3b92579b1" x="0" y="0" width="90" height="14"/>
 								<textElement textAlignment="Center">
 									<font fontName="Arial" isBold="true"/>
 								</textElement>
@@ -349,7 +348,7 @@ $F{nr_numero}) + " - " + $F{tx_bairro})
 						<jr:columnFooter height="0" rowSpan="1"/>
 						<jr:detailCell style="table 2" height="20" rowSpan="1">
 							<textField pattern="###0.00;###0.00-" isBlankWhenNull="true">
-								<reportElement uuid="fb2b8eac-d89b-4071-9473-43682cbc2385" x="0" y="0" width="80" height="20"/>
+								<reportElement uuid="5200fa32-1d7f-4761-aacf-12fdf53dd2dd" x="0" y="0" width="80" height="20"/>
 								<textElement textAlignment="Right">
 									<font fontName="Arial" size="10"/>
 								</textElement>
@@ -360,20 +359,20 @@ $F{nr_numero}) + " - " + $F{tx_bairro})
 				</jr:table>
 			</componentElement>
 			<componentElement>
-				<reportElement uuid="8b4ccb76-056f-447d-b9fb-50dca0ff0022" key="" style="table 2" x="276" y="3" width="263" height="23" isRemoveLineWhenBlank="true"/>
+				<reportElement uuid="760defae-10f0-4043-8907-6a59dd991753" key="" style="table 2" x="276" y="3" width="263" height="23" isRemoveLineWhenBlank="true"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" whenNoDataType="AllSectionsNoDetail">
-					<datasetRun subDataset="NewDataset" uuid="f24629a5-9a11-4512-a87a-6609363dbb48">
+					<datasetRun subDataset="NewDataset" uuid="f95d8aef-0bee-4e4e-8929-d31a09c15742">
 						<datasetParameter name="BEM">
 							<datasetParameterExpression><![CDATA[$F{cp_bem}]]></datasetParameterExpression>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="90" uuid="547ea675-ccda-497c-adcc-cb32697228de">
+					<jr:column width="90" uuid="ff9e056d-6f82-457e-9cce-5806e88fd481">
 						<jr:tableHeader height="16" rowSpan="1"/>
 						<jr:tableFooter height="0" rowSpan="1"/>
 						<jr:columnHeader style="table 2" height="15" rowSpan="1">
 							<staticText>
-								<reportElement uuid="86813f71-d017-49b7-b9f6-db83cdf382e1" x="0" y="0" width="90" height="15"/>
+								<reportElement uuid="d800ecfa-5a95-42da-8099-18ab6a28b625" x="0" y="0" width="90" height="15"/>
 								<textElement textAlignment="Center">
 									<font fontName="Arial" isBold="true"/>
 								</textElement>
@@ -383,7 +382,7 @@ $F{nr_numero}) + " - " + $F{tx_bairro})
 						<jr:columnFooter height="0" rowSpan="1"/>
 						<jr:detailCell height="20" rowSpan="1">
 							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-								<reportElement uuid="e9ee3eb4-dfe4-46ae-b6d0-3f2193ba221c" style="table 2" x="0" y="0" width="90" height="20"/>
+								<reportElement uuid="ef1a42cd-5d0c-4d5a-b7d1-dc19a112363a" style="table 2" x="0" y="0" width="90" height="20"/>
 								<textElement>
 									<font fontName="Arial" isBold="false"/>
 								</textElement>
@@ -391,10 +390,10 @@ $F{nr_numero}) + " - " + $F{tx_bairro})
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="105" uuid="8dc64aa0-5203-4eea-8b89-2f30c20e9dec">
+					<jr:column width="105" uuid="a21e5ac8-2178-464e-b095-06f8f7fe21c6">
 						<jr:tableHeader height="16" rowSpan="1">
 							<staticText>
-								<reportElement uuid="7745ec5d-997b-4b2c-812f-f7d8a1fea338" x="0" y="0" width="105" height="16"/>
+								<reportElement uuid="f384f18c-c5ae-42b9-9511-c582266cc8e6" x="0" y="0" width="105" height="16"/>
 								<textElement textAlignment="Center">
 									<font fontName="Arial" size="12" isBold="true"/>
 								</textElement>
@@ -404,7 +403,7 @@ $F{nr_numero}) + " - " + $F{tx_bairro})
 						<jr:tableFooter height="0" rowSpan="1"/>
 						<jr:columnHeader style="table 2" height="15" rowSpan="1">
 							<staticText>
-								<reportElement uuid="dbcca0da-ba10-41d7-8ebd-79223f6fe5b7" x="0" y="0" width="105" height="15"/>
+								<reportElement uuid="28976df6-c1b6-407b-bba6-8c52ce957bb7" x="0" y="0" width="105" height="15"/>
 								<textElement textAlignment="Center">
 									<font fontName="Arial" isBold="true"/>
 								</textElement>
@@ -414,7 +413,7 @@ $F{nr_numero}) + " - " + $F{tx_bairro})
 						<jr:columnFooter height="0" rowSpan="1"/>
 						<jr:detailCell style="table 2" height="20" rowSpan="1">
 							<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-								<reportElement uuid="2fe5ee5e-d827-4c16-a382-4aa9b595c415" x="0" y="0" width="105" height="20"/>
+								<reportElement uuid="85d9d352-ba04-4c8e-bf86-5a062b2e47a0" x="0" y="0" width="105" height="20"/>
 								<textElement textAlignment="Center">
 									<font fontName="Arial"/>
 								</textElement>
@@ -422,12 +421,12 @@ $F{nr_numero}) + " - " + $F{tx_bairro})
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="83" uuid="56db07c0-43a4-4966-9fd1-57829aba42ff">
+					<jr:column width="83" uuid="1ddf759a-785a-49d3-90e9-e5a90c3dac0d">
 						<jr:tableHeader height="16" rowSpan="1"/>
 						<jr:tableFooter height="0" rowSpan="1"/>
 						<jr:columnHeader style="table 2" height="15" rowSpan="1">
 							<staticText>
-								<reportElement uuid="d0076266-f705-47ee-871f-f1551de56e90" x="0" y="0" width="79" height="15"/>
+								<reportElement uuid="8ee46a5c-e7a6-49cd-b6ba-0ac8355c838b" x="0" y="0" width="79" height="15"/>
 								<textElement textAlignment="Center">
 									<font fontName="Arial" isBold="true"/>
 								</textElement>
@@ -437,7 +436,7 @@ $F{nr_numero}) + " - " + $F{tx_bairro})
 						<jr:columnFooter height="0" rowSpan="1"/>
 						<jr:detailCell style="table 2" height="20" rowSpan="1">
 							<textField pattern="###0.00;###0.00-" isBlankWhenNull="true">
-								<reportElement uuid="e85b9c87-ba79-4e29-914a-9cb30cd005dd" x="0" y="0" width="79" height="20"/>
+								<reportElement uuid="aa7b4f4a-9f5e-4397-8d55-e87b9dd2b099" x="0" y="0" width="79" height="20"/>
 								<textElement textAlignment="Right">
 									<font fontName="Arial"/>
 								</textElement>
@@ -452,24 +451,24 @@ $F{nr_numero}) + " - " + $F{tx_bairro})
 	<pageFooter>
 		<band height="15" splitType="Stretch">
 			<textField pattern="EEEEE, dd &apos;de&apos; MMMMM &apos;de&apos; yyyy - H &apos;hrs e&apos; m &apos;min&apos;">
-				<reportElement uuid="5bae94e8-f01c-44dd-ab10-cd905efe8e34" mode="Opaque" x="1" y="1" width="300" height="12"/>
+				<reportElement uuid="0f7742c3-385e-4fad-abbf-7fbb212a0ab1" mode="Opaque" x="1" y="1" width="300" height="12"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="Arial" size="8" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement uuid="a7e3c4ae-665e-4efb-b3f6-75edcfc9896d" x="0" y="14" width="555" height="1"/>
+				<reportElement uuid="6991aaf1-919e-49b8-8047-ee384d0ff41f" x="0" y="14" width="555" height="1"/>
 			</line>
 			<textField>
-				<reportElement uuid="20d7db0c-5d79-4c9f-8328-f337d14c87e9" x="478" y="1" width="61" height="12"/>
+				<reportElement uuid="244dadbd-cf1d-4c08-8109-2c742f2456d6" x="478" y="1" width="61" height="12"/>
 				<textElement textAlignment="Right" verticalAlignment="Bottom">
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER} + " de "]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement uuid="095f4205-00de-4b76-908a-19f09574767e" x="539" y="1" width="15" height="12"/>
+				<reportElement uuid="5d424725-7bc3-4a6a-8907-57624f3037ca" x="539" y="1" width="15" height="12"/>
 				<textElement textAlignment="Right" verticalAlignment="Bottom">
 					<font fontName="Arial" size="8"/>
 				</textElement>
@@ -479,13 +478,13 @@ $F{nr_numero}) + " - " + $F{tx_bairro})
 	</pageFooter>
 	<summary>
 		<band height="52" splitType="Stretch">
-			<staticText>
-				<reportElement uuid="a4bbc602-dfda-4a2c-92bd-6c4b9f504a7f" x="1" y="14" width="554" height="20"/>
+			<textField>
+				<reportElement uuid="dc09d37e-2650-4db9-b370-2da8fd762408" x="2" y="10" width="553" height="20"/>
 				<textElement textAlignment="Center">
-					<font fontName="Arial" size="14" isBold="true"/>
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Teste]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[$P{AVALIACAO}]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>

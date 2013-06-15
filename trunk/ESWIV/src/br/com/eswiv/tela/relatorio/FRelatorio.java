@@ -2,8 +2,11 @@ package br.com.eswiv.tela.relatorio;
 
 import br.com.eswiv.auxiliares.DSelecionarObjeto;
 import br.com.eswiv.dao.DAOBem;
+import br.com.eswiv.dao.DAOCalculo;
 import br.com.eswiv.dao.DAOProprietario;
 import br.com.eswiv.modelo.Bem;
+import br.com.eswiv.modelo.Calculo;
+import br.com.eswiv.modelo.Despesas;
 import br.com.eswiv.modelo.Proprietario;
 import br.com.eswiv.tela.cadastro.FBem;
 import br.com.eswiv.tela.cadastro.FProprietario;
@@ -17,15 +20,17 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 /**
  * @author Edidelson
  */
 public class FRelatorio extends Filtro {
 
+    private String mensagem1 = "O valor das despesas é maior que o valor das depreciações, o sistema aconselha a troca do bem.";
+    private String mensagem2 = "O valor das despesas é menor que o valor das depreciações, o bem está em boas condições.";
+    private Double valor = 0.00;
+    private Double valorDepreciacao = 0.00;
     Util util = new Util();
-    private Proprietario proprietario;
 
     public FRelatorio() {
         WindowUtils.setSystemLookAndFeel();
@@ -38,10 +43,9 @@ public class FRelatorio extends Filtro {
         componentes = new HashMap();
         componentes.put("Propriatario", new Component[]{jsProprietario});
         componentes.put("Bem", new Component[]{jsBem});
-        componentes.put("Periodo", new Component[]{dtFinal, dtInicial});
+//        componentes.put("Periodo", new Component[]{dtFinal, dtInicial});
 
         obrigatorios = new HashMap();
-        obrigatorios.put("Propriatario", jsProprietario);
         obrigatorios.put("Bem", jsBem);
     }
 
@@ -57,8 +61,8 @@ public class FRelatorio extends Filtro {
         if (camposObrigatorios != null) {
             for (Component c : camposObrigatorios) {
                 // Verificando se é um campo de texto e se foi preenchido
-                if (c instanceof JTextField) {
-                    if (((JTextField) c).getText().equals("")) {
+                if (c instanceof JASelectPicker) {
+                    if (((JASelectPicker) c).getEditor().getText().equals("")) {
                         JOptionPane.showMessageDialog(null, "Campo obrigatório não preenchido");
                         c.requestFocus();
                         return false;
@@ -67,6 +71,22 @@ public class FRelatorio extends Filtro {
             }
         }
         return true;
+    }
+
+    public String avaliacao(Integer codigo) {
+        Bem bem = new DAOBem().consultar(codigo);
+        valorDepreciacao = new DAOCalculo().getMaxValue(bem);
+       
+        if (bem != null && bem.getDespesas().size() > 0) {
+            for (Despesas despesas : bem.getDespesas()) {
+                valor += despesas.getValor();
+            }
+        }
+        if (valorDepreciacao!=null && valor > valorDepreciacao) {
+            return mensagem1;
+        } else {
+            return mensagem2;
+        }
     }
 
     /**
@@ -84,11 +104,12 @@ public class FRelatorio extends Filtro {
                 dataFinal = new Date(dtFinal.getDate().getTime());
             }
             Map<String, Object> parametros = new HashMap<>();
-            parametros.put("PROPRIETARIOA", jsProprietario.getValue());
-             parametros.put("BEM", jsBem.getValue());
+            parametros.put("PROPRIETARIO", jsProprietario.getValue());
+            parametros.put("BEM", jsBem.getValue());
             parametros.put("DATA_INICIAL", dataInicial);
             parametros.put("DATA_FINAL", dataFinal);
-
+            String avaliacao = avaliacao(Integer.parseInt(jsBem.getValue().getCodigo() + ""));
+            parametros.put("AVALIACAO", avaliacao);
             new DCarregandoRelatorio(this, true).gerarRelatorio(relatorio.getCaminho(), parametros);
         }
     }
@@ -274,11 +295,12 @@ public class FRelatorio extends Filtro {
         pnTelaLayout.setHorizontalGroup(
             pnTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnTelaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(plCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnTelaLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(pnTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnTelaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(plCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnTelaLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btImprimir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btCancelar)))
