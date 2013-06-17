@@ -26,7 +26,7 @@ public class DialogGenerico extends javax.swing.JDialog {
     {
         util = Util.getUtil();
         WindowUtils.setSystemLookAndFeel();
-        util.inserirIconeAplicacao(this);
+//        util.inserirIconeAplicacao(this);
     }
 
     public DialogGenerico() {

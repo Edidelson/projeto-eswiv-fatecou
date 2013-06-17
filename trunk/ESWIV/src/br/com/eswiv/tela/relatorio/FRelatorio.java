@@ -41,9 +41,9 @@ public class FRelatorio extends Filtro {
         setLocationRelativeTo(null);
         // campos obrigatórios
         componentes = new HashMap();
-        componentes.put("Propriatario", new Component[]{jsProprietario});
+        componentes.put("Proprietario", new Component[]{jsProprietario});
         componentes.put("Bem", new Component[]{jsBem});
-//        componentes.put("Periodo", new Component[]{dtFinal, dtInicial});
+        componentes.put("Periodo", new Component[]{dtFinal, dtInicial});
 
         obrigatorios = new HashMap();
         obrigatorios.put("Bem", jsBem);
@@ -76,13 +76,13 @@ public class FRelatorio extends Filtro {
     public String avaliacao(Integer codigo) {
         Bem bem = new DAOBem().consultar(codigo);
         valorDepreciacao = new DAOCalculo().getMaxValue(bem);
-       
+
         if (bem != null && bem.getDespesas().size() > 0) {
             for (Despesas despesas : bem.getDespesas()) {
                 valor += despesas.getValor();
             }
         }
-        if (valorDepreciacao!=null && valor > valorDepreciacao) {
+        if (valorDepreciacao != null && valor > valorDepreciacao) {
             return mensagem1;
         } else {
             return mensagem2;
@@ -108,8 +108,10 @@ public class FRelatorio extends Filtro {
             parametros.put("BEM", jsBem.getValue());
             parametros.put("DATA_INICIAL", dataInicial);
             parametros.put("DATA_FINAL", dataFinal);
-            String avaliacao = avaliacao(Integer.parseInt(jsBem.getValue().getCodigo() + ""));
-            parametros.put("AVALIACAO", avaliacao);
+            if (jsBem.getValue() != null) {
+                String avaliacao = avaliacao(Integer.parseInt(jsBem.getValue().getCodigo() + ""));
+                parametros.put("AVALIACAO", avaliacao);
+            }
             new DCarregandoRelatorio(this, true).gerarRelatorio(relatorio.getCaminho(), parametros);
         }
     }
@@ -151,6 +153,7 @@ public class FRelatorio extends Filtro {
 
         lbFilial.setText("Bem:");
 
+        jsBem.setEnabled(false);
         jsBem.setLabel(lbBemSelecionado);
         jsBem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,6 +166,7 @@ public class FRelatorio extends Filtro {
             }
         });
 
+        jsProprietario.setEnabled(false);
         jsProprietario.setLabel(lbProprietarioSelecionado);
         jsProprietario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
