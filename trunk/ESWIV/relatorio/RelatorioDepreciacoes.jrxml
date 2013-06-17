@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioDepreciacoes" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="94e8540d-d4aa-4c50-9387-dadadf960dd5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="BEM" class="br.com.eswiv.modelo.Bem"/>
+	<parameter name="AND_BEM" class="java.lang.String">
+		<defaultValueExpression><![CDATA[($P{BEM} == null? "": " AND bem.cp_bem = " + $P{BEM}.getCodigo())]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DATA_INICIAL" class="java.util.Date">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DATA_FINAL" class="java.util.Date">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="AND_DATA_INICIAL" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{DATA_INICIAL} == null? " ": " AND calculo.dt_calculo>= '" + $P{DATA_INICIAL}.toString() + "'"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="AND_DATA_FINAL" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{DATA_FINAL} == null? "": " AND calculo.dt_calculo<= '" + $P{DATA_FINAL}.toString() + "'"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+	proprietario.tx_nome,
+    calculo.dt_calculo,
+    calculo.vl_calculo,
+    bem.tx_grupo,
+bem.cp_bem,
+    bem.tx_descricao
+ FROM ((calculo LEFT JOIN bem ON calculo.ce_bem = bem.cp_bem)
+LEFT JOIN proprietario ON bem.ce_proprietario=proprietario.cp_proprietario)
+where true $P!{AND_BEM} $P!{AND_DATA_INICIAL} $P!{AND_DATA_FINAL}]]>
+	</queryString>
+	<field name="tx_nome" class="java.lang.String"/>
+	<field name="dt_calculo" class="java.sql.Date"/>
+	<field name="vl_calculo" class="java.lang.Double"/>
+	<field name="tx_grupo" class="java.lang.String"/>
+	<field name="tx_descricao" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e734f1a0-8f94-4c73-a7be-f8de0906dd3c" x="240" y="0" width="315" height="40"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Depreciações]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e205e979-9ee6-4408-92f7-e3666f170e2c" x="0" y="1" width="100" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Proprietário]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="da8d42d3-c052-448b-8f65-235dd1244942" x="100" y="1" width="100" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grupo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="acc91f90-f6ae-4658-9bfe-f4e58a558df4" x="200" y="1" width="100" height="14"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="46199847-dc2c-4f25-bf5f-226c83663f25" x="356" y="1" width="100" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data do Cálculo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="191d81a1-49b6-4ef1-b5f6-5831056698c5" x="456" y="1" width="100" height="14"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField>
+				<reportElement uuid="a4bbdb63-1aa6-4c55-8cf0-76d56e62d09b" x="0" y="0" width="100" height="14"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tx_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bee076fb-7189-4d75-9054-155ed5c412c0" x="100" y="0" width="100" height="14"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[br.com.eswiv.modelo.Bem.getCategoria($F{tx_grupo})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="92e27e92-b311-40e6-86a9-411079264641" x="200" y="0" width="156" height="14"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tx_descricao}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="3a4ef219-8b07-4492-abf9-7692ac6eba02" x="356" y="1" width="100" height="13"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dt_calculo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;###0.00-">
+				<reportElement uuid="52a871aa-dae8-4d18-9639-391e7e2657eb" x="456" y="0" width="100" height="14"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vl_calculo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="36" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>
