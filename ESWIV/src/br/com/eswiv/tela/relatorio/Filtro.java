@@ -5,6 +5,7 @@
 package br.com.eswiv.tela.relatorio;
 
 import br.com.util.XMLRelatorio;
+import com.zap.arca.JASelectPicker;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,8 +60,8 @@ public abstract class Filtro extends FRelatorioGenerico {
         }
         
         for(Component c: camposObrigatorios) {
-            if(c instanceof JTextField) {
-                if(((JTextField) c).getText().equals("")) {
+            if(c instanceof JASelectPicker) {
+                if(((JASelectPicker) c).getText().equals("")) {
                     c.requestFocus();
                     return false;
                 }

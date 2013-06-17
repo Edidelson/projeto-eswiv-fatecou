@@ -1,3 +1,4 @@
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -256,6 +257,20 @@ public class Bem implements Serializable, IModelo {
             this.taxaPercentual = taxaPercentual;
             this.prazo = prazo;
             this.descricao = descricao;
+        }
+    }
+
+    public static String getCategoria(String categorias) {
+        if (categorias.equals("V")) {
+            return "Veículos";
+        } else if (categorias.equals("I")) {
+            return "Instalações";
+        } else if (categorias.equals("MU")) {
+            return "Móveis e Utensílios";
+        } else if (categorias.equals("E")) {
+            return "Edifícios";
+        } else {
+            return "Máquinas e Equipamentos";
         }
     }
 }
