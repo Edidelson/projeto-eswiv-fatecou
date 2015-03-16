@@ -1,0 +1,1 @@
+Projeto desenvolvido na matéria de engenharia de software 4 para calcular as depreciações dos bens materiais, estabelecidas pelo governo.
